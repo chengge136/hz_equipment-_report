@@ -1,0 +1,69 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true
+	},
+	"appid": "wx286f42de54481200",
+	"projectname": "hz_equipment%20_report",
+	"libVersion": "2.7.7",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"compileType": "miniprogram",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "设备信息详情",
+					"pathName": "pages/facilityQuery/facilityQuery",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新报修申请",
+					"pathName": "pages/newRepairOrders/newRepairOrders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "进行中订单",
+					"pathName": "pages/myOrders/myOrders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新订单详情",
+					"pathName": "pages/newOrderDetails/newOrderDetails",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

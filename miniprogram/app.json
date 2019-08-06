@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/facilityInfo/facilityInfo",
+    "pages/facilityQuery/facilityQuery",
+    "pages/newOrders/newOrders",
+    "pages/newOrderDetails/newOrderDetails",
+    "pages/myOrders/myOrders",
+    "pages/myOrderDetails/myOrderDetails"
+        
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "售后辅助",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

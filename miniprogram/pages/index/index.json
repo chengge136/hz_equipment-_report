@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "售后辅助工具售后端",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}
+

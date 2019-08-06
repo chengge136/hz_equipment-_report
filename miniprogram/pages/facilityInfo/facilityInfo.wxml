@@ -1,0 +1,30 @@
+<view class="header">
+  <text>设备信息</text>
+</view>
+
+<van-cell-group>
+   <van-field value="{{ facilityid }}" required clearable label="设备id"/>
+  <van-field value="{{ facilityName }}" bind:input="facilityName" required clearable label="设备名称" placeholder="请输入设备名称" />
+    <van-field value="{{ brandName }}" bind:input="brandName" required clearable label="设备品牌" placeholder="请输入设备品牌" />
+  <van-field value="{{ facilityOrg }}" bind:input="facilityOrg" required clearable label="设备单位" placeholder="请输入设备使用单位" />
+  <van-field value="{{ facilityDep }}" bind:input="facilityDep" required clearable label="设备部门" placeholder="请输入设备使用部门" />
+
+  
+</van-cell-group>
+
+<view class="label">
+  <text>设备类型</text>
+</view>
+<view class="facilityType">
+<van-radio-group value="{{ facilityType }}" bind:change="onChange">
+  <van-radio name="打印机">打印机</van-radio>
+  <van-radio name="复印机">复印机</van-radio>
+  <van-radio name="电脑">电脑</van-radio>
+  <van-radio name="其他">其他</van-radio>
+</van-radio-group>
+</view>
+
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">提交</van-button>
+</view>
+<van-toast id="van-toast" />

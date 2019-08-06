@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-field": "../../vant/field/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "进行中订单",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

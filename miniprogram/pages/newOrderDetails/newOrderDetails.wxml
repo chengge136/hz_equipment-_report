@@ -1,0 +1,57 @@
+
+<view class="title">
+<view><text>已申请，等待技术员接受</text></view>
+<view class="title_time"><text>2019-4-1 10:23:04</text></view>
+</view>
+<view class="header">
+<view class="header_left">
+<i class="fa fa-clock-o fa-2x" style="color:#03A9F4;"></i><text>建设局</text></view>
+<view class="header_right"><text>No.20190723001</text></view>
+</view>
+<view>
+  <van-cell-group>
+    <van-field value="2112232121" label="设备id" disabled/>
+    <van-field value="打印机" label="设备类型" disabled/>
+    <van-field value="NPH-220打印机" label="设备名称" disabled/>
+    <van-field value="联想" label="设备品牌" disabled/>
+    <van-field value="建设局" label="设备单位" disabled/>
+    <van-field value="地理信息测绘" label="设备部门" disabled/>
+  </van-cell-group>
+</view>
+<view class="image">
+<text>附件图片</text>
+<image bindtap="imgYu" mode="aspectFit" data-src="{{dImg}}" src="{{dImg}}"></image>
+</view>
+<view class="problem"><text>问题描述</text></view>
+<view>
+<van-cell-group>
+  <van-field
+    value="{{ message }}"
+    type="textarea"
+    autosize="{{autosize}}"
+    border
+    disabled
+    placeholder="未填写设备问题"
+  />
+</van-cell-group>
+</view>
+
+<view class="setTime" bindtap="setTime">
+<van-cell-group>
+  <van-field
+    value="{{ arrival_time }}"
+    required
+    disabled
+    input-align="center"
+    label="到达现场时间"
+    icon="question-o"
+    placeholder="点击选择到达现场的时间(小时)"
+  />
+</van-cell-group>
+</view>
+
+
+<view class="button">
+<van-button size="large" type="info" bind:click="get_order">领取报修申请单</van-button>
+</view>
+
