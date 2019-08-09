@@ -20,7 +20,7 @@
 <view class="detail_content">
   <van-row gutter="20">
   <van-col span="8"><text>{{item.order_id}}</text></van-col>
-  <van-col span="8"><text>{{item.create_time}}</text></van-col>
+  <van-col span="8"><text>2019-4-1 10:23:04</text></van-col>
   <van-col span="8"><text style="color:#FF5722">{{item.device_name}}</text></van-col>
 </van-row>
 </view>
