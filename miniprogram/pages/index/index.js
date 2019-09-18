@@ -112,6 +112,12 @@ Page({
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
+  repair_records: function () {
+    wx.navigateTo({
+      url: '../repairRecords/repairRecords',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
+  },
   my_orders: function () {
     wx.navigateTo({
       url: '../myOrders/myOrders',

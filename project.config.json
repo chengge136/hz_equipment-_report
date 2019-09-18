@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -51,16 +51,15 @@
 				},
 				{
 					"id": -1,
-					"name": "进行中订单",
-					"pathName": "pages/myOrders/myOrders",
-					"query": "",
+					"name": "pages/repairRecords/repairRecords",
+					"pathName": "pages/repairRecords/repairRecords",
+					"query": "维修记录",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "新订单详情",
-					"pathName": "pages/newOrderDetails/newOrderDetails",
-					"query": "",
+					"name": "签到",
+					"pathName": "pages/signIn/signIn",
 					"scene": null
 				}
 			]

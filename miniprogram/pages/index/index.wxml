@@ -46,7 +46,7 @@
       <i class="fa fa-keyboard-o fa-2x" style="color:#3F51B5;" bindtap="facility_query"></i>
     </van-col>
     <van-col span="5">
-      <i class="fa fa-book fa-2x" style="color:#3F51B5;"></i>
+      <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
     </van-col>
   </van-row>
 </view>

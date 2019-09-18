@@ -1,0 +1,30 @@
+.button{
+  position:fixed; 
+  bottom:0; 
+  width:100%; 
+}
+
+
+.facilityid{
+   margin: 20rpx;
+}
+
+.image{
+  display:flex;
+  margin: 30rpx; /* 边距 */
+}
+.image text{
+  font-size: 11pt;
+}
+.image image{
+  height: 140rpx;
+  width: 30%;
+  margin-left: 37rpx;
+}
+.problem{
+  display:flex;
+  margin-left: 30rpx; /* 边距 */
+}
+.problem text{
+  font-size: 11pt;
+}

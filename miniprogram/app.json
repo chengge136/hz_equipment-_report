@@ -6,7 +6,9 @@
     "pages/newOrders/newOrders",
     "pages/newOrderDetails/newOrderDetails",
     "pages/myOrders/myOrders",
-    "pages/myOrderDetails/myOrderDetails"
+    "pages/myOrderDetails/myOrderDetails",
+    "pages/repairRecords/repairRecords",
+    "pages/signIn/signIn"
         
   ],
   "window": {

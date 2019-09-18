@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
+    "van-field": "../../vant/field/index",
+    "van-toast": "../../vant/toast/index",
+    "van-icon": "../../vant/icon/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "签到",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

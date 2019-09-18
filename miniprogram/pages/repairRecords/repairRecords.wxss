@@ -1,0 +1,35 @@
+.button{
+  position:fixed; 
+  bottom:0; 
+  width:100%; 
+}
+textarea {
+  width: 700rpx;
+  height: 400rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+ 
+.textarea-bg {
+  padding: 10rpx;
+  font-size: 32rpx;
+}
+.title-bg{
+  margin-left: 20rpx;
+}
+.section{
+  margin: 20rpx;
+}
+.isComplete{
+  margin: 20rpx;
+}
+.label{
+  margin: 20rpx;
+}
+.picker text{
+  color:red;
+}
+.facilityid{
+   margin: 20rpx;
+}
