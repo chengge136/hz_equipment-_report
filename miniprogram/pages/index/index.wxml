@@ -40,7 +40,7 @@
 <view class="icon2">
   <van-row gutter="10">
     <van-col span="5" offset="3">
-      <i class="fa fa-key fa-2x" style="color:#9C89B9;"></i>
+      <i class="fa fa-key fa-2x" style="color:#9C89B9;" bindtap="sign_in"></i>
     </van-col>
     <van-col span="5">
       <i class="fa fa-keyboard-o fa-2x" style="color:#3F51B5;" bindtap="facility_query"></i>

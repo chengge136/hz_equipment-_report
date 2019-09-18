@@ -33,19 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "设备信息详情",
 					"pathName": "pages/facilityQuery/facilityQuery",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "新报修申请",
-					"pathName": "pages/newRepairOrders/newRepairOrders",
 					"query": "",
 					"scene": null
 				},
@@ -60,6 +53,7 @@
 					"id": -1,
 					"name": "签到",
 					"pathName": "pages/signIn/signIn",
+					"query": "",
 					"scene": null
 				}
 			]

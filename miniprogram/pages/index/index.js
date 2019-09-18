@@ -123,7 +123,14 @@ Page({
       url: '../myOrders/myOrders',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
+  },
+  sign_in: function () {
+    wx.navigateTo({
+      url: '../signIn/signIn',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
   }
+
 
 
 })
