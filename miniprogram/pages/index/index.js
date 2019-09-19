@@ -124,6 +124,18 @@ Page({
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
+  history_orders: function () {
+    wx.navigateTo({
+      url: '../historyOrders/historyOrders',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
+  },
+  history_repair_records: function () {
+    wx.navigateTo({
+      url: '../historyRepairRecords/historyRepairRecords',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
+  },
   sign_in: function () {
     wx.navigateTo({
       url: '../signIn/signIn',
