@@ -8,7 +8,9 @@
     "pages/myOrders/myOrders",
     "pages/myOrderDetails/myOrderDetails",
     "pages/repairRecords/repairRecords",
-    "pages/signIn/signIn"
+    "pages/signIn/signIn",
+    "pages/cusIndex/cusIndex",
+    "pages/scanReport/scanReport"
         
   ],
   "window": {

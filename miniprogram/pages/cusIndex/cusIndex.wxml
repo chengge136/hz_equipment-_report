@@ -1,70 +1,36 @@
 <van-notice-bar
   left-icon="volume-o"
-  text="在新报修申请中，领取你的维修订单。达到客户现场，请务必对维修的设备扫码进行签到"
+  text="扫码报修的时候，请查看设备现有的信息是否有误，若有误请手动更新后提交。"
 />
 <view class="icon1">
   <van-row gutter="10">
-    <van-col span="5" offset="3">
-      <i class="fa fa-file-text fa-2x" style="color:#03A9F4;" bindtap="facility_input"></i>
+    <van-col span="6" offset="4">
+      <i class="fa fa-camera fa-2x" style="color:#03A9F4;" bindtap="scan_report"></i>
     </van-col>
-    <van-col span="5">
-      <i class="fa fa-newspaper-o fa-2x" style="color:#FF9800;" bindtap="new_report_orders"></i>
+    <van-col span="6">
+      <i class="fa fa-wrench fa-2x" style="color:#FF9800;" bindtap="new_report_orders"></i>
     </van-col>
-    <van-col span="5">
-      <i class="fa fa-money fa-2x" style="color:#EE4D52;" bindtap="my_orders"></i>
-    </van-col>
-    <van-col span="5">
-      <i class="fa fa-history fa-2x" style="color:#259B24;"></i>
+    <van-col span="6">
+      <i class="fa fa-history fa-2x" style="color:#259B24;" bindtap="my_orders"></i>
     </van-col>
   </van-row>
 </view>
 
 <view class="text1">
   <van-row gutter="10">
-    <van-col span="5" offset="3">
-      <text>设备录入</text>
+    <van-col span="6" offset="4">
+      <text>扫码报修</text>
     </van-col>
-    <van-col span="5">
-      <text>新报修申请</text>
+    <van-col span="6">
+      <text>报修订单</text>
     </van-col>
-    <van-col span="5">
-      <text>进行中订单</text>
-    </van-col>
-    <van-col span="5">
-      <text>历史订单</text>
+    <van-col span="6">
+      <text>维修历史记录</text>
     </van-col>
   </van-row>
 </view>
 
-<hr class="hr1" />
 
-<view class="icon2">
-  <van-row gutter="10">
-    <van-col span="5" offset="3">
-      <i class="fa fa-key fa-2x" style="color:#9C89B9;" bindtap="sign_in"></i>
-    </van-col>
-    <van-col span="5">
-      <i class="fa fa-keyboard-o fa-2x" style="color:#3F51B5;" bindtap="facility_query"></i>
-    </van-col>
-    <van-col span="5">
-      <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
-    </van-col>
-  </van-row>
-</view>
-
-<view class="text1">
-  <van-row gutter="10">
-    <van-col span="5" offset="3">
-      <text>到场签到</text>
-    </van-col>
-    <van-col span="5">
-      <text>设备查询</text>
-    </van-col>
-    <van-col span="5">
-      <text>维修记录</text>
-    </van-col>
-  </van-row>
-</view>
 
 <view class="intrduce">
   <van-row gutter="10">
