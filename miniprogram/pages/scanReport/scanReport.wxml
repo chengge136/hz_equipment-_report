@@ -12,9 +12,9 @@
   <van-field value="{{ facilityid }}" label="设备id" disabled/>
   <van-field value="{{ facilityName }}" label="设备名称" disabled/>
   <van-field value="{{ brandName }}" label="设备品牌" disabled/>
-  <van-field value="{{ facilityType }}" label="设备品牌" disabled/>
+  <van-field value="{{ facilityType }}" label="设备类型" disabled/>
   <van-field value="{{ facilityOrg }}" label="设备单位" disabled/>
-  <van-field value="{{ facilityDep }}" bind:input="facilityDep" required clearable label="设备详细地址" placeholder="请输入设备详细地址" />
+  <van-field value="{{ address }}" bind:input="addressIn" required clearable label="设备详细地址" placeholder="请输入设备详细地址" />
 <van-field value="{{ contactor }}" bind:input="contactorIn"  clearable label="联系人" placeholder="请输入设备联系人" />
 <van-field value="{{ phone }}" bind:input="phoneIn" required clearable label="联系电话" placeholder="请输入联系电话" />
 
@@ -26,29 +26,23 @@
 </van-cell-group>
 
 
-
+<view wx:if="{{!imagePath==''}}">
 <view class="image">
 <text>上传的图片</text>
 <image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
-
 </view>
 <view class="q-image-remover" bindtap="removeImage">
 <i class="fa fa-remove" style="color:red;"></i>
 <text>删除图片</text>
 </view>
-
-<view class='son_view'> 
-    <view class="title-bg">问题描述</view>
-    <textarea class="textarea-bg" maxlength="200" placeholder="简单描述设备的问题" bindblur="getDataBindTap" />
- 
 </view>
 
 
-  
-
-
+<view class='son_view'> 
+    <view class="title-bg">问题描述</view>
+    <textarea class="textarea-bg"  maxlength="200" placeholder="简单描述设备的问题" bindinput="getDataBindTap" /> 
+</view>
 
 <view class="button">
 <van-button size="large" type="info" bind:click="submit_info">提交</van-button>
 </view>
-<van-toast id="van-toast" />

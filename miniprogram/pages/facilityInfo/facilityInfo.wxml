@@ -3,26 +3,24 @@
 </view>
 
 <van-cell-group>
-   <van-field value="{{ facilityid }}" required clearable label="设备id"/>
+   <van-field value="{{ facilityid }}" required disabled label="设备id"/>
   <van-field value="{{ facilityName }}" bind:input="facilityName" required clearable label="设备名称" placeholder="请输入设备名称" />
     <van-field value="{{ brandName }}" bind:input="brandName" required clearable label="设备品牌" placeholder="请输入设备品牌" />
   <van-field value="{{ facilityOrg }}" bind:input="facilityOrg" required clearable label="设备单位" placeholder="请输入设备使用单位" />
-  <van-field value="{{ facilityDep }}" bind:input="facilityDep" required clearable label="设备部门" placeholder="请输入设备使用部门" />
-
-  
+  <van-field value="{{ address }}" bind:input="address" required clearable label="设备地址" placeholder="请输入设备详细地址" />
+  <van-field value="{{ contactor }}" bind:input="contactor" required clearable label="设备联系人" placeholder="请输入设备联系人" />
+    <van-field value="{{ phone }}" bind:input="phone" required clearable label="联系电话" placeholder="请输入联系电话" />
 </van-cell-group>
 
-<view class="label">
-  <text>设备类型</text>
+<view class="section">
+  <text>请选择设备类型</text>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
 </view>
-<view class="facilityType">
-<van-radio-group value="{{ facilityType }}" bind:change="onChange">
-  <van-radio name="打印机">打印机</van-radio>
-  <van-radio name="复印机">复印机</van-radio>
-  <van-radio name="电脑">电脑</van-radio>
-  <van-radio name="其他">其他</van-radio>
-</van-radio-group>
-</view>
+
 
 <view class="button">
 <van-button size="large" type="info" bind:click="submit_info">提交</van-button>

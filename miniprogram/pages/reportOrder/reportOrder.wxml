@@ -1,0 +1,36 @@
+<view class="icon1">
+  <i class="fa fa-globe fa-2x" style="color:#03A9F4;"></i>
+  <text>报修订单状态：{{status}}</text>
+  <view class="createtime"><text>发布时间：{{createtime}}</text></view>
+</view>
+
+<view class="facilityid">
+  <text>No.{{report_id}}</text>
+</view>
+
+
+<van-cell-group>
+  <van-field value="{{ facilityid }}" label="设备id" disabled/>
+  <van-field value="{{ facilityName }}" label="设备名称" disabled/>
+  <van-field value="{{ brandName }}" label="设备品牌" disabled/>
+  <van-field value="{{ facilityType }}" label="设备类型" disabled/>
+  <van-field value="{{ facilityOrg }}" label="设备单位" disabled/>
+  <van-field value="{{ address }}" label="设备详细地址" disabled/>
+<van-field value="{{ contactor }}" label="联系人" disabled/>
+<van-field value="{{ phone }}" label="联系电话" disabled/>
+</van-cell-group>
+
+
+<view wx:if="{{!imagePath==''}}">
+<view class="image">
+<text>上传的图片</text>
+<image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
+</view>
+</view>
+
+
+<view class='son_view'> 
+    <view class="title-bg">问题描述</view>
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
+</view>
+

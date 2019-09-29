@@ -8,7 +8,7 @@
       <i class="fa fa-camera fa-2x" style="color:#03A9F4;" bindtap="scan_report"></i>
     </van-col>
     <van-col span="6">
-      <i class="fa fa-wrench fa-2x" style="color:#FF9800;" bindtap="new_report_orders"></i>
+      <i class="fa fa-wrench fa-2x" style="color:#FF9800;" bindtap="new_report_order"></i>
     </van-col>
     <van-col span="6">
       <i class="fa fa-history fa-2x" style="color:#259B24;" bindtap="my_orders"></i>

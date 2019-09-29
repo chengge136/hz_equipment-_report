@@ -1,5 +1,4 @@
 // pages/facilityInfo/facilityInfo.js
-import Toast from '../../vant/toast/toast';
 //云数据库初始化
 const db = wx.cloud.database();
 
@@ -14,45 +13,78 @@ Page({
     brandName: '',
     facilityType: '',
     facilityOrg: '',
-    facilityDep: '',
+    address: '',
     contactor: '',
     phone: '',
-    imagePath:''
+    imagePath:'',
+    problemDetail:'',
+    createtime:''
 
 
   },
   submit_info: function () {
-    //console.log(this.data)
+    if (!this.data.imagePath == '') {
+      wx.cloud.uploadFile({
+        cloudPath: 'example.jpg',
+        filePath: this.data.imagePath, // 文件路径
+        success: res => {
+          // get resource ID
+          console.log(res.fileID)
+        },
+        fail: err => {
+          // handle error
+        }
+      })
+    } else if (this.data.problemDetail == ''){
+     
+      wx.showModal({
+        title: '提示',
+        content: '设备照片和问题描述至少需要一个',
+        showCancel:false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } 
+        }
+      })
+    }
+ 
 
-
-
-    const book = db.collection('facility')
-
-    db.collection('facility').add({
-      // data 字段表示需新增的 JSON 数据
+    wx.cloud.callFunction({
+      name: 'repairorders',
       data: {
         facilityid: this.data.facilityid,
-        facilityType: this.data.facilityType,
         facilityName: this.data.facilityName,
+        brandName: this.data.brandName,
+        facilityType: this.data.facilityType,
         facilityOrg: this.data.facilityOrg,
-        facilityDep: this.data.facilityDep,
-        brandName: this.data.brandName
-
-
+        address: this.data.address,
+        contactor: this.data.contactor,
+        phone: this.data.phone,
+        imagePath: this.data.imagePath,
+        problemDetail: this.data.problemDetail,
+        createtime: this.data.createtime,
+        report_id: this.data.createtime,
+       
+      },
+      complete: res => {
+        console.log('callFunction test result: ', res);
+        wx.showToast({
+          title: '报修成功',
+          icon: 'success',
+          duration: 3000
+        });
+        wx.redirectTo({
+          url: '../cusIndex/cusIndex'
+        });
       }
     })
-      .then(res => {
-        //console.log(res)
-        Toast.success('提交成功');
-        wx.redirectTo({
-          url: '../index/index',
-        })
-      })
 
+
+    
+    
   },
-  test_info: function () {
-    Toast.success('成功文案');
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -65,14 +97,40 @@ Page({
     })
       .get().then(res => {
         // res.data 包含该记录的数据
-        console.log(res.data[0])
+        console.log(res.data[0]);
+        //设置设备类型
+        switch (res.data[0].facilityType.toString()) {
+          case "0":
+            that.setData({
+              facilityType: '打印机'
+            }) ;
+            break;
+          case "1":
+            that.setData({
+              facilityType: '复印机'
+            });
+            break;
+          case "2":
+            that.setData({
+              facilityType: '电脑'
+            });
+            break;
+          case "3":
+            that.setData({
+              facilityType: '其他'
+            });
+            break;
+        } 
+
+
         that.setData({
           facilityid: res.data[0].facilityid,
-          facilityType: res.data[0].facilityType,
           facilityName: res.data[0].facilityName,
+          brandName: res.data[0].brandName,
           facilityOrg: res.data[0].facilityOrg,
-          facilityDep: res.data[0].facilityDep,
-          brandName: res.data[0].brandName
+          address: res.data[0].address,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone
 
         })
       })
@@ -128,39 +186,29 @@ Page({
   onShareAppMessage: function () {
 
   },
-  facilityName: function (event) {
+
+
+
+  address: function (event) {
     var that = this;
     that.setData({
-      facilityName: event.detail
+      address: event.detail
     })
   },
-  facilityOrg: function (event) {
+  contactor: function (event) {
     var that = this;
     that.setData({
-      facilityOrg: event.detail
+      contactor: event.detail
     })
   },
-  facilityDep: function (event) {
+  phone: function (event) {
     var that = this;
     that.setData({
-      facilityDep: event.detail
-    })
-  },
-  brandName: function (event) {
-    var that = this;
-    that.setData({
-      brandName: event.detail
+      phone: event.detail
     })
   },
 
-  onChange(event) {
-    var that = this;
-    console.log(event);
-    that.setData({
-
-      facilityType: event.detail
-    })
-  },
+//upload img
   choose_image:function(){
     var that = this;
     wx.chooseImage({
@@ -175,7 +223,6 @@ Page({
         that.setData({
           imagePath: tempFilePath
         })
-
       }
     })
 
@@ -210,5 +257,12 @@ Page({
         }
       })
    }  
-  }  
+  } ,
+  
+  getDataBindTap: function(e) {
+    var that=this;
+    that.setData({
+      problemDetail: e.detail.value
+    })
+  },
 })

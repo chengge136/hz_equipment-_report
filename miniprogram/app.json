@@ -10,7 +10,8 @@
     "pages/repairRecords/repairRecords",
     "pages/signIn/signIn",
     "pages/cusIndex/cusIndex",
-    "pages/scanReport/scanReport"
+    "pages/scanReport/scanReport",
+    "pages/reportOrder/reportOrder"
         
   ],
   "window": {
@@ -20,5 +21,22 @@
     "navigationBarTitleText": "售后辅助",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "backgroundColor":"#03A9F4",
+    "color":"#FFFFFF",
+    "selectedColor": "#FFEE93",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "售后端"
+      },
+      {
+        "pagePath": "pages/cusIndex/cusIndex",
+        "text": "客户端"
+      }
+    ]
+  },
+  "cloud": true,
   "sitemapLocation": "sitemap.json"
+  
 }
