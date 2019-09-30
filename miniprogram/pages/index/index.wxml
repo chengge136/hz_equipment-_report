@@ -61,7 +61,7 @@
       <text>设备查询</text>
     </van-col>
     <van-col span="5">
-      <text>维修记录</text>
+      <text>维修记录填写</text>
     </van-col>
   </van-row>
 </view>

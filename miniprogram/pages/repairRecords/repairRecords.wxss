@@ -1,5 +1,4 @@
 .button{
-  position:fixed; 
   bottom:0; 
   width:100%; 
 }
@@ -32,4 +31,22 @@ textarea {
 }
 .facilityid{
    margin: 20rpx;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin: 20rpx; /* 边距 */
+}
+.header_left{
+  padding: 10rpx;
+}
+.header_left text{
+  font-size: 14pt;
+  color:#03A9F4;
+  padding: 20rpx;
+  position:relative;
+}
+.header_right text{
+  color: #B2B2B2;
+  font-size: 11pt;
 }

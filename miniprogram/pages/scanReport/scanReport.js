@@ -25,7 +25,7 @@ Page({
   submit_info: function () {
     if (!this.data.imagePath == '') {
       wx.cloud.uploadFile({
-        cloudPath: 'example.jpg',
+        cloudPath: this.data.facilityid+'example.jpg',
         filePath: this.data.imagePath, // 文件路径
         success: res => {
           // get resource ID
@@ -69,14 +69,22 @@ Page({
       },
       complete: res => {
         console.log('callFunction test result: ', res);
+       
         wx.showToast({
-          title: '报修成功',
+          title: '成功',
           icon: 'success',
-          duration: 3000
-        });
-        wx.redirectTo({
-          url: '../cusIndex/cusIndex'
-        });
+          duration: 2000,
+          success: function () {
+            console.log('haha');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.switchTab({
+                url: '../cusIndex/cusIndex'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+
       }
     })
 

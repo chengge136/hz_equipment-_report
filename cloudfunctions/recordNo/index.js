@@ -7,7 +7,7 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return await db.collection('repair_orders').add({
+  return await db.collection('recall_repair_order').add({
     data: {
       facilityid: event.facilityid,
       facilityName: event.facilityName,
@@ -15,18 +15,15 @@ exports.main = async (event, context) => {
       facilityType: event.facilityType,
       facilityOrg: event.facilityOrg,
       address: event.address,
-      contactor: event.contactor,
-      phone: event.phone,
-      imagePath: event.imagePath,
-      problemDetail: event.problemDetail,
+      next_date: event.next_date,
+      comment: event.comment,
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
-      status: 0,
-      rejection: '',
-      plan_time: '',
-      sign_time: '',
-      comment:''
+      status:0
     }
   })
+    .then(console.log)
+    .catch(console.error)
+
 }
 

@@ -1,3 +1,6 @@
+<van-tabs active="a">
+  <van-tab title="客户上报" name="a">
+  
 <view  wx:for="{{newRepairOrders}}" wx:key="{{index}}">
 <navigator url="../newOrderDetails/newOrderDetails?report_id={{item.report_id}}" class="title">
 <view class="left">
@@ -25,3 +28,10 @@
 </van-row>
 </view>
 </view>
+
+
+  </van-tab>
+  <van-tab title="需要二次维修" name="b">页面维护中...</van-tab>
+</van-tabs>
+
+

@@ -1,39 +1,46 @@
-<view class="icon1">
-  <i class="fa fa-keyboard-o fa-2x" style="color:#03A9F4;"></i>
-  <text>{{facilityName}}</text>
+<view class="title">
+<view><text>报修单进行中，请签到</text></view>
+<view class="title_time"><text>{{ createtime }}</text></view>
+</view>
+<view class="header">
+<view class="header_left">
+<i class="fa fa-clock-o fa-2x" style="color:#03A9F4;"></i><text>{{ facilityOrg }}</text></view>
+<view class="header_right"><text>No.{{report_id}}</text></view>
 </view>
 
-<view class="facilityid">
-  <text>报修单号：{{facilityid}}</text>
-</view>
 <view>
   <van-cell-group>
     <van-field value="{{ facilityid }}" label="设备id" disabled/>
-    <van-field value="{{ facilityName }}" label="设备类型" disabled/>
-    <van-field value="{{ brandName }}" label="使用单位" disabled/>
-    <van-field value="{{ facilityOrg }}" label="设备地址" disabled/>
-    <van-field value="{{ facilityType }}" label="报修时间" disabled/>
+    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
+    <van-field value="{{ facilityName }}" label="设备名称" disabled/>
+    <van-field value="{{ brandName }}" label="设备品牌" disabled/>
+    <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field value="{{ createtime }}" label="报修时间" disabled/>
   </van-cell-group>
 </view>
 
+<view wx:if="{{!imagePath==''}}">
 <view class="image">
-<text>附件图片</text>
-<image bindtap="imgYu" mode="aspectFit" data-src="{{dImg}}" src="{{dImg}}"></image>
+<text>上传的图片</text>
+<image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
 </view>
+</view>
+
 <view class="problem"><text>问题描述</text></view>
 <view>
 <van-cell-group>
   <van-field
-    value="{{ message }}"
+    value="{{ problemDetail }}"
     type="textarea"
-    autosize
+    autosize="{{autosize}}"
     border
     disabled
     placeholder="未填写设备问题"
   />
 </van-cell-group>
 </view>
+
+
 <view class="button">
 <van-button icon="star-o" size="large" type="info" bind:click="signin"><van-icon name="sign" /> 签到</van-button>
 </view>
-<van-toast id="van-toast" />
