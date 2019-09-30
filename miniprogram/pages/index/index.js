@@ -113,10 +113,24 @@ Page({
     })
   },
   repair_records: function () {
-    wx.navigateTo({
-      url: '../repairRecords/repairRecords',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    //console.log('test')
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['barCode'],
+      success(res) {
+        //打印ISBN码
+        //console.log(res.result)
+        wx.navigateTo({
+          url: '../repairRecords/repairRecords?facilityid=' + res.result,
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+
     })
+
   },
   my_orders: function () {
     wx.navigateTo({
@@ -137,10 +151,25 @@ Page({
     })
   },
   sign_in: function () {
-    wx.navigateTo({
-      url: '../signIn/signIn',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['barCode'],
+      success(res) {
+        //打印ISBN码
+        //console.log(res.result)
+        wx.navigateTo({
+          url: '../signIn/signIn?facilityid=' + res.result,
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+
     })
+
+
+
   }
 
 

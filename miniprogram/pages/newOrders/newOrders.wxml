@@ -1,14 +1,17 @@
+<van-tabs active="a">
+  <van-tab title="客户上报" name="a">
+  
 <view  wx:for="{{newRepairOrders}}" wx:key="{{index}}">
-<view class="title" bindtap="newoderdetails">
+<navigator url="../newOrderDetails/newOrderDetails?report_id={{item.report_id}}" class="title">
 <view class="left">
 <i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
-<text>{{item.unit_address}}</text>
+<text>{{item.facilityOrg}}</text>
 </view>
 <view class="right">
 <text>待派发</text>
 <i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
 </view>
-</view>
+</navigator>
 
 <view class="detail_titile">
   <van-row gutter="20">
@@ -19,9 +22,16 @@
 </view>
 <view class="detail_content">
   <van-row gutter="20">
-  <van-col span="8"><text>{{item.order_id}}</text></van-col>
-  <van-col span="8"><text>2019-4-1 10:23:04</text></van-col>
-  <van-col span="8"><text>{{item.device_name}}</text></van-col>
+  <van-col span="8"><text>{{item.report_id}}</text></van-col>
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="8"><text>{{item.facilityType}}</text></van-col>
 </van-row>
 </view>
 </view>
+
+
+  </van-tab>
+  <van-tab title="需要二次维修" name="b">页面维护中...</van-tab>
+</van-tabs>
+
+

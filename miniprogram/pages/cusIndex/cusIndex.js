@@ -84,8 +84,7 @@ Page({
     })
   },
 
-
-  facility_query: function () {
+  new_report_order: function () {
     //console.log('test')
     var that = this;
     wx.scanCode({
@@ -93,10 +92,9 @@ Page({
       scanType: ['barCode'],
       success(res) {
         //打印ISBN码
-        //console.log(res.result)
+        console.log(res.result)
         wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../facilityQuery/facilityQuery?facilityid=' + res.result,
+          url: '../reportOrder/reportOrder?facilityid=' + res.result,
         })
       },
       fail(res) {
@@ -106,30 +104,15 @@ Page({
     })
   },
 
-  new_report_orders: function () {
-    wx.navigateTo({
-      url: '../newOrders/newOrders',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
-    })
-  },
-  repair_records: function () {
-    wx.navigateTo({
-      url: '../repairRecords/repairRecords',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
-    })
-  },
+  
+
   my_orders: function () {
     wx.navigateTo({
       url: '../myOrders/myOrders',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
-  },
-  sign_in: function () {
-    wx.navigateTo({
-      url: '../signIn/signIn',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
-    })
   }
+ 
 
 
 

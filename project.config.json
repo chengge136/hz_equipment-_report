@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -53,6 +53,20 @@
 					"id": -1,
 					"name": "维修记录",
 					"pathName": "pages/repairRecords/repairRecords",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设备录入",
+					"pathName": "pages/facilityInfo/facilityInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报修订单",
+					"pathName": "pages/reportOrder/reportOrder",
 					"scene": null
 				}
 			]

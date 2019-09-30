@@ -1,4 +1,6 @@
 // pages/repairRecords/repairRecords.js
+const db = wx.cloud.database();
+var app = getApp();
 Page({
 
   /**
@@ -7,15 +9,47 @@ Page({
   data: {
     isComplete: '',
     currentDate: new Date().getTime(),
-    date:'',  
+    next_date:'',
     comment: '',
+    facilityid: '',
+    facilityName: '',
+    brandName: '',
+    facilityType: '',
+    facilityOrg: '',
+    address: '',
+    createtime: '',
+    report_id: ''
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('facilityid:' + options.facilityid)
+    var id = options.facilityid.toString();
+    var that = this;
+    const _ = db.command;
+    db.collection('repair_orders').where({
+      facilityid: _.eq(id),
+      status: _.eq(2)
+    })
+      .get().then(res => {
+        // res.data 包含该记录的数据
+        console.log(res.data[0]);
 
+        that.setData({
+          facilityid: res.data[0].facilityid,
+          facilityName: res.data[0].facilityName,
+          brandName: res.data[0].brandName,
+          facilityOrg: res.data[0].facilityOrg,
+          address: res.data[0].address,
+          createtime: app.formatDate(new Date(res.data[0].createtime)),
+          report_id: res.data[0].report_id,
+          facilityType: res.data[0].facilityType
+
+        })
+      })
   },
 
   /**
@@ -74,8 +108,66 @@ Page({
   },
   bindDateChange(event) {
     this.setData({
-      date: event.detail.value
+      next_date: event.detail.value
     });
+  },
+
+  solutionIn: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      comment: e.detail.value
+    })
+  },
+
+    submit_info: function () {
+    console.log('report_id:' + this.data.report_id);
+    //如果点击未完成，则新生成一条维修记录
+      if (this.data.isComplete=='否'){
+        wx.cloud.callFunction({
+          name: 'recordNo',
+          data: {
+            facilityid: this.data.facilityid,
+            facilityName: this.data.facilityName,
+            brandName: this.data.brandName,
+            facilityType: this.data.facilityType,
+            facilityOrg: this.data.facilityOrg,
+            address: this.data.address,
+            next_date: this.data.next_date,
+            comment: this.data.comment
+           
+          },
+          complete: res => {
+            console.log('recordNo callFunction test result: ', res);
+          }
+        })
+      }
+
+      wx.cloud.callFunction({
+        name: 'recordYes',
+        data: {
+          report_id: this.data.report_id,
+          comment: this.data.comment
+        },
+        complete: res => {
+          console.log('recordYes callFunction test result: ', res);
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000,
+            success: function () {
+              console.log('Yes');
+              setTimeout(function () {
+                //要延时执行的代码
+                wx.switchTab({
+                  url: '../index/index'
+                })
+              }, 2000) //延迟时间
+            }
+          })
+        }
+      })
+
+
   }
 
 })

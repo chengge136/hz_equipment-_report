@@ -1,12 +1,13 @@
 
 const db = wx.cloud.database();
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newRepairOrders: [],
+    newRepairOrders: []
   },
 
   /**
@@ -14,13 +15,20 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    const _ = db.command;
+
     db.collection('repair_orders').where({
-      status: false
+      status: _.eq(0)
     })
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
+
+          for (var index in res.data) {
+            res.data[index].createtime = app.formatDate(new Date( res.data[index].createtime));
+          }
+
           that.setData({
             newRepairOrders: res.data
           })
@@ -76,11 +84,5 @@ Page({
    */
   onShareAppMessage: function () {
     
-  },
-  newoderdetails:function(){
-    wx.navigateTo({
-      url: '../newOrderDetails/newOrderDetails',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
-    })
   }
 })

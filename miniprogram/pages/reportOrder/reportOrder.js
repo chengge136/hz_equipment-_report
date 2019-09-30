@@ -1,4 +1,5 @@
-// pages/signIn/signIn.js
+// pages/facilityInfo/facilityInfo.js
+//云数据库初始化
 const db = wx.cloud.database();
 var app = getApp();
 Page({
@@ -13,28 +14,50 @@ Page({
     facilityType: '',
     facilityOrg: '',
     address: '',
+    contactor: '',
+    phone: '',
     imagePath: '',
     problemDetail: '',
     createtime: '',
-    report_id: '',
-    autosize: true,
+    report_id:'',
+    status:''
+
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('facilityid:' + options.facilityid)
-    var id = options.facilityid.toString();
+    console.log(options.facilityid)
     var that = this;
     const _ = db.command;
     db.collection('repair_orders').where({
-      facilityid: _.eq(id),
-      status: _.eq(2)
+      facilityid: _.eq(options.facilityid),
+      status: _.neq(3)
     })
       .get().then(res => {
         // res.data 包含该记录的数据
         console.log(res.data[0]);
+  
+        switch (res.data[0].status.toString()) {
+          case "0":
+            that.setData({
+              status: '等待派发'
+            });
+            break;
+          case "1":
+            that.setData({
+              status: '已派发，技术员在路上'
+            });
+            break;
+          case "2":
+            that.setData({
+              status: '已完成'
+            });
+            break;
+        } 
+        //console.log('日期是：' + app.formatDate(new Date(res.data[0].createtime)));
 
         that.setData({
           facilityid: res.data[0].facilityid,
@@ -42,6 +65,8 @@ Page({
           brandName: res.data[0].brandName,
           facilityOrg: res.data[0].facilityOrg,
           address: res.data[0].address,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone,
           imagePath: res.data[0].imagePath,
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
@@ -53,11 +78,12 @@ Page({
       })
   },
 
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -99,18 +125,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  },
-  //是否完成维修
-  onChange(event) {
-    this.setData({
-      isComplete: event.detail
-    });
-  },
-  bindDateChange(event) {
-    this.setData({
-      date: event.detail.value
-    });
   },
 
   //图片点击事件
@@ -126,48 +140,7 @@ Page({
       urls: imgArr
     })
   },
+ 
 
-  signin: function(){
-    var that=this;
-    wx.showModal({
-      title: '签到',
-      content: '确定已经到达客户现场了吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-          that.setSignTime();
-
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  setSignTime:function(){
-    wx.cloud.callFunction({
-      name: 'signIn',
-      data: {
-        report_id: this.data.report_id
-      },
-      complete: res => {
-        console.log('signIn callFunction test result: ', res);
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000,
-          success: function () {
-            console.log('haha');
-            setTimeout(function () {
-              //要延时执行的代码
-              wx.switchTab({
-                url: '../index/index'
-              })
-            }, 2000) //延迟时间
-          }
-        })
-
-      }
-    })
-  }
 
 })

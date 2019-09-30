@@ -28,3 +28,31 @@
 .problem text{
   font-size: 11pt;
 }
+.title{
+  height: 100rpx;
+  margin: 20rpx; /* 边距 */
+  font-size: 14pt;
+  
+}
+.title_time text{
+  color: #B2B2B2;
+  font-size: 11pt;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin: 20rpx; /* 边距 */
+}
+.header_left{
+  padding: 10rpx;
+}
+.header_left text{
+  font-size: 14pt;
+  color:#03A9F4;
+  padding: 20rpx;
+  position:relative;
+}
+.header_right text{
+  color: #B2B2B2;
+  font-size: 11pt;
+}

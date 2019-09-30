@@ -1,5 +1,4 @@
 // pages/facilityInfo/facilityInfo.js
-import Toast from '../../vant/toast/toast';
 //云数据库初始化
 const db = wx.cloud.database();
 
@@ -10,46 +9,65 @@ Page({
    */
   data: {
     facilityid:'',
-    facilityType: '',
     facilityName: '',
+    brandName: '',
+    facilityType:'',
     facilityOrg: '',
-    facilityDep: '',
-    brandName:''
+    address:'',
+
+    array: ['打印机', '复印机', '电脑', '其他'],
+    objectArray: [
+      {
+        id: 0,
+        name: '打印机'
+      },
+      {
+        id: 1,
+        name: '复印机'
+      },
+      {
+        id: 2,
+        name: '电脑'
+      },
+      {
+        id: 3,
+        name: '其他'
+      }
+    ],
+    index: 0,
 
 
   },
   submit_info: function () {
-    //console.log(this.data)
-
-
-
-    const book = db.collection('facility')
-
+    
+    const facility = db.collection('facility')
     db.collection('facility').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         facilityid: this.data.facilityid,
-        facilityType: this.data.facilityType,
         facilityName: this.data.facilityName,
+        brandName: this.data.brandName,
         facilityOrg: this.data.facilityOrg,
-        facilityDep: this.data.facilityDep,
-        brandName: this.data.brandName
-
+        address: this.data.address,
+        facilityType: this.data.index,
+        contactor: this.data.contactor,
+        phone: this.data.phone
 
       }
     })
       .then(res => {
-        //console.log(res)
-        Toast.success('提交成功');
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        })
         wx.redirectTo({
           url: '../index/index',
         })
       })
-   
+
   },
-  test_info:function(){
-    Toast.success('成功文案');
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -107,13 +125,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
 
-  },
   facilityName: function (event) {
     var that = this;
     that.setData({
       facilityName: event.detail
+    })
+  },
+  brandName: function (event) {
+    var that = this;
+    that.setData({
+      brandName: event.detail
     })
   },
   facilityOrg: function (event) {
@@ -122,25 +144,29 @@ Page({
       facilityOrg: event.detail
     })
   },
-  facilityDep: function (event) {
+  address: function(event) {
     var that = this;
     that.setData({
-      facilityDep: event.detail
+      address: event.detail
     })
   },
-  brandName: function(event) {
+  contactor: function (event) {
     var that = this;
     that.setData({
-      brandName: event.detail
+      contactor: event.detail
+    })
+  },
+  phone: function (event) {
+    var that = this;
+    that.setData({
+      phone: event.detail
     })
   },
 
-  onChange(event) {
-    var that = this;
-    console.log(event);
-    that.setData({
-
-      facilityType: event.detail
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
     })
   }
 })
