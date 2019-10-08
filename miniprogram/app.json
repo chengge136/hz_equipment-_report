@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/authorized/authorized",
     "pages/index/index",
     "pages/facilityInfo/facilityInfo",
     "pages/facilityQuery/facilityQuery",

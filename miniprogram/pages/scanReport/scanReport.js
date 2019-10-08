@@ -197,19 +197,19 @@ Page({
 
 
 
-  address: function (event) {
+  addressIn: function (event) {
     var that = this;
     that.setData({
       address: event.detail
     })
   },
-  contactor: function (event) {
+  contactorIn: function (event) {
     var that = this;
     that.setData({
       contactor: event.detail
     })
   },
-  phone: function (event) {
+  phoneIn: function (event) {
     var that = this;
     that.setData({
       phone: event.detail

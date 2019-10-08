@@ -33,40 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "客户端",
-					"pathName": "pages/cusIndex/cusIndex",
+					"name": "授权登录",
+					"pathName": "pages/authorized/authorized",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "扫码报修",
-					"pathName": "pages/scanReport/scanReport",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "维修记录",
-					"pathName": "pages/repairRecords/repairRecords",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "设备录入",
-					"pathName": "pages/facilityInfo/facilityInfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "报修订单",
-					"pathName": "pages/reportOrder/reportOrder",
 					"scene": null
 				}
 			]

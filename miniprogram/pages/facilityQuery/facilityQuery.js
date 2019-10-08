@@ -11,7 +11,9 @@ Page({
     facilityType: '',
     facilityName: '',
     facilityOrg: '',
-    facilityDep: '',
+    address: '',
+    contactor: '',
+    phone: '',
     brandName: ''
   },
 
@@ -27,14 +29,39 @@ Page({
     })
     .get().then(res => {
       // res.data 包含该记录的数据
-      console.log(res.data[0])
+      console.log(res.data[0]);
+      //设置设备类型
+      switch (res.data[0].facilityType.toString()) {
+        case "0":
+          that.setData({
+            facilityType: '打印机'
+          });
+          break;
+        case "1":
+          that.setData({
+            facilityType: '复印机'
+          });
+          break;
+        case "2":
+          that.setData({
+            facilityType: '电脑'
+          });
+          break;
+        case "3":
+          that.setData({
+            facilityType: '其他'
+          });
+          break;
+      } 
+
       that.setData({
         facilityid: res.data[0].facilityid,
-        facilityType: res.data[0].facilityType,
         facilityName: res.data[0].facilityName,
         facilityOrg: res.data[0].facilityOrg,
-        facilityDep: res.data[0].facilityDep,
-        brandName: res.data[0].brandName
+        address: res.data[0].address,
+        brandName: res.data[0].brandName,
+        contactor: res.data[0].contactor,
+        phone: res.data[0].phone
 
       })
     })
@@ -87,5 +114,68 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  addressIn: function (event) {
+    var that = this;
+    that.setData({
+      address: event.detail
+    })
+  },
+  contactorIn: function (event) {
+    var that = this;
+    that.setData({
+      contactor: event.detail
+    })
+  },
+  phoneIn: function (event) {
+    var that = this;
+    that.setData({
+      phone: event.detail
+    })
+  },
+  submit_info:function(){
+    var that = this;
+    wx.showModal({
+      title: '修改',
+      content: '确定要修改此设备的基本信息？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          that.updateFacility();
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  updateFacility: function () {
+    wx.cloud.callFunction({
+      name: 'updateFacility',
+      data: {
+        facilityid: this.data.facilityid,
+        address: this.data.address,
+        contactor: this.data.contactor,
+        phone: this.data.phone
+      },
+      complete: res => {
+        console.log('updateFacility callFunction test result: ', res);
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('haha');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.switchTab({
+                url: '../index/index'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+
+      }
+    })
   }
 })

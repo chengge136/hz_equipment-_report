@@ -3,16 +3,21 @@
   <text>{{facilityName}}</text>
 </view>
 
-<view class="facilityid">
-  <text>No.{{facilityid}}</text>
-</view>
+
 <view>
   <van-cell-group>
     <van-field value="{{ facilityid }}" label="设备id" disabled/>
+    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
     <van-field value="{{ facilityOrg }}" label="设备单位" disabled/>
-    <van-field value="{{ facilityDep }}" label="设备部门" />
-    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
+    <van-field value="{{ address }}" label="详细地址" bind:input="addressIn" required clearable placeholder="请输入设备详细地址"/>
+    <van-field value="{{ contactor }}" label="联系人" bind:input="contactorIn" required clearable placeholder="请输入联系人"/>
+    <van-field value="{{ phone }}" label="联系电话" bind:input="phoneIn" required clearable placeholder="请输入联系电话"/>
+
   </van-cell-group>
+</view>
+
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">修改</van-button>
 </view>
