@@ -1,35 +1,53 @@
-.button{
-  position:fixed; 
-  bottom:0; 
-  width:100%; 
+.title{
+  height: 100rpx;
+  margin: 20rpx; /* 边距 */
+  font-size: 14pt;
+  
 }
-textarea {
-  width: 700rpx;
-  height: 400rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  margin-top: 10rpx;
+.title_time text{
+  color: #B2B2B2;
+  font-size: 11pt;
 }
- 
-.textarea-bg {
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin: 20rpx; /* 边距 */
+}
+.header_left{
   padding: 10rpx;
-  font-size: 32rpx;
 }
-.title-bg{
-  margin-left: 20rpx;
+.header_left text{
+  font-size: 14pt;
+  color:#03A9F4;
+  padding: 20rpx;
+  position:relative;
 }
-.section{
-  margin: 20rpx;
+.header_right text{
+  color: #B2B2B2;
+  font-size: 11pt;
 }
-.isComplete{
-  margin: 20rpx;
+.image{
+  display:flex;
+  margin: 30rpx; /* 边距 */
 }
-.label{
-  margin: 20rpx;
+.image text{
+  font-size: 11pt;
 }
-.picker text{
-  color:red;
+.image image{
+  height: 140rpx;
+  width: 30%;
+  margin-left: 37rpx;
 }
-.facilityid{
-   margin: 20rpx;
+.problem{
+  display:flex;
+  margin-left: 30rpx; /* 边距 */
+}
+.problem text{
+  font-size: 11pt;
+}
+.setTime{
+  margin-bottom: 50rpx;
+}
+.button{
+  width:100%; 
 }

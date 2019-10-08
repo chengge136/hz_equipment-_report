@@ -11,7 +11,7 @@
   },
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "维修记录填写",
+  "navigationBarTitleText": "维修记录查询",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }

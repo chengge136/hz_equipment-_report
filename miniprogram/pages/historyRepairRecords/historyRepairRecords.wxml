@@ -1,48 +1,18 @@
-<view class="icon1">
-  <i class="fa fa-keyboard-o fa-2x" style="color:#03A9F4;"></i>
-  <text>{{facilityName}}</text>
-</view>
-
-<view class="facilityid">
-  <text>报修单号：{{facilityid}}</text>
+<view class="title_time"><text>{{ createtime }}</text></view>
+<view class="header">
+<view class="header_left">
+<i class="fa fa-clock-o fa-2x" style="color:#03A9F4;"></i><text>{{ facilityOrg }}</text></view>
+<view class="header_right"><text>No.{{report_id}}</text></view>
 </view>
 <view>
   <van-cell-group>
-    <van-field value="{{ facilityid }}" label="设备id" disabled/>
-    <van-field value="{{ facilityName }}" label="设备类型" disabled/>
-    <van-field value="{{ brandName }}" label="使用单位" disabled/>
-    <van-field value="{{ facilityOrg }}" label="设备地址" disabled/>
-    <van-field value="{{ facilityType }}" label="报修时间" disabled/>
+     <van-field value="{{ facilityid }}" label="设备id" disabled/>
+    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
+    <van-field value="{{ facilityName }}" label="设备名称" disabled/>
+    <van-field value="{{ brandName }}" label="设备品牌" disabled/>
+    <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field value="{{ contactor }}" label="报修人" disabled/>
+     <van-field value="{{ comment }}" label="维修记录" disabled/>
   </van-cell-group>
 </view>
-<view class="label">
-  <text>是否完成维修</text>
-</view>
-<view class="isComplete">
-<van-radio-group value="{{ isComplete }}" bind:change="onChange">
-  <van-radio name="是">是</van-radio>
-  <van-radio name="否">否</van-radio>
-</van-radio-group>
-</view>
 
-<view class="section" wx:if="{{isComplete=='否'}}" >
-  <view class="section_title">选择下次上门维修的时间</view>
-  <picker mode="date" value="{{date}}" start="{{currentDate}}" bindchange="bindDateChange">
-    <view class="picker">
-    <text> * </text>选择时间:
-       {{date}}
-    </view>
-  </picker>
-</view>
-
-<view class='son_view'>
- 
-    <view class="title-bg">维修描述</view>
-    <textarea class="textarea-bg" maxlength="200" placeholder="简单描述设备的问题及其解决方案" bindblur="getDataBindTap" />
- 
-</view>
-
-
-<view class="button">
-<van-button size="large" type="info" bind:click="submit_info">提交</van-button>
-</view>

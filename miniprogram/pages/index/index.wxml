@@ -49,10 +49,8 @@
     <van-col span="5">
       <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
     </van-col>
-    <van-col span="5">
-      <i class="fa fa-address-book fa-2x" style="color:#3F51B5;" bindtap=" history_repair_records"></i>
-    </van-col>
-  </van-row>
+    
+  </van-row>  
 </view>
 
 <view class="text1">
@@ -66,9 +64,7 @@
     <van-col span="5">
       <text>维修记录填写</text>
     </van-col>
-    <van-col span="5">
-      <text>历史维修</text>
-    </van-col>
+    
   </van-row>
 </view>
 
