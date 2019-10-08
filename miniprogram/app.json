@@ -12,7 +12,11 @@
     "pages/signIn/signIn",
     "pages/cusIndex/cusIndex",
     "pages/scanReport/scanReport",
-    "pages/reportOrder/reportOrder"
+    "pages/reportOrder/reportOrder",
+    "pages/historyRepairRecords/historyRepairRecords",
+    "pages/historyOrders/historyOrders"
+        
+        
         
   ],
   "window": {

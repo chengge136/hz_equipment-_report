@@ -14,7 +14,7 @@
       <i class="fa fa-money fa-2x" style="color:#EE4D52;" bindtap="my_orders"></i>
     </van-col>
     <van-col span="5">
-      <i class="fa fa-history fa-2x" style="color:#259B24;"></i>
+      <i class="fa fa-history fa-2x" style="color:#259B24;"bindtap="history_orders"></i>
     </van-col>
   </van-row>
 </view>

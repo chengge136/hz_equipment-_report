@@ -138,6 +138,12 @@ Page({
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
+  history_orders: function () {
+    wx.navigateTo({
+      url: '../historyOrders/historyOrders',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
+  },
   sign_in: function () {
     var that = this;
     wx.scanCode({

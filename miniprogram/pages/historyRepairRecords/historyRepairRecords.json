@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
+    "van-field": "../../vant/field/index",
+    "van-radio": "../../vant/radio/index",
+    "van-radio-group": "../../vant/radio-group/index",
+    "van-toast": "../../vant/toast/index",
+    "van-datetime-picker": "../../vant/datetime-picker/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "维修记录查询",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}
