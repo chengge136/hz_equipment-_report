@@ -1,0 +1,35 @@
+<!--pages/login/login.wxml-->
+<view class="container" style='width:100%;min-height:100%;background-image:url("../../images/bk2.jpg");background-size:100% 100%;'> 
+  <view class="login-icon">  
+    <image class="login-img" src="/images/logo.png"></image>  
+  </view>  
+  <view class="login-from">  
+    <view class="myno">
+    <!-- 学号 -->
+      <view class="weui-cell_input">
+      <view><image class="nameImage" src="/images/name.png"></image></view>
+          <view class="weui-cell_bd">
+              <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="请输入账号" />
+          </view>
+      </view>
+    </view>
+    <view class="mypwd">
+      <!-- 密码 -->
+      <view class="weui-cell_input">
+      <view><image class="nameImage" src="/images/key.png"></image></view>
+      
+          <view class="weui-cell_bd">
+              <input class="weui-input" type="password" name="pwd" bindinput="pwdinput" placeholder="请输入密码" value='{{pwd}}'/>
+          </view>
+      </view>
+    </view>
+  <view class="info"><text>客户请点击无密码登录</text></view>
+
+     <!--按钮-->  
+    <view class="loginBtnView">
+    <view><button class="loginBtn" size="{{primarySize}}" disabled='{{disabled}}' bindtap="submit">售后登录</button></view>
+    <view><button class="cusBtn" size="{{primarySize}}" bindtap="nopwsubmit">无密码登录</button></view>
+    </view>  
+  
+  </view>  
+</view> 

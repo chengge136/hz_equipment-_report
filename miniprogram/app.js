@@ -1,5 +1,8 @@
 //app.js
 App({
+
+  // 全局数据，供小程序内的个页面以及组建使用
+
   onLaunch: function () {
     
     if (!wx.cloud) {
@@ -9,8 +12,6 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
   },
 
   // 时间戳转为日期时间

@@ -1,4 +1,6 @@
+
 Page({
+
 
   /**
    * 页面的初始数据
@@ -88,6 +90,7 @@ Page({
   facility_query: function () {
     //console.log('test')
     var that = this;
+    
     wx.scanCode({
       onlyFromCamera: true,
       scanType: ['barCode'],
