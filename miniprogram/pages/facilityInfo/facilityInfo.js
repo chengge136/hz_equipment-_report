@@ -39,10 +39,8 @@ Page({
 
   },
   submit_info: function () {
-    
-    const facility = db.collection('facility')
-    db.collection('facility').add({
-      // data 字段表示需新增的 JSON 数据
+    wx.cloud.callFunction({
+      name: 'facilityIn',
       data: {
         facilityid: this.data.facilityid,
         facilityName: this.data.facilityName,
@@ -52,19 +50,27 @@ Page({
         facilityType: this.data.index,
         contactor: this.data.contactor,
         phone: this.data.phone
+      },
+      complete: res => {
+        console.log('facilityIn callFunction test result: ', res);
+
+        wx.showToast({
+          title: '录入成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('haha');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.switchTab({
+                url: '../index/index'
+              })
+            }, 2000) //延迟时间
+          }
+        })
 
       }
     })
-      .then(res => {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.redirectTo({
-          url: '../index/index',
-        })
-      })
 
   },
 
@@ -72,10 +78,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(options.facilityid)
     this.setData({
       facilityid: options.facilityid
     })
+
+    var that = this;
+    const _ = db.command;
+    var count=db.collection('facility').where({
+      facilityid: _.eq(options.facilityid)
+    }).count({
+      success: function (res) {
+        console.log(res.total);
+        if(res.total>0){
+          wx.showModal({
+            title: '提示',
+            content: '此设备已完成过信息录入，请在首页使用设备查询',
+            showCancel:false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.switchTab({
+                    url: '../index/index'
+                  })
+                }, 1000) //延迟时间
+
+              } 
+            }
+          })
+        }
+      }
+    })
+
+
+
+
   },
  
 

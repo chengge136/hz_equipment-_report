@@ -21,10 +21,13 @@ exports.main = async (event, context) => {
       problemDetail: event.problemDetail,
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
+      reportorId: event.openid,
       status: 0,
       rejection: '',
       plan_time: '',
       sign_time: '',
+      assignId: '',
+      assignName: '',
       comment:''
     }
   })

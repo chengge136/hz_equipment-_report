@@ -18,7 +18,8 @@ Page({
     phone: '',
     imagePath:'',
     problemDetail:'',
-    createtime:''
+    createtime:'',
+    myopenid: ''
 
 
   },
@@ -65,6 +66,7 @@ Page({
         problemDetail: this.data.problemDetail,
         createtime: this.data.createtime,
         report_id: this.data.createtime,
+        openid: this.data.myopenid
        
       },
       complete: res => {
@@ -129,8 +131,6 @@ Page({
             });
             break;
         } 
-
-
         that.setData({
           facilityid: res.data[0].facilityid,
           facilityName: res.data[0].facilityName,
@@ -142,6 +142,19 @@ Page({
 
         })
       })
+
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
+      }
+    })
+
+
   },
 
 

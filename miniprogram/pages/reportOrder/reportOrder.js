@@ -48,12 +48,12 @@ Page({
             break;
           case "1":
             that.setData({
-              status: '已派发，技术员在路上'
+              status: '已完成'
             });
             break;
           case "2":
             that.setData({
-              status: '已完成'
+              status: "已派发给技术员[" + res.data[0].assignName+"]"
             });
             break;
         } 
@@ -71,7 +71,8 @@ Page({
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType
+          facilityType: res.data[0].facilityType,
+          assignName: res.data[0].assignName
 
 
         })

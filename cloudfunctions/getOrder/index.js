@@ -13,7 +13,9 @@ exports.main = async (event, context) => {
     // data 传入需要局部更新的数据
     data: {
       status: 2,
-      plan_time: event.arrival_time
+      plan_time: event.arrival_time,
+      assignId: event.openid,
+      assignName: event.nickName
     }
   })
     .then(console.log)

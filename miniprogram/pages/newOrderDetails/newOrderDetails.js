@@ -19,7 +19,9 @@ Page({
     createtime: '',
     report_id: '',
     autosize: true,
-    arrival_time:''
+    arrival_time:'',
+    myopenid: '',
+    nickName: ''
   },
 
   /**
@@ -52,6 +54,30 @@ Page({
 
         })
       })
+
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
+
+        db.collection('hz_role_user').where({
+          openid: res.result.openid
+        }).get().then(res => {
+          console.log(res.data[0]);
+          if (res.data[0]) {
+            that.setData({
+              nickName: res.data[0].nickName
+            })
+          }
+
+        })
+      }
+    })
+
   },
 
   /**
@@ -153,7 +179,9 @@ Page({
       name: 'getOrder',
       data: {
         report_id: this.data.report_id,
-        arrival_time: this.data.arrival_time
+        arrival_time: this.data.arrival_time,
+        openid: this.data.myopenid,
+        nickName: this.data.nickName
 
       },
       complete: res => {
