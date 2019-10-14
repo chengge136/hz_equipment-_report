@@ -15,7 +15,8 @@
     "pages/reportOrder/reportOrder",
     "pages/historyRepairRecords/historyRepairRecords",
     "pages/historyOrders/historyOrders",
-    "pages/logIn/logIn"
+    "pages/logIn/logIn",
+    "pages/cusHistory/cusHistory"
         
         
         

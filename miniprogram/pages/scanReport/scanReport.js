@@ -20,8 +20,6 @@ Page({
     problemDetail:'',
     createtime:'',
     myopenid: ''
-
-
   },
   submit_info: function () {
     if (!this.data.imagePath == '') {

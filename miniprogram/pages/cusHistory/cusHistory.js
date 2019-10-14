@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    newRepairOrders: [],
-    myopenid:''
+    newHistoryOrders: [],
+    myopenid: ''
   },
 
   /**
@@ -16,37 +16,37 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    const _ = db.command;
-
     wx.cloud.callFunction({
       //调用的函数名字
       name: 'getOpenid',
       success: function (res) {
-       
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
         console.log('myopenid:', res.result.openid);
+
+        const _ = db.command;
+
         db.collection('repair_orders').where({
-          status: _.eq(2),
-          assignId: _.eq(res.result.openid)
+          status: _.eq(1),
+          reportorId: _.eq(that.data.myopenid)
         })
           .get({
             success: function (res) {
               // res.data 是包含以上定义的两条记录的数组
               console.log(res.data)
-
               for (var index in res.data) {
                 res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
               }
 
               that.setData({
-                newRepairOrders: res.data
+                newHistoryOrders: res.data
               })
             }
           })
-
       }
     })
-
-
 
   },
 
@@ -54,7 +54,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -98,9 +97,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  oderdetails:function(){
+  oderdetails: function () {
     wx.navigateTo({
-      url: '../myOrderDetails/myOrderDetails',
+      url: '../historyRepairRecords/historyRepairRecords',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   }
