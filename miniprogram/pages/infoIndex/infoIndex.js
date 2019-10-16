@@ -63,27 +63,6 @@ Page({
 
   },
 
-  scan_report: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../../customer/scanReport/scanReport?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
-  },
-
   new_report_order: function () {
     //console.log('test')
     var that = this;
@@ -104,7 +83,7 @@ Page({
     })
   },
 
-  
+
 
   my_orders: function () {
     wx.navigateTo({
@@ -113,7 +92,7 @@ Page({
     })
   }
 
- 
+
 
 
 

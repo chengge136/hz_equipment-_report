@@ -17,9 +17,16 @@ exports.main = async (event, context) => {
       address: event.address,
       next_date: event.next_date,
       comment: event.comment,
+      contactor: event.contactor,
+      phone: event.phone,
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
-      status:0
+      status:0,
+      reportorId: event.openid,
+      assignId:'',
+      assignName:'',
+      rejection:''
+
     }
   })
     .then(console.log)

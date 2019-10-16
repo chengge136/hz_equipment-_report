@@ -76,7 +76,7 @@ Page({
         console.log(res.result)
         wx.navigateTo({
           //url: '../facilityInfo/facilityInfo',
-          url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+          url: '../../cusService/facilityInfo/facilityInfo?facilityid=' + res.result,
         })
       },
       fail(res) {
@@ -99,7 +99,7 @@ Page({
         //console.log(res.result)
         wx.navigateTo({
           //url: '../facilityInfo/facilityInfo',
-          url: '../facilityQuery/facilityQuery?facilityid=' + res.result,
+          url: '../../cusService/facilityQuery/facilityQuery?facilityid=' + res.result,
         })
       },
       fail(res) {
@@ -111,7 +111,7 @@ Page({
 
   new_report_orders: function () {
     wx.navigateTo({
-      url: '../newOrders/newOrders',
+      url: '../../cusService/newOrders/newOrders',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
@@ -125,7 +125,7 @@ Page({
         //打印ISBN码
         //console.log(res.result)
         wx.navigateTo({
-          url: '../repairRecords/repairRecords?facilityid=' + res.result,
+          url: '../../cusService/repairRecords/repairRecords?facilityid=' + res.result,
         })
       },
       fail(res) {
@@ -137,13 +137,13 @@ Page({
   },
   my_orders: function () {
     wx.navigateTo({
-      url: '../myOrders/myOrders',
+      url: '../../cusService/myOrders/myOrders',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
   history_orders: function () {
     wx.navigateTo({
-      url: '../historyOrders/historyOrders',
+      url: '../../cusService/historyOrders/historyOrders',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
@@ -156,7 +156,7 @@ Page({
         //打印ISBN码
         //console.log(res.result)
         wx.navigateTo({
-          url: '../signIn/signIn?facilityid=' + res.result,
+          url: '../../cusService/signIn/signIn?facilityid=' + res.result,
         })
       },
       fail(res) {

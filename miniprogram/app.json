@@ -1,25 +1,28 @@
 {
   "pages": [
     "pages/authorized/authorized",
-    "pages/index/index",
-    "pages/facilityInfo/facilityInfo",
-    "pages/facilityQuery/facilityQuery",
-    "pages/newOrders/newOrders",
-    "pages/newOrderDetails/newOrderDetails",
-    "pages/myOrders/myOrders",
-    "pages/myOrderDetails/myOrderDetails",
-    "pages/repairRecords/repairRecords",
-    "pages/signIn/signIn",
-    "pages/cusIndex/cusIndex",
-    "pages/scanReport/scanReport",
-    "pages/reportOrder/reportOrder",
-    "pages/historyRepairRecords/historyRepairRecords",
-    "pages/historyOrders/historyOrders",
     "pages/logIn/logIn",
-    "pages/cusHistory/cusHistory"
-        
-        
-        
+    "pages/index/index",
+    "pages/cusIndex/cusIndex",
+    "pages/infoIndex/infoIndex",
+    "cusService/facilityInfo/facilityInfo",
+    "cusService/facilityQuery/facilityQuery",
+    "cusService/newOrders/newOrders",
+    "cusService/newOrderDetails/newOrderDetails",
+    "cusService/myOrders/myOrders",
+    "cusService/myOrderDetails/myOrderDetails",
+    "cusService/repairRecords/repairRecords",
+    "cusService/signIn/signIn",
+    "cusService/historyOrders/historyOrders",
+    "cusService/historyRepairRecords/historyRepairRecords",
+    "cusService/recallOrderDetails/recallOrderDetails",
+    "cusService/myrecallDetails/myrecallDetails",
+    "cusService/recalhistoryRecords/recalhistoryRecords",
+    "customer/scanReport/scanReport",
+    "customer/reportOrder/reportOrder",
+    "customer/cusHistory/cusHistory"
+   
+               
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -40,6 +43,10 @@
       {
         "pagePath": "pages/cusIndex/cusIndex",
         "text": "客户端"
+      },
+      {
+        "pagePath": "pages/infoIndex/infoIndex",
+        "text": "信息中心"
       }
     ]
   },

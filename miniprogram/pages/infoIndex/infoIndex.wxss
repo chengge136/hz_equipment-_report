@@ -1,0 +1,77 @@
+/**index.wxss**/
+
+.header text {
+  font-size: 11pt;
+  color: #B2B2B2;
+  padding: 50rpx;
+}
+
+.text1{
+font-size: 24rpx;
+}
+
+
+.hr1{
+
+height:1px;
+border:none;
+border-top:1px solid #F5F5F5;
+ margin-top: 30rpx;
+ margin-bottom: 30rpx;
+ margin-left: 30rpx;
+
+}
+.intrduce{
+position:relative;
+top:30rpx;
+border-bottom:1px solid #BBBBBB;
+margin-left: 30rpx;
+margin-top: 10rpx;
+
+}
+
+.introduce text{
+  position:relative;
+  font-size: 26rpx;
+  color: #dadbdd;
+  padding-left: 50rpx;
+  top:50rpx;
+
+}
+.logo image{
+ width:100%;
+ margin-top: 10rpx;
+ height: 150rpx;
+}
+
+.comment{
+  display: flex;
+  flex-direction:column;
+  align-items:left;
+  padding: 10rpx;
+}
+.title text{
+  font-size: 35rpx;
+}
+
+.content text{
+  margin-top: 5rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.more text{
+  position:relative;
+  font-size: 28rpx;
+  color: #586C94;
+  top:30rpx;
+  margin-left: 30rpx
+}
+
+.icon1{
+ margin-top:40rpx;
+ 
+}
+.text1{
+  margin-bottom:20rpx;
+}
