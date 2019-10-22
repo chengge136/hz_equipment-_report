@@ -20,7 +20,9 @@
     "cusService/recalhistoryRecords/recalhistoryRecords",
     "customer/scanReport/scanReport",
     "customer/reportOrder/reportOrder",
-    "customer/cusHistory/cusHistory"
+    "customer/cusHistory/cusHistory",
+    "infoCenter/facilityManage/facilityManage",
+    "infoCenter/orderReview/orderReview"
    
                
   ],

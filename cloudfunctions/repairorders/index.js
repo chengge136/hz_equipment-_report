@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
       reportorId: event.openid,
-      status: 0,
+      status: event.status,
       rejection: '',
       plan_time: '',
       sign_time: '',

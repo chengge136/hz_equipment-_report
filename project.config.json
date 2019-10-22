@@ -37,15 +37,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "授权登录",
-					"pathName": "pages/authorized/authorized",
+					"name": "信息中心",
+					"pathName": "pages/infoIndex/infoIndex",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "login",
-					"pathName": "pages/logIn/logIn",
+					"name": "设备管理",
+					"pathName": "infoCenter/facilityManage/facilityManage",
 					"query": "",
 					"scene": null
 				},
@@ -58,8 +58,8 @@
 				},
 				{
 					"id": -1,
-					"name": "信息中心",
-					"pathName": "pages/infoIndex/infoIndex",
+					"name": "报修审核",
+					"pathName": "infoCenter/orderReview/orderReview",
 					"scene": null
 				}
 			]

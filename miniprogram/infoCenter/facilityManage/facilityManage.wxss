@@ -1,0 +1,14 @@
+.button{
+  position: fixed;
+  bottom:0; 
+  width:100%; 
+}
+.title{
+  margin:30rpx;
+}
+.selected{
+  color:cornflowerblue;
+}
+.checkbox{
+  margin:15rpx;
+}

@@ -18,10 +18,12 @@ Page({
     var that=this;
     const _ = db.command;
 
-    db.collection('repair_orders').where({
-      status: _.eq(0)
-    })
-      .get({
+    db.collection('repair_orders').where(
+        { 
+          //已经通过审核或者无需审核的保修单
+          status: _.eq(3)
+        }  
+      ).get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)

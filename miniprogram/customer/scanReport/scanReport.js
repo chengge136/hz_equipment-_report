@@ -19,7 +19,8 @@ Page({
     imagePath:'',
     problemDetail:'',
     createtime:'',
-    myopenid: ''
+    myopenid: '',
+    status:''
   },
   submit_info: function () {
     if (!this.data.imagePath == '') {
@@ -64,7 +65,8 @@ Page({
         problemDetail: this.data.problemDetail,
         createtime: this.data.createtime,
         report_id: this.data.createtime,
-        openid: this.data.myopenid
+        openid: this.data.myopenid,
+        status: this.data.status
        
       },
       complete: res => {
@@ -139,6 +141,27 @@ Page({
           phone: res.data[0].phone
 
         })
+
+        db.collection('facility_manage').where({
+          organization: _.eq(res.data[0].facilityOrg)
+        })
+          .get().then(res1 => {
+            console.log(res1.data[0]);
+            var previous_arrays = res1.data[0].auto_array.split(",");
+            //如果此设备是需要审核的
+            if (previous_arrays.indexOf(res.data[0].facilityType.toString())!=-1){
+                console.log('包含需要审核的设备');
+                 that.setData({
+                status: 0
+               })
+            }else{
+              //不需要审核，状态改为3
+              that.setData({
+                status: 3
+              })
+            }
+          })
+
       })
 
     wx.cloud.callFunction({

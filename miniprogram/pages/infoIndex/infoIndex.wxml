@@ -5,10 +5,10 @@
 <view class="icon1">
   <van-row gutter="10">
     <van-col span="6" offset="4">
-      <i class="fa fa-print fa-2x" style="color:#03A9F4;" bindtap="scan_report"></i>
+      <i class="fa fa-print fa-2x" style="color:#03A9F4;" bindtap="facility_manage"></i>
     </van-col>
     <van-col span="6">
-      <i class="fa fa-check-square-o fa-2x" style="color:#FF9800;" bindtap="new_report_order"></i>
+      <i class="fa fa-check-square-o fa-2x" style="color:#FF9800;" bindtap="order_review"></i>
     </van-col>
     <van-col span="6">
       <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="my_orders"></i>

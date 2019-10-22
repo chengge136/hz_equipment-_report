@@ -63,7 +63,7 @@ Page({
 
   },
 
-  new_report_order: function () {
+  facility_manage: function () {
     //console.log('test')
     var that = this;
     wx.scanCode({
@@ -73,7 +73,7 @@ Page({
         //打印ISBN码
         console.log(res.result)
         wx.navigateTo({
-          url: '../../customer/reportOrder/reportOrder?facilityid=' + res.result,
+          url: '../../infoCenter/facilityManage/facilityManage?org_id=' + res.result,
         })
       },
       fail(res) {
@@ -90,10 +90,19 @@ Page({
       url: '../../customer/cusHistory/cusHistory',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
+  },
+  order_review: function () {
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        wx.navigateTo({
+          url: '../../infoCenter/orderReview/orderReview?openid=' + res.result.openid,
+        })
+      }
+    }) 
+
   }
-
-
-
 
 
 })

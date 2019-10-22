@@ -11,7 +11,8 @@ exports.main = async (event, context) => {
     data: {
       openid: event.openid,
       tabbar: event.tabbar,
-      nickName: event.nickName
+      nickName: event.nickName,
+      organization:''
      
     }
   })

@@ -1,0 +1,24 @@
+<view>
+  <van-cell-group>
+    <van-field value="{{ org_id }}" label="单位编号" disabled/>
+    <van-field value="{{ organization }}" label="单位名称" disabled/>
+  </van-cell-group>
+</view>
+
+<view class="title">
+<text>请把需要信息中心审核后方可上报到宏志的设备类型给勾选上</text>
+</view>
+<view class="title">
+<text>上次设置的需要信息中心审核的设备类型有:</text>
+<view class="selected">{{selected_array}}</view>
+</view>
+<view class="checkbox">
+<checkbox-group bindchange="checkboxChange">
+  <label class="checkbox" wx:for="{{items}}">
+    <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</checkbox-group>
+</view>
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">提交</van-button>
+</view>
