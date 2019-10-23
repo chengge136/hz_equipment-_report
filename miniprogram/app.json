@@ -22,9 +22,10 @@
     "customer/reportOrder/reportOrder",
     "customer/cusHistory/cusHistory",
     "infoCenter/facilityManage/facilityManage",
-    "infoCenter/orderReview/orderReview"
-   
-               
+    "infoCenter/orderReview/orderReview",
+    "infoCenter/ReviewDetails/ReviewDetails"
+    
+              
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

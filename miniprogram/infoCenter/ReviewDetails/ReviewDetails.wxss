@@ -48,8 +48,25 @@
 .setTime{
   margin-bottom: 50rpx;
 }
-.button{
+.buttons{
+   display:flex; /* 伸缩盒子，调整其子元素在不同的屏幕大小中能够用最适合的方法填充合适的空间 */
+    position:relative;
+    top:300rpx; 
+}
+.buttons button{
   width:100%;
-  position: fixed;
-  bottom: 0px; 
+}
+.title-bg{
+  margin-left: 30rpx;
+}
+textarea {
+  width: 700rpx;
+  height: 400rpx;
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+.textarea-bg {
+  padding: 10rpx;
+  font-size: 32rpx;
 }

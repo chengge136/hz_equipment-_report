@@ -58,8 +58,9 @@
 				},
 				{
 					"id": -1,
-					"name": "报修审核",
-					"pathName": "infoCenter/orderReview/orderReview",
+					"name": "infoCenter/ReviewDetails/ReviewDetails",
+					"pathName": "infoCenter/ReviewDetails/ReviewDetails",
+					"query": "",
 					"scene": null
 				}
 			]

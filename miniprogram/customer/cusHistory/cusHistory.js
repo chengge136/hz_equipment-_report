@@ -99,7 +99,7 @@ Page({
   },
   oderdetails: function () {
     wx.navigateTo({
-      url: '../historyRepairRecords/historyRepairRecords',
+      url: '../../cusService/historyRepairRecords/historyRepairRecords',
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   }
