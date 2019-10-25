@@ -4,7 +4,7 @@
     <image class="login-img" src="/images/logo.png"></image>  
   </view>  
   <view class="login-from">  
-    <view class="myno">
+    <view class="myno" hidden='{{!isBindExpert}}'>
     <!-- 学号 -->
       <view class="weui-cell_input">
       <view><image class="nameImage" src="/images/name.png"></image></view>
@@ -13,7 +13,7 @@
           </view>
       </view>
     </view>
-    <view class="mypwd">
+    <view class="mypwd" hidden='{{!isBindExpert}}'>
       <!-- 密码 -->
       <view class="weui-cell_input">
       <view><image class="nameImage" src="/images/key.png"></image></view>
@@ -23,13 +23,29 @@
           </view>
       </view>
     </view>
-  <view class="info"><text>客户请点击无密码登录</text></view>
+  <view class="info"><text>客户请点击报修登录,信息中心审核保修单请点击审核登录</text></view>
+  <view class="review" bindtap="display"><i class="fa fa-send-o fa" style="color:#03A9F4;" ></i>
+  <text>审核登录</text></view>
+  <view hidden='{{isBindExpert}}'>
+      <view class="myno">
+    <!-- 学号 -->
+      <view class="weui-cell_input">
+      <view><image class="nameImage" src="/images/name.png"></image></view>
+          <view class="weui-cell_bd">
+              <input class="weui-input" name="no" bindinput="phoneIn" value='{{phoneIn}}' placeholder="请输入手机号" />
+          </view>
+      </view>
+    </view>
+    <view><button class="cusBtn" size="{{primarySize}}" bindtap="reviewLogin">审核登录</button></view>
+  </view>
 
+
+ <view hidden='{{!isBindExpert}}'>
      <!--按钮-->  
     <view class="loginBtnView">
     <view><button class="loginBtn" size="{{primarySize}}" disabled='{{disabled}}' bindtap="submit">售后登录</button></view>
-    <view><button class="cusBtn" size="{{primarySize}}" bindtap="nopwsubmit">无密码登录</button></view>
+    <view><button class="cusBtn" size="{{primarySize}}" bindtap="nopwsubmit">报修登录</button></view>
     </view>  
-  
+  </view>
   </view>  
 </view> 

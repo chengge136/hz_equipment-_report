@@ -63,42 +63,16 @@ Page({
 
   },
 
-  facility_manage: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          url: '../../infoCenter/facilityManage/facilityManage?org_id=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
 
-    })
-  },
-
-
-
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-  },
-  order_review: function () {
+  order_approval: function () {
     wx.cloud.callFunction({
       //调用的函数名字
       name: 'getOpenid',
       success: function (res) {
         wx.navigateTo({
-          url: '../../infoCenter/orderReview/orderReview?openid=' + res.result.openid,
+          url: '../../approver/orderApproval/orderApproval?openid=' + res.result.openid,
         })
       }
-    }) 
+    })
   }
 })

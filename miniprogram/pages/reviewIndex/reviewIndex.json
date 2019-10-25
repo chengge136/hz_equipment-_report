@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
+    "van-notice-bar": "../../vant/notice-bar/index",
+    "van-icon": "../../vant/icon/index"
+  },
+  "navigationBarBackgroundColor": "#9DD3FA",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "报修审批中心",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

@@ -5,6 +5,7 @@
     "pages/index/index",
     "pages/cusIndex/cusIndex",
     "pages/infoIndex/infoIndex",
+    "pages/reviewIndex/reviewIndex",
     "cusService/facilityInfo/facilityInfo",
     "cusService/facilityQuery/facilityQuery",
     "cusService/newOrders/newOrders",
@@ -23,8 +24,9 @@
     "customer/cusHistory/cusHistory",
     "infoCenter/facilityManage/facilityManage",
     "infoCenter/orderReview/orderReview",
-    "infoCenter/ReviewDetails/ReviewDetails"
-    
+    "infoCenter/ReviewDetails/ReviewDetails",
+    "approver/orderApproval/orderApproval",
+    "approver/approveDetails/approveDetails"
               
   ],
   "window": {

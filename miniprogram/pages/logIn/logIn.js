@@ -13,7 +13,10 @@ Page({
     noinput: false,
     pwdinput: false,
     myopenid:'',
-    nickName:''
+    nickName:'',
+    phone:'',
+    phoneIn:'',
+    isBindExpert:true
   },
   noinput: function (e) {
     this.setData({ no: e.detail.value });
@@ -29,6 +32,10 @@ Page({
     if (this.data.noinput == true && this.data.pwdinput == true) {
       this.setData({ disabled: false });
     }
+  },
+  phoneIn: function (e) {
+    console.log(e.detail.value);
+    this.setData({ phoneIn: e.detail.value });
   },
 
   submit: function (e) {
@@ -114,54 +121,32 @@ Page({
       }
     })
   },
-
-
-  formSubmit: function (e) {
-    wx.showLoading({
-      title: '登录中...',
-    })
-    console.log(e);
-    this.setData({ disabled: true });
-    wx.request({
-      url: app.globalData.url.login, //仅为示例，并非真实的接口地址
-      data: {
-        no: e.detail.value.no,
-        pwd: e.detail.value.pwd
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.statusCode == 200) {
-          if (res.data.error == true) {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-              duration: 2000
+  reviewLogin: function () {
+    //检查手机号与数据库是否能够对应上，可以对应则登录页面，不可以则提示联系信息中心授权
+    if ((!this.data.phone == '') &&(this.data.phone == this.data.phoneIn)) {
+      
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 2000,
+        success: function () {
+          setTimeout(function () {
+            //要延时执行的代码
+            wx.redirectTo({
+              url: '../reviewIndex/reviewIndex',
             })
-          } else {
-            wx.setStorageSync('student', res.data.data);
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'success',
-              duration: 2000
-            })
-            setTimeout(function () {
-              wx.switchTab({
-                url: '../teacher/teacher',
-              })
-            }, 2000)
-          }
-        } else {
-          wx.showToast({
-            title: '服务器出现错误',
-            icon: 'none',
-            duration: 2000
-          })
+          }, 2000) //延迟时间
         }
-      }
-    })
+      })
+     
+    } else {
+      wx.showToast({
+        title: '无审核权限，请联系信息中心添加权限',
+        icon: 'none',
+        duration: 4000
+      })
+    }
+
   },
 
   /**
@@ -192,23 +177,44 @@ Page({
         }).get().then(res => {
           // res.data 包含该记录的数据
           console.log(res.data[0]);
+          that.setData({
+            //将openid赋值给本地变量myopenid
+            phone: res.data[0].phone
+          })
+          /*
           if (res.data[0]){
             if (res.data[0].tabbar==1){
               wx.switchTab({
                 url: '../index/index',
               })
-            }else{
+            } else if (res.data[0].tabbar == 2){
               wx.switchTab({
                 url: '../cusIndex/cusIndex',
               })
+            } else if (res.data[0].tabbar == 3) {//信息中心审核保修单
+              wx.switchTab({
+                url: '../reviewIndex/reviewIndex',
+              })
             }
-          }
+          }*/
        
         })
       }
     })
    
     
+  },
+  display: function (){
+    var that=this;
+    if (this.data.isBindExpert){
+      that.setData({
+        isBindExpert:false
+      })
+    }else{
+      that.setData({
+        isBindExpert: true
+      })
+    }
   },
 
   /**

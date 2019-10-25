@@ -1,31 +1,25 @@
 <van-notice-bar
   left-icon="volume-o"
-  text="设置直接上报宏志的设备，将不通过信息中心的审核。"
+  text="在报修审核中查看本单位最新提交的报修订单，检查过决定是否上报宏志维修或者自己维修。"
 />
 <view class="icon1">
   <van-row gutter="10">
-    <van-col span="6" offset="4">
-      <i class="fa fa-print fa-2x" style="color:#03A9F4;" bindtap="facility_manage"></i>
+    <van-col span="6" offset="6">
+      <i class="fa fa-address-card-o fa-2x" style="color:#FF9800;" bindtap="order_approval"></i>
     </van-col>
-    <van-col span="6">
-      <i class="fa fa-check-square-o fa-2x" style="color:#FF9800;" bindtap="order_review"></i>
-    </van-col>
-    <van-col span="6">
-      <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="getPhone"></i>
+    <van-col span="6" offset="3">
+      <i class="fa fa-history fa-2x" style="color:#259B24;" bindtap="order_history"></i>
     </van-col>
   </van-row>
 </view>
 
 <view class="text1">
   <van-row gutter="10">
-    <van-col span="6" offset="4">
-      <text>设备管理</text>
-    </van-col>
-    <van-col span="6">
+    <van-col span="6" offset="6">
       <text>报修审核</text>
     </van-col>
-    <van-col span="6">
-      <text>获取手机号测试</text>
+    <van-col span="6" offset="3">
+      <text>报修历史</text>
     </van-col>
   </van-row>
 </view>
@@ -97,4 +91,3 @@
   <hr/>
 </view>
 <view class="more"><text>查看更多</text></view>
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
