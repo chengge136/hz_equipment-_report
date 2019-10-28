@@ -1,0 +1,18 @@
+<view class="title">
+<text>列表是各类设备报修后的审核负责人</text>
+</view>
+<view>
+  <van-cell-group>
+    <van-field value="李国强" label="打印机："border="{{ false }}" use-button-slot disabled>
+    <van-button slot="button" size="small" type="warning" bind:click="printer">修改/查看</van-button> </van-field>
+
+    <van-field value="周丽" label="复印机："border="{{ false }}" use-button-slot disabled>
+    <van-button slot="button" size="small" type="warning" bind:click="duplicator">修改/查看</van-button> </van-field>
+
+    <van-field value="林丽萍" label="电脑："border="{{ false }}" use-button-slot disabled>
+    <van-button slot="button" size="small" type="warning" bind:click="computer">修改/查看</van-button> </van-field>
+
+    <van-field value="吕小兵" label="其他设备："border="{{ false }}" use-button-slot disabled>
+    <van-button slot="button" size="small" type="warning" bind:click="other">修改/查看</van-button> </van-field>
+  </van-cell-group>
+</view>

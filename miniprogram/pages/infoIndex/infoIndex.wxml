@@ -11,7 +11,7 @@
       <i class="fa fa-check-square-o fa-2x" style="color:#FF9800;" bindtap="order_review"></i>
     </van-col>
     <van-col span="6">
-      <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="getPhone"></i>
+      <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="approver_set"></i>
     </van-col>
   </van-row>
 </view>
@@ -25,7 +25,7 @@
       <text>报修审核</text>
     </van-col>
     <van-col span="6">
-      <text>获取手机号测试</text>
+      <text>审核人设置</text>
     </van-col>
   </van-row>
 </view>
@@ -97,4 +97,3 @@
   <hr/>
 </view>
 <view class="more"><text>查看更多</text></view>
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>

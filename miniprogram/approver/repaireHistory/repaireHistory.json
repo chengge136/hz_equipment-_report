@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-field": "../../vant/field/index",
+    "van-tab": "../../vant/tab/index",
+    "van-tabs": "../../vant/tabs/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "维修历史",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

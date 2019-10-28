@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-field": "../../vant/field/index",
+    "van-button": "../../vant/button/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "审核人管理",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

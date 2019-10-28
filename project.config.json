@@ -32,6 +32,10 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 5,
 			"list": [
@@ -75,6 +79,19 @@
 					"name": "审批首页",
 					"pathName": "pages/reviewIndex/reviewIndex",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核人设置",
+					"pathName": "infoCenter/approverSet/approverSet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核名单修改",
+					"pathName": "infoCenter/approverModify/approverModify",
 					"scene": null
 				}
 			]

@@ -25,8 +25,12 @@
     "infoCenter/facilityManage/facilityManage",
     "infoCenter/orderReview/orderReview",
     "infoCenter/ReviewDetails/ReviewDetails",
+    "infoCenter/approverSet/approverSet",
+    "infoCenter/approverModify/approverModify",
     "approver/orderApproval/orderApproval",
-    "approver/approveDetails/approveDetails"
+    "approver/approveDetails/approveDetails",
+    "approver/repaireHistory/repaireHistory",
+    "approver/repaireDetails/repaireDetails"
               
   ],
   "window": {

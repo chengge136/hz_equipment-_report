@@ -82,14 +82,12 @@ Page({
 
     })
   },
-
-
-
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-  },
+  approver_set:function(){
+    wx.navigateTo({
+      url: '../../infoCenter/orderReview/orderReview?openid=' + res.result.openid,
+    })
+  }
+  ,
   order_review: function () {
     wx.cloud.callFunction({
       //调用的函数名字
