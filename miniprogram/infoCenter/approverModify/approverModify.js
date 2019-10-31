@@ -7,63 +7,79 @@ Page({
    * 页面的初始数据
    */
   data: {
-    facilityid: '',
     facilityType: '',
-    facilityName: '',
-    facilityOrg: '',
-    address: '',
-    contactor: '',
-    phone: '',
-    brandName: ''
+    organization:'',
+    name:'',
+    phone:'',
+    userid:'',
+    approveType:'',
+    isHidden: false
+   
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.facilityid)
-    var that = this;
+    var that=this;
+    console.log(options.organization, '----', options.approveType);
+
+    that.setData({
+      organization: options.organization,
+      approveType: options.approveType
+    });
+    var org = options.organization;
+    //设备类型
+    switch (options.approveType.toString()) {
+      case "0":
+        that.setData({
+          facilityType: '打印机'
+        });
+        break;
+      case "1":
+        that.setData({
+          facilityType: '复印机'
+        });
+        break;
+      case "2":
+        that.setData({
+          facilityType: '电脑'
+        });
+        break;
+      case "3":
+        that.setData({
+          facilityType: '其他'
+        });
+        break;
+    }
+
+
     const _ = db.command;
-    db.collection('facility').where({
-      facilityid: _.eq(options.facilityid)
+    console.log('db', options.approveType);
+    db.collection('hz_role_user').where({
+      approveType: _.eq(parseInt(options.approveType)),
+      roleid: _.eq(4),
+      organization: _.eq(org)
+
     })
       .get().then(res => {
-        // res.data 包含该记录的数据
-        console.log(res.data[0]);
-        //设置设备类型
-        switch (res.data[0].facilityType.toString()) {
-          case "0":
-            that.setData({
-              facilityType: '打印机'
-            });
-            break;
-          case "1":
-            that.setData({
-              facilityType: '复印机'
-            });
-            break;
-          case "2":
-            that.setData({
-              facilityType: '电脑'
-            });
-            break;
-          case "3":
-            that.setData({
-              facilityType: '其他'
-            });
-            break;
+
+        console.log('length:',res.data.length);
+        //如果没有数据，则隐藏修改按钮，显示添加按钮；
+        if (res.data.length==0){
+          that.setData({
+            isHidden: true
+          })
+        }else{
+          console.log('审核人：', res.data[0]);
+          that.setData({
+            name: res.data[0].name,
+            phone: res.data[0].phone,
+            userid: res.data[0].userid,
+
+          })
         }
 
-        that.setData({
-          facilityid: res.data[0].facilityid,
-          facilityName: res.data[0].facilityName,
-          facilityOrg: res.data[0].facilityOrg,
-          address: res.data[0].address,
-          brandName: res.data[0].brandName,
-          contactor: res.data[0].contactor,
-          phone: res.data[0].phone
-
-        })
       })
   },
 
@@ -115,16 +131,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-  addressIn: function (event) {
+  nameIn: function (event) {
     var that = this;
     that.setData({
-      address: event.detail
-    })
-  },
-  contactorIn: function (event) {
-    var that = this;
-    that.setData({
-      contactor: event.detail
+      name: event.detail
     })
   },
   phoneIn: function (event) {
@@ -133,15 +143,15 @@ Page({
       phone: event.detail
     })
   },
-  submit_info: function () {
+  submit_modify: function () {
     var that = this;
     wx.showModal({
       title: '修改',
-      content: '确定要修改此设备的基本信息？',
+      content: '确定要修改此设备的审批人基本信息？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
-          that.updateFacility();
+          that.updateApprover();
 
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -149,17 +159,16 @@ Page({
       }
     })
   },
-  updateFacility: function () {
+  updateApprover: function () {
     wx.cloud.callFunction({
-      name: 'updateFacility',
+      name: 'updateApprover',
       data: {
-        facilityid: this.data.facilityid,
-        address: this.data.address,
-        contactor: this.data.contactor,
-        phone: this.data.phone
+        name: this.data.name,
+        phone: parseInt(this.data.phone),
+        userid: this.data.userid
       },
       complete: res => {
-        console.log('updateFacility callFunction test result: ', res);
+        console.log('updateApprover callFunction test result: ', res);
         wx.showToast({
           title: '成功',
           icon: 'success',
@@ -169,7 +178,52 @@ Page({
             setTimeout(function () {
               //要延时执行的代码
               wx.switchTab({
-                url: '../../pages/index/index'
+                url: '../../pages/infoIndex/infoIndex'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+
+      }
+    })
+  },
+  submit_add: function () {
+    var that = this;
+    wx.showModal({
+      title: '修改',
+      content: '确定添加此人为设备报修审批人？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          that.addApprover();
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  addApprover: function () {
+    wx.cloud.callFunction({
+      name: 'addApprover',
+      data: {
+        name: this.data.name,
+        phone: parseInt(this.data.phone),
+        organization: this.data.organization,
+        approveType: parseInt(this.data.approveType)
+      },
+      complete: res => {
+        console.log('addApprover callFunction test result: ', res);
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('haha');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.switchTab({
+                url: '../../pages/infoIndex/infoIndex'
               })
             }, 2000) //延迟时间
           }

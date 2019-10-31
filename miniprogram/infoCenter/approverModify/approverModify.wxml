@@ -1,18 +1,24 @@
 <view class="icon1">
   <i class="fa fa-keyboard-o fa-2x" style="color:#03A9F4;"></i>
-  <text>打印机</text>
+  <text>{{facilityType}}设备审批负责人</text>
 </view>
 
 
 <view>
   <van-cell-group>
-    <van-field value="李国强" label="姓名" bind:input="addressIn" required clearable placeholder="请输入审批人姓名"/>
-    <van-field value="13688722231" label="手机号" bind:input="addressIn" required clearable placeholder="请输入审批人手机号"/>
+    <van-field value="{{name}}" label="姓名" bind:input="nameIn" required clearable placeholder="请输入审批人姓名"/>
+    <van-field value="{{phone}}" label="手机号" bind:input="phoneIn" required clearable placeholder="请输入审批人手机号"/>
+        <van-field value="{{organization}}" disabled label="所在单位"/>
+
     <van-field value="信息中心" label="所在部门" bind:input="contactorIn"  clearable placeholder="请输入审批人所在部门"/>
 
   </van-cell-group>
 </view>
 
-<view class="button">
-<van-button size="large" type="info" bind:click="submit_info">修改</van-button>
+<view class="button" hidden='{{isHidden}}'>
+<van-button size="large" type="info" bind:click="submit_modify">修改</van-button>
+</view>
+
+<view class="button" hidden='{{!isHidden}}'>
+<van-button size="large" type="info" bind:click="submit_add">添加</van-button>
 </view>

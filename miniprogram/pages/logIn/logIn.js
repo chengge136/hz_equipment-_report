@@ -122,30 +122,88 @@ Page({
     })
   },
   reviewLogin: function () {
-    //检查手机号与数据库是否能够对应上，可以对应则登录页面，不可以则提示联系信息中心授权
-    if ((!this.data.phone == '') &&(this.data.phone == this.data.phoneIn)) {
-      
-      wx.showToast({
-        title: '成功',
-        icon: 'success',
-        duration: 2000,
-        success: function () {
-          setTimeout(function () {
-            //要延时执行的代码
-            wx.redirectTo({
-              url: '../reviewIndex/reviewIndex',
+    const _ = db.command;
+    console.log('phoneIn',this.data.phoneIn)
+    db.collection('hz_role_user').where({
+      phone: parseInt(this.data.phoneIn)
+    }).get().then(res => {
+      if (res.data.length==0){
+        console.log('查询不到此人');
+        wx.showToast({
+          title: '无审核权限，请联系信息中心添加权限',
+          icon: 'none',
+          duration: 4000
+        })
+      }else{
+        if (res.data[0].openid==''){
+          //把登录人的openid更新进去，第一次登录的情况
+          wx.cloud.callFunction({
+            name: 'openidtoApprover',
+            data: {
+              phone: parseInt(this.data.phoneIn),
+              openid: myopenid,
+            },
+            complete: res => {
+              console.log('openidtoApprover callFunction test result: ', res);
+              wx.showToast({
+                title: '成功',
+                icon: 'success',
+                duration: 2000,
+                success: function () {
+                  console.log('haha');
+                  setTimeout(function () {
+                    //要延时执行的代码
+                    wx.redirectTo({
+                      url: '../reviewIndex/reviewIndex',
+                    })
+                  }, 2000) //延迟时间
+                }
+              })
+
+            }
+          })
+
+        }else{
+          console.log('登录人的openid', this.data.myopenid);
+          console.log('手机号查询的openid', res.data[0].openid);
+
+          //对比此人的openid，防止有人记得别人的手机号，用别人的手机号进行登录
+          //如果手机号查询到的openid和登录人的openid不一致
+          if (!(res.data[0].openid == this.data.myopenid)){
+            //此手机号属于res.data[0].name，请别登录了哟
+            wx.showToast({
+              title: '此手机号属于' + res.data[0].name+'，请使用你自己的手机号登录哟！',
+              icon: 'none',
+              duration: 4000
             })
-          }, 2000) //延迟时间
+          }else{
+            //顺利登录
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                console.log('haha');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.redirectTo({
+                    url: '../reviewIndex/reviewIndex',
+                  })
+                }, 2000) //延迟时间
+              }
+            })
+          }
+
         }
-      })
+      }
      
-    } else {
-      wx.showToast({
-        title: '无审核权限，请联系信息中心添加权限',
-        icon: 'none',
-        duration: 4000
-      })
-    }
+
+    })
+
+
+
+
+
 
   },
 
@@ -157,7 +215,6 @@ Page({
     //请求云函数
     var that = this;
     that.setData({
-      //将openid赋值给本地变量myopenid
       nickName: options.nickName
     });
     wx.cloud.callFunction({
@@ -175,13 +232,9 @@ Page({
         db.collection('hz_role_user').where({
           openid: res.result.openid
         }).get().then(res => {
-          // res.data 包含该记录的数据
-          console.log(res.data[0]);
-          that.setData({
-            //将openid赋值给本地变量myopenid
-            phone: res.data[0].phone
-          })
-          /*
+          if (!res.data.length==0){
+            console.log(res.data[0]);
+                      /*
           if (res.data[0]){
             if (res.data[0].tabbar==1){
               wx.switchTab({
@@ -197,7 +250,8 @@ Page({
               })
             }
           }*/
-       
+          }
+                
         })
       }
     })

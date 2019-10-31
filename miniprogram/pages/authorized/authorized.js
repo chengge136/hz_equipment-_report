@@ -24,9 +24,7 @@ Page({
                   url: '../logIn/logIn?nickName=' + res.userInfo.nickName,
                 })
               }, 1000); //延迟时间
-
-            
-             
+       
             }
           });
         } else {

@@ -83,8 +83,15 @@ Page({
     })
   },
   approver_set:function(){
-    wx.navigateTo({
-      url: '../../infoCenter/orderReview/orderReview?openid=' + res.result.openid,
+
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        wx.navigateTo({
+          url: '../../infoCenter/approverSet/approverSet?openid=' + res.result.openid,
+        })
+      }
     })
   }
   ,
