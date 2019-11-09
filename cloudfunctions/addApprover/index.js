@@ -14,9 +14,8 @@ exports.main = async (event, context) => {
       userid: new Date().getTime(),
       organization: event.organization,
       approveType: event.approveType,
-      roleid:4
-
-
+      roleid:4,
+      openid:''
     }
   })
     .then(console.log)

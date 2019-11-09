@@ -6,6 +6,7 @@
     "pages/cusIndex/cusIndex",
     "pages/infoIndex/infoIndex",
     "pages/reviewIndex/reviewIndex",
+    "pages/managerIndex/managerIndex",
     "cusService/facilityInfo/facilityInfo",
     "cusService/facilityQuery/facilityQuery",
     "cusService/newOrders/newOrders",
@@ -19,6 +20,7 @@
     "cusService/recallOrderDetails/recallOrderDetails",
     "cusService/myrecallDetails/myrecallDetails",
     "cusService/recalhistoryRecords/recalhistoryRecords",
+    "cusService/infoadminSet/infoadminSet",
     "customer/scanReport/scanReport",
     "customer/reportOrder/reportOrder",
     "customer/cusHistory/cusHistory",
@@ -30,7 +32,15 @@
     "approver/orderApproval/orderApproval",
     "approver/approveDetails/approveDetails",
     "approver/repaireHistory/repaireHistory",
-    "approver/repaireDetails/repaireDetails"
+    "approver/repaireDetails/repaireDetails",
+    "manager/charts/charts",
+    "manager/newOrders/newOrders",
+    "manager/newOrderDetails/newOrderDetails",
+    "manager/peopleManage/peopleManage",
+    "charts/bar/index",
+    "charts/line/index",
+    "charts/pie/index",
+    "charts/themeRiver/index"
               
   ],
   "window": {
@@ -39,25 +49,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "售后辅助",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "backgroundColor":"#03A9F4",
-    "color":"#FFFFFF",
-    "selectedColor": "#FFEE93",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "售后端"
-      },
-      {
-        "pagePath": "pages/cusIndex/cusIndex",
-        "text": "客户端"
-      },
-      {
-        "pagePath": "pages/infoIndex/infoIndex",
-        "text": "信息中心"
-      }
-    ]
   },
   "cloud": true,
   "sitemapLocation": "sitemap.json"

@@ -1,17 +1,36 @@
 // pages/cusIndex/cusIndex.js
+const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    message:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    const _ = db.command;
+    db.collection('repair_orders').where({
+      status: _.eq(0)
+    })
+      .get().then(res => {
+        console.log('length:', res.data.length);
+        if (res.data.length>0){
+          that.setData({
+            message: '您好，有 ' + res.data.length+' 条的新的设备报修申请需要您的审核！'
+          })
+        }else{
+          that.setData({
+            message: '您好，暂无新的设备报修申请'
+          })
+        }
 
+      })
   },
 
   /**

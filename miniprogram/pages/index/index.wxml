@@ -1,6 +1,6 @@
 <van-notice-bar
   left-icon="volume-o"
-  text="在新报修申请中，领取你的维修订单。达到客户现场，请务必对维修的设备扫码进行签到"
+  text="{{message}}"
 />
 <view class="icon1">
   <van-row gutter="10">
@@ -49,6 +49,9 @@
     <van-col span="5">
       <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
     </van-col>
+    <van-col span="5">
+       <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="infoAdmin_set"></i>
+    </van-col>
   </van-row>
 </view>
 
@@ -62,6 +65,9 @@
     </van-col>
     <van-col span="5">
       <text>维修记录</text>
+    </van-col>
+    <van-col span="5">
+      <text>信息中心\n管理员</text>
     </van-col>
   </van-row>
 </view>

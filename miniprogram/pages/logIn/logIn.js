@@ -12,11 +12,15 @@ Page({
     pwd: '',
     noinput: false,
     pwdinput: false,
-    myopenid:'',
-    nickName:'',
-    phone:'',
-    phoneIn:'',
-    isBindExpert:true
+    myopenid: '',
+    nickName: '',
+    avatarUrl:'',
+    phone: '',
+    phoneIn: '',
+    isBindExpert: true,
+    approveHidden: true,
+    infoHidden: true
+
   },
   noinput: function (e) {
     this.setData({ no: e.detail.value });
@@ -49,14 +53,14 @@ Page({
         title: '登录成功',
         icon: '登录成功',
         duration: 2000
-      })
-     
+      });
       wx.cloud.callFunction({
         name: 'roleIn',
         data: {
           openid: this.data.myopenid,
-          tabbar: 1,
           nickName: this.data.nickName,
+          avatarUrl: this.data.avatarUrl,
+          roleid: 1
 
         },
         complete: res => {
@@ -70,7 +74,7 @@ Page({
               console.log('haha');
               setTimeout(function () {
                 //要延时执行的代码
-                wx.switchTab({
+                wx.redirectTo({
                   url: '../index/index'
                 })
               }, 2000) //延迟时间
@@ -79,8 +83,6 @@ Page({
 
         }
       })
-
-
     } else {
       wx.showToast({
         title: '账号密码错误',
@@ -90,14 +92,15 @@ Page({
       this.setData({ disabled: false });
     }
   },
-  nopwsubmit:function(){
+  nopwsubmit: function () {
 
     wx.cloud.callFunction({
       name: 'roleIn',
       data: {
         openid: this.data.myopenid,
-        tabbar: 0,
         nickName: this.data.nickName,
+        avatarUrl: '',
+        roleid: 2
 
 
       },
@@ -111,7 +114,7 @@ Page({
             console.log('haha');
             setTimeout(function () {
               //要延时执行的代码
-              wx.switchTab({
+              wx.redirectTo({
                 url: '../cusIndex/cusIndex'
               })
             }, 2000) //延迟时间
@@ -123,25 +126,26 @@ Page({
   },
   reviewLogin: function () {
     const _ = db.command;
-    console.log('phoneIn',this.data.phoneIn)
+    console.log('phoneIn', this.data.phoneIn)
     db.collection('hz_role_user').where({
-      phone: parseInt(this.data.phoneIn)
+      phone: parseInt(this.data.phoneIn),
+      roleid: 4
     }).get().then(res => {
-      if (res.data.length==0){
+      if (res.data.length == 0) {
         console.log('查询不到此人');
         wx.showToast({
           title: '无审核权限，请联系信息中心添加权限',
           icon: 'none',
           duration: 4000
         })
-      }else{
-        if (res.data[0].openid==''){
+      } else {
+        if (res.data[0].openid == '') {
           //把登录人的openid更新进去，第一次登录的情况
           wx.cloud.callFunction({
             name: 'openidtoApprover',
             data: {
               phone: parseInt(this.data.phoneIn),
-              openid: myopenid,
+              openid: this.data.myopenid,
             },
             complete: res => {
               console.log('openidtoApprover callFunction test result: ', res);
@@ -163,20 +167,20 @@ Page({
             }
           })
 
-        }else{
+        } else {
           console.log('登录人的openid', this.data.myopenid);
           console.log('手机号查询的openid', res.data[0].openid);
 
           //对比此人的openid，防止有人记得别人的手机号，用别人的手机号进行登录
           //如果手机号查询到的openid和登录人的openid不一致
-          if (!(res.data[0].openid == this.data.myopenid)){
+          if (!(res.data[0].openid == this.data.myopenid)) {
             //此手机号属于res.data[0].name，请别登录了哟
             wx.showToast({
-              title: '此手机号属于' + res.data[0].name+'，请使用你自己的手机号登录哟！',
+              title: '此手机号属于' + res.data[0].name + '，请使用你自己的手机号登录哟！',
               icon: 'none',
               duration: 4000
             })
-          }else{
+          } else {
             //顺利登录
             wx.showToast({
               title: '成功',
@@ -196,32 +200,108 @@ Page({
 
         }
       }
-     
+
 
     })
 
-
-
-
-
-
   },
+  infoLogin: function () {
+    const _ = db.command;
+    console.log('phoneIn', this.data.phoneIn)
+    db.collection('hz_role_user').where({
+      phone: parseInt(this.data.phoneIn),
+      roleid: 3
+    }).get().then(res => {
+      console.log(res.data[0]);
+      //1
+      if (res.data.length == 0) {
+        console.log('查询不到此人');
+        wx.showToast({
+          title: '无法登陆信息中心，请联系宏志售后',
+          icon: 'none',
+          duration: 4000
+        })
+      } else {
+        if (res.data[0].openid == '') {
+          //把登录人的openid更新进去，第一次登录的情况
+          wx.cloud.callFunction({
+            name: 'openidtoInfo',
+            data: {
+              phone: parseInt(this.data.phoneIn),
+              openid: this.data.myopenid,
+            },
+            complete: res => {
+              console.log('openidtoInfo callFunction test result: ', res);
+              wx.showToast({
+                title: '成功',
+                icon: 'success',
+                duration: 2000,
+                success: function () {
+                  console.log('haha');
+                  setTimeout(function () {
+                    //要延时执行的代码
+                    wx.redirectTo({
+                      url: '../../pages/infoIndex/infoIndex'
+                    })
+                  }, 2000) //延迟时间
+                }
+              })
 
+            }
+          })
+
+        } else {
+          console.log('登录人的openid', this.data.myopenid);
+          console.log('手机号查询的openid', res.data[0].openid);
+          //对比此人的openid，防止有人记得别人的手机号，用别人的手机号进行登录
+          //如果手机号查询到的openid和登录人的openid不一致
+          if (!(res.data[0].openid == this.data.myopenid)) {
+            //此手机号属于res.data[0].name，请别登录了哟
+            wx.showToast({
+              title: '此手机号属于' + res.data[0].name + '，请使用你自己的手机号登录哟！',
+              icon: 'none',
+              duration: 4000
+            })
+          } else {
+            //顺利登录
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                console.log('haha');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.redirectTo({
+                    url: '../../pages/infoIndex/infoIndex'
+                  })
+                }, 2000) //延迟时间
+              }
+            })
+          }
+
+        }
+      }
+
+
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('login nickName是',options.nickName)
     //请求云函数
     var that = this;
     that.setData({
-      nickName: options.nickName
+      nickName: options.nickName,
+      avatarUrl: options.avatarUrl
     });
+
     wx.cloud.callFunction({
       //调用的函数名字
       name: 'getOpenid',
       success: function (res) {
-        
+
         that.setData({
           //将openid赋值给本地变量myopenid
           myopenid: res.result.openid
@@ -232,45 +312,71 @@ Page({
         db.collection('hz_role_user').where({
           openid: res.result.openid
         }).get().then(res => {
-          if (!res.data.length==0){
+          if (!res.data.length == 0) {
             console.log(res.data[0]);
-                      /*
-          if (res.data[0]){
-            if (res.data[0].tabbar==1){
-              wx.switchTab({
-                url: '../index/index',
-              })
-            } else if (res.data[0].tabbar == 2){
-              wx.switchTab({
-                url: '../cusIndex/cusIndex',
-              })
-            } else if (res.data[0].tabbar == 3) {//信息中心审核保修单
-              wx.switchTab({
-                url: '../reviewIndex/reviewIndex',
-              })
+
+            switch (res.data[0].roleid) {
+                //售后
+              case 1:
+                wx.redirectTo({
+                  url: '../index/index',
+                });
+                break;
+                //客户
+              case 2:
+                wx.redirectTo({
+                  url: '../cusIndex/cusIndex',
+                });
+                break;
+                //信息中心管理员
+              case 3:
+                wx.redirectTo({
+                  url: '../infoIndex/infoIndex',
+                });
+                break;
+                //审批
+              case 4:
+                wx.redirectTo({
+                  url: '../reviewIndex/reviewIndex',
+                });
+                break;
             }
-          }*/
+
           }
-                
         })
       }
     })
-   
-    
+
+
   },
-  display: function (){
-    var that=this;
-    if (this.data.isBindExpert){
+  approvedisplay: function () {
+    var that = this;
+    if (this.data.isBindExpert) {
       that.setData({
-        isBindExpert:false
+        isBindExpert: false,
+        approveHidden: false
       })
-    }else{
+    } else {
       that.setData({
-        isBindExpert: true
+        isBindExpert: true,
+        approveHidden: true
       })
     }
   },
-
+  infodisplay: function () {
+    var that = this;
+    if (this.data.isBindExpert) {
+      that.setData({
+        isBindExpert: false,
+        infoHidden: false
+      })
+    } else {
+      that.setData({
+        isBindExpert: true,
+        infoHidden: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

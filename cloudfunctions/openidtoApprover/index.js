@@ -8,7 +8,8 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   return await db.collection('hz_role_user').where({
-    phone: _.eq(event.phone)
+    phone: _.eq(event.phone),
+    roleid:4
   }).update({
     // data 传入需要局部更新的数据
     data: {

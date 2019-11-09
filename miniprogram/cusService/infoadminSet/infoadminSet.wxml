@@ -1,0 +1,17 @@
+<van-cell-group>
+  <van-field value="{{ managerName }}" bind:input="managerName" required clearable label="管理员姓名" placeholder="请输入管理员姓名" />
+    <van-field value="{{ phone }}" bind:input="phone" type="number" required clearable label="手机号码" placeholder="请输入手机号码，初次登陆使用" />
+  <van-field value="{{ organization }}" bind:input="organization" required clearable label="设备单位" placeholder="请输入设备使用单位" />
+</van-cell-group>
+
+<scroll-view scroll-y="true" class="scrollview" hidden="{{hideScroll}}" style="{{arrayHeight>340?'height:340rpx':''}}">
+  <view wx:for="{{bindSource}}" style="padding: 25rpx;color: #B2B2B2;">
+    <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+  </view>
+</scroll-view>
+
+
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">添加</van-button>
+</view>
+<van-toast id="van-toast" />

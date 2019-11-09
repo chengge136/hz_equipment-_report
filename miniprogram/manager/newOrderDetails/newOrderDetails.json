@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
+    "van-field": "../../vant/field/index",
+    "van-grid": "../../vant/grid/index",
+    "van-grid-item": "../../vant/grid-item/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "新报修申请分配",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

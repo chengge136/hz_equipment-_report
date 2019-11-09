@@ -10,9 +10,10 @@ exports.main = async (event, context) => {
   return await db.collection('hz_role_user').add({
     data: {
       openid: event.openid,
-      tabbar: event.tabbar,
       nickName: event.nickName,
-      organization:''
+      avatarUrl: event.avatarUrl,
+      roleid: event.roleid,
+      name:''
      
     }
   })

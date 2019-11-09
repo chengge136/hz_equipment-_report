@@ -1,6 +1,6 @@
 <van-notice-bar
   left-icon="volume-o"
-  text="设置直接上报宏志的设备，将不通过信息中心的审核。"
+  text="{{message}}"
 />
 <view class="icon1">
   <van-row gutter="10">

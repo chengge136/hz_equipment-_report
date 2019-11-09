@@ -1,5 +1,5 @@
 <view  wx:for="{{newRepairOrders}}" wx:key="{{index}}">
-<navigator url="../approveDetails/approveDetails?report_id={{item.report_id}}" class="title">
+<navigator url="../ReviewDetails/ReviewDetails?report_id={{item.report_id}}" class="title">
 <view class="left">
 <i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
 <text>{{item.facilityOrg}}</text>

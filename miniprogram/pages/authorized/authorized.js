@@ -14,14 +14,16 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {
               console.log(res.userInfo.nickName);
+              console.log(res.userInfo.avatarUrl);//获取微信用户头像存放的Url 
 
               setTimeout(function () {
                 //要延时执行的代码
                 wx.redirectTo({
-                  url: '../logIn/logIn?nickName=' + res.userInfo.nickName,
+                  url: '../logIn/logIn?nickName=' + res.userInfo.nickName + '&avatarUrl=' + res.userInfo.avatarUrl,
                 })
               }, 1000); //延迟时间
        
@@ -52,7 +54,7 @@ Page({
       setTimeout(function () {
         //要延时执行的代码
         wx.redirectTo({
-          url: '../logIn/logIn?nickName=' + e.detail.userInfo.nickName,
+          url: '../logIn/logIn?nickName=' + e.detail.userInfo.nickName + '&avatarUrl=' + e.detail.userInfo.avatarUrl,
         })
       }, 1000); //延迟时间
 

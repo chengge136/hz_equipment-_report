@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+        "van-row": "../../vant/row/index",
+        "van-col": "../../vant/col/index"
+  },
   "navigationBarBackgroundColor": "#7e8ef0",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "登录页面",

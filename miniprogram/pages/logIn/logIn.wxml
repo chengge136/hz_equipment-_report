@@ -24,8 +24,18 @@
       </view>
     </view>
   <view class="info"><text>客户请点击报修登录,信息中心审核保修单请点击审核登录</text></view>
-  <view class="review" bindtap="display"><i class="fa fa-send-o fa" style="color:#03A9F4;" ></i>
-  <text>审核登录</text></view>
+
+<view class="review">
+  <van-row gutter="10">
+    <van-col span="9" offset="1" bindtap="approvedisplay">
+      <i class="fa fa-send-o fa" style="color:#03A9F4;"></i><text> 审核登录</text>
+    </van-col>
+    <van-col span="9" offset="3" bindtap="infodisplay">
+      <i class="fa fa-newspaper-o fa" style="color:#FF9800;" bindtap="new_report_orders"></i><text style="color:#FF9800;"> 信息中心登录</text>
+    </van-col>
+  </van-row>
+</view>
+
   <view hidden='{{isBindExpert}}'>
       <view class="myno">
     <!-- 学号 -->
@@ -36,7 +46,8 @@
           </view>
       </view>
     </view>
-    <view><button class="cusBtn" size="{{primarySize}}" bindtap="reviewLogin">审核登录</button></view>
+    <view hidden='{{approveHidden}}'><button class="cusBtn" size="{{primarySize}}" bindtap="reviewLogin">审核登录</button></view>
+    <view hidden='{{infoHidden}}'><button class="cusBtn" size="{{primarySize}}" bindtap="infoLogin">信息中心登录</button></view>
   </view>
 
 

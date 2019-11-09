@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
+    "van-field": "../../vant/field/index",
+    "van-radio": "../../vant/radio/index",
+    "van-radio-group": "../../vant/radio-group/index",
+    "van-toast": "../../vant/toast/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "信息中心管理员添加",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

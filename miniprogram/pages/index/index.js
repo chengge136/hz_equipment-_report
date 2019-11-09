@@ -1,4 +1,4 @@
-
+const db = wx.cloud.database();
 Page({
 
 
@@ -6,16 +6,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    test:''
+    message:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this;
+    const _ = db.command;
+    db.collection('repair_orders').where({
+      status: _.eq(3)
+    })
+      .get().then(res => {
+        console.log('length:', res.data.length);
+        if (res.data.length > 0) {
+          that.setData({
+            message: '您好，现在一共有 ' + res.data.length + ' 条的新的设备报修申请,请在新报修申请中查看并领取'
+          })
+        } else {
+          that.setData({
+            message: '您好，暂无新的设备报修申请'
+          })
+        }
 
+      })
   },
 
+  infoAdmin_set: function () {
+
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        wx.navigateTo({
+          url: '../../cusService/infoadminSet/infoadminSet?openid=' + res.result.openid,
+        })
+      }
+    })
+  }
+  ,
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

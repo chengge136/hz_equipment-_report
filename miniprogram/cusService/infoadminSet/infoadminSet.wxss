@@ -1,0 +1,16 @@
+.button{
+  position:fixed; 
+  bottom:0; 
+  width:100%; 
+}
+
+.section text{
+  font-size: 28rpx;
+  margin-left:30rpx;
+  margin-top:30rpx;
+  
+}
+.picker{
+ margin-left:30rpx;
+ margin-top:30rpx;
+}

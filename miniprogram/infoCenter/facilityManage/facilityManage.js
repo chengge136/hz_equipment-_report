@@ -141,7 +141,7 @@ Page({
               console.log('haha');
               setTimeout(function () {
                 //要延时执行的代码
-                wx.switchTab({
+                wx.redirectTo({
                   url: '../../pages/infoIndex/infoIndex'
                 })
               }, 2000) //延迟时间
