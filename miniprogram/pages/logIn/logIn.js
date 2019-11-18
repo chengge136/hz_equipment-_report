@@ -41,7 +41,31 @@ Page({
     console.log(e.detail.value);
     this.setData({ phoneIn: e.detail.value });
   },
+  hidesubmit:function(){
+    if (this.data.no == 'hongzhi' && this.data.pwd == 'hongzhi') {
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success',
+        duration: 2000,
+        success: function () {
+          console.log('haha');
+          setTimeout(function () {
+            //要延时执行的代码
+            wx.redirectTo({
+              url: '../managerIndex/managerIndex'
+            })
+          }, 2000) //延迟时间
+        }
+      })
 
+    } else {
+      wx.showToast({
+        title: '账号密码错误',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
   submit: function (e) {
     wx.showLoading({
       title: '登录中...',
@@ -49,11 +73,7 @@ Page({
     this.setData({ disabled: true });
 
     if (this.data.no == 'admin' && this.data.pwd == 'admin') {
-      wx.showToast({
-        title: '登录成功',
-        icon: '登录成功',
-        duration: 2000
-      });
+
       wx.cloud.callFunction({
         name: 'roleIn',
         data: {
@@ -67,7 +87,7 @@ Page({
           console.log('售后端 roleIn test result: ', res);
 
           wx.showToast({
-            title: '成功',
+            title: '登录成功',
             icon: 'success',
             duration: 2000,
             success: function () {

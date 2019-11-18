@@ -1,4 +1,5 @@
 const db = wx.cloud.database();
+var app = getApp();
 Page({
 
 
@@ -96,47 +97,12 @@ Page({
   },
 
   facility_input: function() {
-    //console.log('test')
-    var that=this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../../cusService/facilityInfo/facilityInfo?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
+    app.scanCode('../../cusService/facilityInfo/facilityInfo?facilityid=');
   },
 
   
   facility_query: function () {
-    //console.log('test')
-    var that = this;
-    
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        //console.log(res.result)
-        wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../../cusService/facilityQuery/facilityQuery?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
+    app.scanCode('../../cusService/facilityQuery/facilityQuery?facilityid=');
   },
 
   new_report_orders: function () {
@@ -146,24 +112,7 @@ Page({
     })
   },
   repair_records: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        //console.log(res.result)
-        wx.navigateTo({
-          url: '../../cusService/repairRecords/repairRecords?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
-
+    app.scanCode('../../cusService/repairRecords/repairRecords?facilityid=');
   },
   my_orders: function () {
     wx.navigateTo({
@@ -178,24 +127,7 @@ Page({
     })
   },
   sign_in: function () {
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        //console.log(res.result)
-        wx.navigateTo({
-          url: '../../cusService/signIn/signIn?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
-
-
+    app.scanCode('../../cusService/signIn/signIn?facilityid=');
 
   }
 

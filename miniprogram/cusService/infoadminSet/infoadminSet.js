@@ -220,7 +220,8 @@ Page({
       this.setData({
         // 匹配无结果，不现实下拉列表
         hideScroll: true,
-        bindSource: []
+        bindSource: [],
+        organization: prefix
       })
     }
    

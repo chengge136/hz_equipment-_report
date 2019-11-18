@@ -1,7 +1,7 @@
-// pages/facilityInfo/facilityInfo.js
-//云数据库初始化
+// pages/newOrderDetails/newOrderDetails.js
 const db = wx.cloud.database();
 var app = getApp();
+
 Page({
 
   /**
@@ -14,50 +14,30 @@ Page({
     facilityType: '',
     facilityOrg: '',
     address: '',
-    contactor: '',
-    phone: '',
     imagePath: '',
     problemDetail: '',
+    contactor: '',
+    phone: '',
     createtime: '',
-    report_id:'',
-    status:''
-
-
+    report_id: '',
+    autosize: true,
+    rejection: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.facilityid)
+    console.log('report_id:' + options.report_id)
+    var id = options.report_id;
     var that = this;
     const _ = db.command;
-    db.collection('repair_orders').where({
-      facilityid: _.eq(options.facilityid),
-      status: _.neq(1)
+    db.collection('recall_repair_order').where({
+      report_id: _.eq(parseInt(id))
     })
       .get().then(res => {
         // res.data 包含该记录的数据
         console.log(res.data[0]);
-  
-        switch (res.data[0].status.toString()) {
-          case "0":
-            that.setData({
-              status: '等待审核'
-            });
-            break;
-          case "3":
-            that.setData({
-              status: '等待派发'
-            });
-            break;
-          case "2":
-            that.setData({
-              status: "已派发给技术员[" + res.data[0].assignName+"]"
-            });
-            break;
-        } 
-        //console.log('日期是：' + app.formatDate(new Date(res.data[0].createtime)));
 
         that.setData({
           facilityid: res.data[0].facilityid,
@@ -65,26 +45,24 @@ Page({
           brandName: res.data[0].brandName,
           facilityOrg: res.data[0].facilityOrg,
           address: res.data[0].address,
+          problemDetail: res.data[0].comment,
           contactor: res.data[0].contactor,
           phone: res.data[0].phone,
-          imagePath: res.data[0].imagePath,
-          problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType,
-          assignName: res.data[0].assignName
+          facilityType: res.data[0].facilityType
 
 
         })
       })
+
   },
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**
@@ -126,8 +104,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  },
 
+  },
   //图片点击事件
   imgYu: function (event) {
     console.log(event)
@@ -141,7 +119,42 @@ Page({
       urls: imgArr
     })
   },
- 
 
+  reject: function (event) {
+    var that = this;
+    that.setData({
+      rejection: event.detail
+    })
+  },
+  return_order: function () {
+    console.log('report_id:' + this.data.report_id);
+    wx.cloud.callFunction({
+      name: 'returnrecallOrder',
+      data: {
+        report_id: this.data.report_id,
+        rejection: this.data.rejection
+
+      },
+      complete: res => {
+        console.log('returnOrder callFunction test result: ', res);
+
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('haha');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.redirectTo({
+                url: '../../pages/index/index'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+
+      }
+    })
+  }
 
 })

@@ -80,6 +80,7 @@ page{
   background-color:#7e8ef0;
   border: 0.1rpx solid #ccc;
   border-radius: 40rpx;
+  margin-bottom: 25px;
 }
  
  

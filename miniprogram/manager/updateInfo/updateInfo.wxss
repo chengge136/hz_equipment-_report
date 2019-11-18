@@ -1,0 +1,10 @@
+.avatar{
+ margin-left:30rpx;
+ margin-top:30rpx;
+}
+
+.button{
+  position:fixed; 
+  bottom:0; 
+  width:100%; 
+}

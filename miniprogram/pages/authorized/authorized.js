@@ -39,7 +39,14 @@ Page({
       }
     });
   },
-
+  nopwsubmit: function () {
+    setTimeout(function () {
+      //要延时执行的代码
+      wx.redirectTo({
+        url: '../logIn/logIn'
+      })
+    }, 1000) //延迟时间
+  },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮

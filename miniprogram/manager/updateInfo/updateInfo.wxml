@@ -1,0 +1,20 @@
+<view class="avatar">
+    <image
+      style="width: 50%; height: 240rpx;"
+      src="{{avatarUrl}}"
+    />
+</view>
+
+
+<view>
+  <van-cell-group>
+    <van-field value="{{ nickName }}" label="微信昵称" disabled/>
+    <van-field value="{{ name }}" label="姓名" bind:input="nameIn" required clearable placeholder="请输入员工姓名"/>
+    <van-field value="{{ dept }}" label="所在部门" bind:input="deptIn" required clearable placeholder="请输入所在部门"/>
+    <van-field value="{{ phone }}" label="联系电话" bind:input="phoneIn" required clearable placeholder="请输入联系电话"/>
+  </van-cell-group>
+</view>
+
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">更新</van-button>
+</view>

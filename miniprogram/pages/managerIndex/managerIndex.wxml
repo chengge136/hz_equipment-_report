@@ -37,6 +37,21 @@
 </view>
 
 <hr class="hr1" />
+<view class="icon2">
+  <van-row gutter="10">
+    <van-col span="5" offset="3">
+      <i class="fa fa-hourglass-end fa-2x" style="color:#9C89B9;" bindtap="orders_follow"></i>
+    </van-col>
+  </van-row>
+</view>
+
+<view class="text1">
+  <van-row gutter="10">
+    <van-col span="5" offset="3">
+      <text>订单跟踪</text>
+    </van-col>
+  </van-row>
+</view>
 
 <view class="intrduce">
   <van-row gutter="10">

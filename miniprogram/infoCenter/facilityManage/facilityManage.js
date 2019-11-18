@@ -6,16 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isHidden: false,
     items: [
       { name: '0', value: '打印机'},
       { name: '1', value: '复印机'},
       { name: '2', value: '电脑'},
       { name: '3', value: '其他'},
     ],
-    org_id: '',
     organization: '',
-    org_code: '',
     update_by: '',
     auto_array:'',
     selected_array:'',
@@ -34,19 +32,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('org_id',options.org_id)
+    var that=this;
+    console.log('organization', options.organization);
+    console.log('openid', options.openid);
+
+    that.setData({
+      organization: options.organization,
+      myopenid: options.openid,
+
+    })
+
     var that = this;
     const _ = db.command;
     db.collection('facility_manage').where({
-      org_id: _.eq(options.org_id)
+      organization: _.eq(options.organization)
     })
       .get().then(res => {
         // res.data 包含该记录的数据
         console.log(res.data[0]);
-        that.setData({
-          organization: res.data[0].organization,
-          org_id: res.data[0].org_id,
-        })
+        
         if (!res.data[0].auto_array == '') {
           var previous_arrays = res.data[0].auto_array.split(",");
           //数组排序
@@ -57,22 +61,12 @@ Page({
             selected_string = selected_string+' '+this.data.items[previous_arrays[i]].value;
           }
           that.setData({
-            selected_array:selected_string
+            selected_array:selected_string,
+            isHidden: true
           })
         }
       })
 
-    wx.cloud.callFunction({
-      //调用的函数名字
-      name: 'getOpenid',
-      success: function (res) {
-        console.log('myopenid:', res.result.openid);
-        that.setData({
-          myopenid: res.result.openid
-        })
-
-      }
-    }) 
   },
 
   /**
@@ -123,30 +117,15 @@ Page({
   onShareAppMessage: function () {
 
   },
-  submit_info: function () {
+  submit_add:function(){
     var that = this;
     wx.showModal({
-      title: '更新',
-      content: '以上勾选的设备报修时需要审核吗？',
+      title: '设置',
+      content: '确定以上勾选的设备报修时需要审核吗？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
           that.facility_set();
-
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 2000,
-            success: function () {
-              console.log('haha');
-              setTimeout(function () {
-                //要延时执行的代码
-                wx.redirectTo({
-                  url: '../../pages/infoIndex/infoIndex'
-                })
-              }, 2000) //延迟时间
-            }
-          })
 
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -154,35 +133,58 @@ Page({
       }
     })
   },
-
-  facility_set: function () {
+  submit_modify: function () {
     var that = this;
-    const _ = db.command;
-    db.collection('hz_role_user').where({
-      openid: this.data.myopenid.toString()
-    }).get().then(res => {
-      // res.data 包含该记录的数据
-      if (res.data[0]) {
-        if (res.data[0].organization == '') {
-          wx.cloud.callFunction({
-            name: 'updateRole',
-            data: {
-              openid: this.data.myopenid.toString(),
-              organization: this.data.organization
-            },
-            complete: res => {
-              console.log('更新了role表的organization: ', res);
-            }
-          })
-        }
+    wx.showModal({
+      title: '更新',
+      content: '以上勾选的设备报修时需要审核吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          that.facility_update();
 
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  facility_set:function(){
+    wx.cloud.callFunction({
+      name: 'infofacilitySet',
+      data: {
+        organization: this.data.organization,
+        auto_array: this.data.auto_array
+      },
+      complete: res => {
+        console.log('infofacilitySet callFunction test result: ', res);
       }
     })
 
+    wx.showToast({
+      title: '设置成功',
+      icon: 'success',
+      duration: 2000,
+      success: function () {
+        console.log('haha');
+        setTimeout(function () {
+          //要延时执行的代码
+          wx.redirectTo({
+            url: '../../pages/infoIndex/infoIndex'
+          })
+        }, 2000) //延迟时间
+      }
+    })
+  },
+
+  facility_update: function () {
+    var that = this;
+    console.log(this.data.organization + '_' + this.data.auto_array);
+  
     wx.cloud.callFunction({
       name: 'facilityManage',
       data: {
-        org_id: this.data.org_id,
+        organization: this.data.organization,
         auto_array: this.data.auto_array
       },
       complete: res => {
@@ -190,9 +192,20 @@ Page({
       }
     })
     //查询roles数据表的organization，若为空，则把facility_manage的organization更新到hz_role_user
-
+    wx.showToast({
+      title: '更新成功',
+      icon: 'success',
+      duration: 2000,
+      success: function () {
+        console.log('haha');
+        setTimeout(function () {
+          //要延时执行的代码
+          wx.redirectTo({
+            url: '../../pages/infoIndex/infoIndex'
+          })
+        }, 2000) //延迟时间
+      }
+    })
     
-
-
   }
 })

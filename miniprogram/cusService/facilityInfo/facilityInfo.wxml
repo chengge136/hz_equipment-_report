@@ -6,11 +6,19 @@
    <van-field value="{{ facilityid }}" required disabled label="设备id"/>
   <van-field value="{{ facilityName }}" bind:input="facilityName" required clearable label="设备名称" placeholder="请输入设备名称" />
     <van-field value="{{ brandName }}" bind:input="brandName" required clearable label="设备品牌" placeholder="请输入设备品牌" />
-  <van-field value="{{ facilityOrg }}" bind:input="facilityOrg" required clearable label="设备单位" placeholder="请输入设备使用单位" />
   <van-field value="{{ address }}" bind:input="address" required clearable label="设备地址" placeholder="请输入设备详细地址" />
   <van-field value="{{ contactor }}" bind:input="contactor" required clearable label="设备联系人" placeholder="请输入设备联系人" />
     <van-field value="{{ phone }}" bind:input="phone" required clearable label="联系电话" placeholder="请输入联系电话" />
+      <van-field value="{{ facilityOrg }}" bind:input="facilityOrg" required clearable label="设备单位" placeholder="请输入设备使用单位" />
 </van-cell-group>
+
+<view  hidden="{{hideScroll}}">
+<scroll-view scroll-y="true" class="scrollview" style="{{arrayHeight>340?'height:340rpx':''}}">
+  <view wx:for="{{bindSource}}" style="padding: 25rpx;color: #B2B2B2;">
+    <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+  </view>
+</scroll-view>
+</view>
 
 <view class="section">
   <text>请选择设备类型</text>

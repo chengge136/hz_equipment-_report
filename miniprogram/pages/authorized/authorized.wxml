@@ -12,6 +12,8 @@
         <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
             授权登录
         </button>
+        <button class="bottom" type='primary' bindtap="nopwsubmit">报修登录</button>
+
     </view>
     <view wx:else>请升级微信版本</view>
 </view>

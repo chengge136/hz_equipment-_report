@@ -1,12 +1,14 @@
 // pages/cusIndex/cusIndex.js
 const db = wx.cloud.database();
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    message:''
+    message:'',
+    myopenid:''
   },
 
   /**
@@ -83,22 +85,26 @@ Page({
   },
 
   facility_manage: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          url: '../../infoCenter/facilityManage/facilityManage?org_id=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        console.log('myopenid:', res.result.openid);
+        var openid = res.result.openid.toString();
 
+        const _ = db.command;
+        db.collection('hz_role_user').where({
+          openid: _.eq(res.result.openid.toString()),
+          roleid: _.eq(3)
+
+        }).get().then(res => {
+          wx.redirectTo({
+            url: '../../infoCenter/facilityManage/facilityManage?organization=' + res.data[0].organization + '&openid=' + openid,
+          });
+            console.log(res.data[0]);
+      
+        })
+      }
     })
   },
   approver_set:function(){

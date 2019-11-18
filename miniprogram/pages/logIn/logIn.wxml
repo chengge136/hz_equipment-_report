@@ -1,11 +1,11 @@
 <!--pages/login/login.wxml-->
-<view class="container" style='width:100%;min-height:100%;background-image:url("../../images/bk2.jpg");background-size:100% 100%;'> 
+<view class="container" style='width:100%;min-height:100%;background-image:url("https://6c75-lucas-test-5yzdr-1259690751.tcb.qcloud.la/resource/bk2.jpg?sign=a970de3e0de1021b5653085929c26491&t=1573614904");background-size:100% 100%;'> 
   <view class="login-icon">  
-    <image class="login-img" src="/images/logo.png"></image>  
+    <image class="login-img" src="/images/logo.png"  bindtap="hidesubmit"></image>  
   </view>  
   <view class="login-from">  
     <view class="myno" hidden='{{!isBindExpert}}'>
-    <!-- 学号 -->
+    <!-- 账号 -->
       <view class="weui-cell_input">
       <view><image class="nameImage" src="/images/name.png"></image></view>
           <view class="weui-cell_bd">

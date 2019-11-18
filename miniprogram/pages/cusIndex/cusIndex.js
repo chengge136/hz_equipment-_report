@@ -1,4 +1,5 @@
 // pages/cusIndex/cusIndex.js
+var app = getApp();
 Page({
 
   /**
@@ -64,44 +65,11 @@ Page({
   },
 
   scan_report: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../../customer/scanReport/scanReport?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
+    app.scanCode('../../customer/scanReport/scanReport?facilityid=');
   },
 
   new_report_order: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          url: '../../customer/reportOrder/reportOrder?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
+    app.scanCode('../../customer/reportOrder/reportOrder?facilityid=');
   },
 
   

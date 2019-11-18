@@ -9,55 +9,23 @@ Page({
    */
   data: {
     active: 0,
-    facilityid: '',
-    facilityName: '',
-    brandName: '',
-    facilityType: '',
-    facilityOrg: '',
-    address: '',
-    imagePath: '',
-    problemDetail: '',
-    createtime: '',
-    report_id: '',
-    autosize: true,
-    arrival_time: '',
-    staffs: []
+    staffs: [],
+    nonamestaffs: [],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log('report_id:'+options.report_id)
-    var id = options.report_id;
     var that = this;
     const _ = db.command;
-    db.collection('repair_orders').where({
-      report_id: _.eq(parseInt(id))
-    })
-      .get().then(res => {
-        // res.data 包含该记录的数据
-        console.log(res.data[0]);
-
-        that.setData({
-          facilityid: res.data[0].facilityid,
-          facilityName: res.data[0].facilityName,
-          brandName: res.data[0].brandName,
-          facilityOrg: res.data[0].facilityOrg,
-          address: res.data[0].address,
-          imagePath: res.data[0].imagePath,
-          problemDetail: res.data[0].problemDetail,
-          createtime: app.formatDate(new Date(res.data[0].createtime)),
-          report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType
-
-
-        })
-      })
 
     //查询销售
     db.collection('hz_role_user').where({
       roleid: _.eq(1),
+      name: _.neq(''),
+      deletetime: _.eq('')
     })
       .get({
         success: function (res) {
@@ -68,6 +36,22 @@ Page({
           })
         }
       })
+
+      //无名销售
+    db.collection('hz_role_user').where({
+      roleid: _.eq(1),
+      name: _.eq(''),
+    })
+      .get({
+        success: function (res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            nonamestaffs: res.data
+          })
+        }
+      })
+      
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -117,72 +101,68 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //图片点击事件
-  imgYu: function (event) {
-    console.log(event)
-    var imgArr = [];
-    var src = event.currentTarget.dataset.src;//获取data-src
-    imgArr[0] = src;
-    //var imgList = event.currentTarget.dataset.list;//获取data-list
-    //图片预览
-    wx.previewImage({
-      current: src, // 当前显示图片的http链接
-      urls: imgArr
-    })
-  },
-  test: function (e) {
-    var that = this;
-    const _ = db.command;
-    var nickname = e.currentTarget.dataset.name;
+  query: function (e){
+    var name = e.currentTarget.dataset.name;
+    var dept = e.currentTarget.dataset.dept;
+    var phone = e.currentTarget.dataset.phone;
+
     wx.showModal({
-      title: '任务分配',
-      content: '确定把此报修单分配给[ ' + e.currentTarget.dataset.name + ' ]吗？',
+      title: '人员信息',
+      showCancel:false,
+      content: '姓名：' + name + '\n部门：' + dept + '\n电话:' + phone,
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
-          //1，根据昵称获取被分配销售微信openid
-          db.collection('hz_role_user').where({
-            roleid: _.eq(1),
-            name: _.eq(nickname)
-          })
-            .get({
-              success: function (res) {
-                // res.data 是包含以上定义的两条记录的数组               
 
-                //2，把订单分配给此人
-                wx.cloud.callFunction({
-                  name: 'getOrder',
-                  data: {
-                    report_id: that.data.report_id,
-                    arrival_time: '',
-                    openid: res.data[0].openid,
-                    nickName: nickname
+        }
+      }
+    })
+  },
+  updateInfo: function (e) {
+    var openid = e.currentTarget.dataset.openid;
+    console.log(openid);
+    wx.navigateTo({
+      url: '../updateInfo/updateInfo?openid=' + openid,
+    })
+   },
 
-                  },
-                  complete: res => {
-                    console.log('getOrder callFunction test result: ', res);
+  delete: function (e) {
+    var that = this;
+    const _ = db.command;
+    var openid1 = e.currentTarget.dataset.openid.toString();
+    var name = e.currentTarget.dataset.name;
 
-                    wx.showToast({
-                      title: '成功',
-                      icon: 'success',
-                      duration: 2000,
-                      success: function () {
-                        console.log('haha');
-                        setTimeout(function () {
-                          //要延时执行的代码
-                          wx.redirectTo({
-                            url: '../../pages/managerIndex/managerIndex'
-                          })
-                        }, 1000) //延迟时间
-                      }
+    wx.showModal({
+      title: '删除人员',
+      content: '确定要删除[ ' + name + ' ]的使用权限吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          wx.cloud.callFunction({
+            name: 'deleteCusservice',
+            data: {
+              openid: openid1
+            },
+            complete: res => {
+              console.log('deleteCusservice callFunction test result: ', res);
+
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 2000,
+                success: function () {
+                  console.log('haha');
+                  setTimeout(function () {
+                    //要延时执行的代码
+                    wx.redirectTo({
+                      url: '../../manager/peopleManage/peopleManage'
                     })
+                  }, 1000) //延迟时间
+                }
+              })
 
-                  }
-                })
-                //
-
-              }
-            })
+            }
+          })
 
 
         } else if (res.cancel) {

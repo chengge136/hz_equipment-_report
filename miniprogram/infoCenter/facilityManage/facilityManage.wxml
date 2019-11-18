@@ -1,6 +1,5 @@
 <view>
   <van-cell-group>
-    <van-field value="{{ org_id }}" label="单位编号" disabled/>
     <van-field value="{{ organization }}" label="单位名称" disabled/>
   </van-cell-group>
 </view>
@@ -19,6 +18,11 @@
   </label>
 </checkbox-group>
 </view>
-<view class="button">
-<van-button size="large" type="info" bind:click="submit_info">提交</van-button>
+
+<view class="button" hidden='{{!isHidden}}'>
+<van-button size="large" type="info" bind:click="submit_modify">更新</van-button>
+</view>
+
+<view class="button" hidden='{{isHidden}}'>
+<van-button size="large" type="info" bind:click="submit_add">设置</van-button>
 </view>

@@ -23,33 +23,54 @@ Page({
     status:''
   },
   submit_info: function () {
+    var that = this;
+    wx.showModal({
+      title: '提交',
+      content: '确定此设备的报修信息无误？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          that.submitreport();
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+ 
+  },
+  submitreport:function(){
+    var that = this;
     if (!this.data.imagePath == '') {
       wx.cloud.uploadFile({
-        cloudPath: this.data.facilityid+'example.jpg',
+        cloudPath: this.data.facilityid + 'example.jpg',
         filePath: this.data.imagePath, // 文件路径
         success: res => {
           // get resource ID
-          console.log(res.fileID)
+          console.log(res.fileID);
+          that.report();
         },
         fail: err => {
           // handle error
         }
       })
-    } else if (this.data.problemDetail == ''){
-     
+    } else if (this.data.problemDetail == '') {
       wx.showModal({
         title: '提示',
         content: '设备照片和问题描述至少需要一个',
-        showCancel:false,
+        showCancel: false,
         success(res) {
           if (res.confirm) {
             console.log('用户点击确定')
-          } 
+          }
         }
       })
+    } else {
+      that.report();
     }
- 
+  },
 
+  report:function(){
     wx.cloud.callFunction({
       name: 'repairorders',
       data: {
@@ -67,13 +88,11 @@ Page({
         report_id: this.data.createtime,
         openid: this.data.myopenid,
         status: this.data.status
-       
       },
       complete: res => {
         console.log('callFunction test result: ', res);
-       
         wx.showToast({
-          title: '成功',
+          title: '上报成功',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -83,16 +102,11 @@ Page({
               wx.redirectTo({
                 url: '../../pages/cusIndex/cusIndex'
               })
-            }, 2000) //延迟时间
+            }, 1000) //延迟时间
           }
         })
-
       }
     })
-
-
-    
-    
   },
 
   /**
@@ -107,7 +121,7 @@ Page({
     })
       .get().then(res => {
         // res.data 包含该记录的数据
-        console.log(res.data[0]);
+        console.log('facility',res.data[0]);
         //设置设备类型
         switch (res.data[0].facilityType.toString()) {
           case "0":
@@ -146,20 +160,29 @@ Page({
           organization: _.eq(res.data[0].facilityOrg)
         })
           .get().then(res1 => {
-            console.log(res1.data[0]);
-            var previous_arrays = res1.data[0].auto_array.split(",");
-            //如果此设备是需要审核的
-            if (previous_arrays.indexOf(res.data[0].facilityType.toString())!=-1){
-                console.log('包含需要审核的设备');
-                 that.setData({
-                status: 0
-               })
-            }else{
+            console.log('facility_manage',res1.data[0]);
+            if (res1.data.length==0){
+              console.log("此设备未设置是否上报");
               //不需要审核，状态改为3
               that.setData({
                 status: 3
               })
+            }else{
+              var previous_arrays = res1.data[0].auto_array.split(",");
+              //如果此设备是需要审核的
+              if (previous_arrays.indexOf(res.data[0].facilityType.toString()) != -1) {
+                console.log('包含需要审核的设备');
+                that.setData({
+                  status: 0
+                })
+              } else {
+                //不需要审核，状态改为3
+                that.setData({
+                  status: 3
+                })
+              }
             }
+        
           })
 
       })

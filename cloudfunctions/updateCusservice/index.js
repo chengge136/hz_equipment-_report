@@ -7,13 +7,14 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return await db.collection('facility_manage').where({
-    organization: _.eq(event.organization)
+  return await db.collection('hz_role_user').where({
+    openid: _.eq(event.openid)
   }).update({
     // data 传入需要局部更新的数据
     data: {
-      auto_array: event.auto_array,
-      update_time: new Date().getTime()
+      name: event.name,
+      dept: event.dept,
+      phone: event.phone
     }
   })
     .then(console.log)

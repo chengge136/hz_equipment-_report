@@ -1,5 +1,46 @@
 <van-tabs active="{{ active }}">
-  <van-tab title="人员查看">内容 1</van-tab>
-  <van-tab title="信息完善">内容 2</van-tab>
-  <van-tab title="人员审核">内容 3</van-tab>
+  <van-tab title="人员查看">
+
+<view class="problem"><text>查看相关人员信息:</text></view>
+<view class="name">
+<van-grid column-num="5" border="{{ false }}">
+  <van-grid-item use-slot wx:for="{{ staffs }}" wx:key="{{index}}" bind:click="query" data-name="{{item.name}}" data-dept="{{item.dept}}" data-phone="{{item.phone}}">
+    <image
+      style="width: 100%; height: 45px;"
+      src="{{item.avatarUrl}}"
+    />
+    <text>{{item.name}}</text>
+  </van-grid-item>
+</van-grid>
+</view>
+  </van-tab>
+  <van-tab title="信息完善">
+
+  <view class="problem"><text>请更新下面人员的姓名:</text></view>
+<view class="name">
+<van-grid column-num="5" border="{{ false }}">
+  <van-grid-item use-slot wx:for="{{ nonamestaffs }}" wx:key="{{index}}" bind:click="updateInfo" data-openid="{{item.openid}}">
+    <image
+      style="width: 100%; height: 45px;"
+      src="{{item.avatarUrl}}"
+    />
+    <text>{{item.nickName}}</text>
+  </van-grid-item>
+</van-grid>
+</view>
+  </van-tab>
+  <van-tab title="人员审核">
+  <view class="problem"><text>请在下列名单中删除已经离职的员工:</text></view>
+<view class="name">
+<van-grid column-num="5" border="{{ false }}">
+  <van-grid-item use-slot wx:for="{{ staffs }}" wx:key="{{index}}" bind:click="delete" data-openid="{{item.openid}}" data-name="{{item.name}}">
+    <image
+      style="width: 100%; height: 45px;"
+      src="{{item.avatarUrl}}"
+    />
+    <text>{{item.name}}</text>
+  </van-grid-item>
+</van-grid>
+</view>
+  </van-tab>
 </van-tabs>

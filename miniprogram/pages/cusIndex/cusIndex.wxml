@@ -22,7 +22,7 @@
       <text>扫码报修</text>
     </van-col>
     <van-col span="6">
-      <text>报修订单</text>
+      <text>报修跟踪</text>
     </van-col>
     <van-col span="6">
       <text>维修历史记录</text>

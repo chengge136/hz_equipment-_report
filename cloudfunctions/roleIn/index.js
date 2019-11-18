@@ -13,7 +13,10 @@ exports.main = async (event, context) => {
       nickName: event.nickName,
       avatarUrl: event.avatarUrl,
       roleid: event.roleid,
-      name:''
+      name:'',
+      dept:'',
+      phone:'',
+      deletetime:''
      
     }
   })

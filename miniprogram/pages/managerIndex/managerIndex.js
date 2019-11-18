@@ -1,4 +1,5 @@
 const db = wx.cloud.database();
+var app = getApp();
 Page({
 
 
@@ -48,6 +49,16 @@ Page({
       url: '../../manager/peopleManage/peopleManage'
     })
   },
+  history_orders:function(){
+    wx.navigateTo({
+      url: '../../cusService/historyOrders/historyOrders'
+    })
+  },
+  orders_follow:function(){
+    wx.navigateTo({
+      url: '../../manager/assignedOrder/assignedOrder'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -95,27 +106,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  facility_input: function () {
-    //console.log('test')
-    var that = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode'],
-      success(res) {
-        //打印ISBN码
-        console.log(res.result)
-        wx.navigateTo({
-          //url: '../facilityInfo/facilityInfo',
-          url: '../../cusService/facilityInfo/facilityInfo?facilityid=' + res.result,
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-
-    })
   }
 
 })

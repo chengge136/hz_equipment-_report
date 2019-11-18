@@ -24,6 +24,27 @@ App({
     var minute = now.getMinutes();
     var second = now.getSeconds();
     return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  },
+  // 时间戳转为日期时间
+  scanCode: function (url) {
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['qrCode'],
+      success(res) {
+        //打印ISBN码
+        var result = res.result;
+        var idIndex = result.indexOf("$id") + 4; // 从结果中获取机器id
+        var idString = result.substr(idIndex, 12);
+        console.log(idString);
+        wx.navigateTo({
+          url: url + idString,
+        })  
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+    
   }
 
 
