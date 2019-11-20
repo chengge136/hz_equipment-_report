@@ -34,9 +34,8 @@
   </picker>
 </view>
 
-<view class='son_view'>
- 
-<view class="title-bg">维修描述</view>
+<view> 
+    <view class="problem-desc">问题描述</view>
   <textarea class="textarea-bg" maxlength="200" placeholder="简单描述设备的问题及其解决方案" bindinput="solutionIn" />
  
 </view>

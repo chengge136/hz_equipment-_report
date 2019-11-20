@@ -25,7 +25,7 @@
       <text>报修跟踪</text>
     </van-col>
     <van-col span="6">
-      <text>维修历史记录</text>
+      <text>维修完成记录</text>
     </van-col>
   </van-row>
 </view>

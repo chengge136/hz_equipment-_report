@@ -80,6 +80,20 @@
 					"pathName": "manager/newOrderDetails/newOrderDetails",
 					"query": "report_id= 1571628864413",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核人",
+					"pathName": "pages/reviewIndex/reviewIndex",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "cusService/facilityQuery/facilityQuery",
+					"pathName": "cusService/facilityQuery/facilityQuery",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

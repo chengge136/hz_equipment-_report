@@ -13,3 +13,15 @@
   justify-content: space-between;
   box-sizing: border-box;
 } 
+.textarea-bg {
+  padding: 10rpx;
+  margin: 20rpx;
+  font-size: 32rpx;
+  color:red;
+}
+.problem-desc{
+  margin-left: 30rpx;
+}
+.problem-desc text{
+  font-size: 10pt;
+}

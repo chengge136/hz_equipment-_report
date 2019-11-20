@@ -11,10 +11,12 @@
 <view>
   <van-cell-group>
     <van-field value="{{ facilityid }}" label="设备id" disabled/>
-    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
+    <van-field value="{{ facilityType }}" label="设备类型“" disabled/>
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
     <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field value="{{ contactor }}" label="设备联系人" disabled/>
+    <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>
   </van-cell-group>
 </view>
 
@@ -24,21 +26,6 @@
 <image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
 </view>
 </view>
-
-<view class="problem"><text>问题描述</text></view>
-<view>
-<van-cell-group>
-  <van-field
-    value="{{ problemDetail }}"
-    type="textarea"
-    autosize="{{autosize}}"
-    border
-    disabled
-    placeholder="未填写设备问题"
-  />
-</van-cell-group>
-</view>
-
 <view class="setTime" bindtap="setTime">
 <van-cell-group>
   <van-field
@@ -52,6 +39,12 @@
   />
 </van-cell-group>
 </view>
+
+<view> 
+    <view class="problem-desc">问题描述</view>
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/> 
+</view>
+
 
 
 <view class="button">

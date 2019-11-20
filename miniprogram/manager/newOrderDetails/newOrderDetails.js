@@ -12,14 +12,15 @@ Page({
     facilityName: '',
     brandName: '',
     facilityType: '',
-    facilityOrg: '',
     address: '',
     imagePath: '',
     problemDetail: '',
     createtime: '',
     report_id: '',
     autosize: true,
-    arrival_time: '',
+    facilityOrg: '',
+    contactor: '',
+    phone: '',
     staffs:[]
   },
 
@@ -48,7 +49,9 @@ Page({
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType
+          facilityType: res.data[0].facilityType,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone
 
 
         })
@@ -71,7 +74,13 @@ Page({
 
 
   },
+  makeCall:function(){
+    wx.makePhoneCall({
 
+      phoneNumber: this.data.phone
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

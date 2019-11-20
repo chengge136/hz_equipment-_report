@@ -17,22 +17,49 @@ Page({
   onLoad: function (options) {
     var that = this;
     const _ = db.command;
-    db.collection('repair_orders').where({
-      status: _.eq(0)
-    })
-      .get().then(res => {
-        console.log('length:', res.data.length);
-        if (res.data.length>0){
-          that.setData({
-            message: '您好，有 ' + res.data.length+' 条的新的设备报修申请需要您的审核！'
-          })
-        }else{
-          that.setData({
-            message: '您好，暂无新的设备报修申请'
-          })
-        }
+    var org='';
 
-      })
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
+        console.log('myopenid:', res.result.openid);
+        db.collection('hz_role_user').where({
+          openid: res.result.openid
+        }).get().then(res => {
+          if (!res.data.length == 0) {
+            console.log(res.data[0].organization);
+            org = res.data[0].organization;
+
+            db.collection('repair_orders').where({
+              status: _.eq(0),
+              facilityOrg: _.eq(org)
+            })
+              .get().then(res1 => {
+                console.log('length:', res1.data.length);
+                if (res1.data.length > 0) {
+                  that.setData({
+                    message: '您好，有 ' + res1.data.length + ' 条的新的设备报修申请需要您的审核！'
+                  })
+                } else {
+                  that.setData({
+                    message: '您好，暂无新的设备报修申请'
+                  })
+                }
+
+              })
+
+          }
+        })
+      }
+    })
+
+
   },
 
   /**

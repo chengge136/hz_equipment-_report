@@ -18,6 +18,8 @@ Page({
     problemDetail: '',
     createtime: '',
     report_id: '',
+    contactor: '',
+    phone: '',
     autosize: true,
     rejection: ''
       },
@@ -47,14 +49,22 @@ Page({
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType
+          facilityType: res.data[0].facilityType,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone
 
 
         })
       })
       
   },
+  makeCall: function () {
+    wx.makePhoneCall({
 
+      phoneNumber: this.data.phone
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -123,20 +133,19 @@ Page({
       rejection: event.detail
     })
   },
-  return_order: function () {
+  return_func:function(){
     console.log('report_id:' + this.data.report_id);
     wx.cloud.callFunction({
       name: 'returnOrder',
       data: {
         report_id: this.data.report_id,
         rejection: this.data.rejection
-
       },
       complete: res => {
         console.log('returnOrder callFunction test result: ', res);
 
         wx.showToast({
-          title: '成功',
+          title: '退回成功',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -152,6 +161,34 @@ Page({
 
       }
     })
+  },
+  return_order: function () {
+
+    var that = this;
+    wx.showModal({
+      title: '退回报修单',
+      content: '确定退回此报修单吗？',
+      success(res) {
+        if (res.confirm) {
+          if (that.data.rejection==''){
+            wx.showToast({
+              title: '请填写退回的原因',
+              icon: 'none',
+              duration: 3000
+            })
+          }else{
+            console.log('用户点击确定');
+            that.return_func();
+          }
+          
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+
+
   }
   
 })

@@ -43,12 +43,12 @@ Page({
     var that = this;
     if (!this.data.imagePath == '') {
       wx.cloud.uploadFile({
-        cloudPath: this.data.facilityid + 'example.jpg',
+        cloudPath: this.data.facilityid + '.jpg',
         filePath: this.data.imagePath, // 文件路径
         success: res => {
           // get resource ID
           console.log(res.fileID);
-          that.report();
+          that.report(res.fileID);
         },
         fail: err => {
           // handle error
@@ -70,7 +70,7 @@ Page({
     }
   },
 
-  report:function(){
+  report:function(fileId){
     wx.cloud.callFunction({
       name: 'repairorders',
       data: {
@@ -82,7 +82,7 @@ Page({
         address: this.data.address,
         contactor: this.data.contactor,
         phone: this.data.phone,
-        imagePath: this.data.imagePath,
+        imagePath: fileId,
         problemDetail: this.data.problemDetail,
         createtime: this.data.createtime,
         report_id: this.data.createtime,
@@ -94,7 +94,7 @@ Page({
         wx.showToast({
           title: '上报成功',
           icon: 'success',
-          duration: 2000,
+          duration: 1000,
           success: function () {
             console.log('haha');
             setTimeout(function () {
@@ -102,7 +102,7 @@ Page({
               wx.redirectTo({
                 url: '../../pages/cusIndex/cusIndex'
               })
-            }, 1000) //延迟时间
+            }, 500) //延迟时间
           }
         })
       }
@@ -116,6 +116,37 @@ Page({
     console.log(options.facilityid)
     var that = this;
     const _ = db.command;
+
+    db.collection('repair_orders').where({
+      facilityid: _.eq(options.facilityid),
+      status: _.neq(1)
+    }).count({
+      success: function (res) {
+        console.log('未完成的订单数量', res.total);
+        if (res.total > 0) {
+          wx.showModal({
+            title: '提示',
+            content: '此设备已经报修，请在首页点击[报修跟踪]查询进度',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.redirectTo({
+                    url: '../../pages/cusIndex/cusIndex'
+                  })
+                }, 500) //延迟时间
+
+              }
+            }
+          })
+        }
+      }
+    })
+
+
+
     db.collection('facility').where({
       facilityid: _.eq(options.facilityid)
     })

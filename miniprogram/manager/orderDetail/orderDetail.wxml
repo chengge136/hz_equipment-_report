@@ -24,22 +24,8 @@
 <image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
 </view>
 </view>
-
-
-<view class="problem"><text>问题描述</text></view>
-<view>
-<van-cell-group>
-  <van-field
-    value="{{ problemDetail }}"
-    type="textarea"
-    autosize="{{autosize}}"
-    border
-    disabled
-    placeholder="未填写设备问题"
-  />
-</van-cell-group>
+<view> 
+    <view class="problem-desc">问题描述</view>
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
 </view>
-
-
-
 

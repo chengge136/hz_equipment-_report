@@ -37,7 +37,7 @@ Page({
       })
 
     db.collection('recall_repair_order').where({
-      status: _.eq(0)
+      status: _.eq(3)
     })
       .get({
         success: function (res) {

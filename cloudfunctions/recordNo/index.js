@@ -21,7 +21,7 @@ exports.main = async (event, context) => {
       phone: event.phone,
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
-      status:0,
+      status:3,
       reportorId: event.openid,
       assignId:'',
       assignName:'',

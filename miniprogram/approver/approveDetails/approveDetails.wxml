@@ -25,8 +25,8 @@
 </view>
 </view>
 
-<view class='son_view'> 
-    <view class="title-bg">问题描述</view>
+<view> 
+    <view class="problem-desc">问题描述</view>
     <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
 </view>
 

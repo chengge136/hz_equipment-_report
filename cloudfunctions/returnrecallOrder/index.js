@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   }).update({
     // data 传入需要局部更新的数据
     data: {
-      status: 0,
+      status: 3,
       rejection: event.rejection
     }
   })

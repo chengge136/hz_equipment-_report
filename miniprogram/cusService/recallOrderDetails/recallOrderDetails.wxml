@@ -16,23 +16,12 @@
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
     <van-field value="{{ address }}" label="详细地址" disabled/>
     <van-field value="{{ contactor }}" label="联系人" disabled/>
-    <van-field value="{{ phone }}" label="联系电话" disabled/>
+    <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>
   </van-cell-group>
 </view>
-
-
-<view class="problem"><text>二次维修备注</text></view>
-<view>
-<van-cell-group>
-  <van-field
-    value="{{ problemDetail }}"
-    type="textarea"
-    autosize="{{autosize}}"
-    border
-    disabled
-    placeholder="未填写设备问题"
-  />
-</van-cell-group>
+<view> 
+    <view class="problem-desc">二次维修备注</view>
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/> 
 </view>
 
 <view class="button">

@@ -43,13 +43,8 @@ textarea {
   margin-right: 10rpx;
   margin-top: 10rpx;
 }
-.textarea-bg {
-  padding: 10rpx;
-  font-size: 32rpx;
-}
-.title-bg{
-  margin-left: 30rpx;
-}
+
+
 .image{
   display:flex;
   margin: 30rpx; /* 边距 */

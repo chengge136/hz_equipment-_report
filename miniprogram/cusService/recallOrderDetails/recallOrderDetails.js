@@ -80,7 +80,13 @@ Page({
     })
 
   },
+  makeCall: function () {
+    wx.makePhoneCall({
 
+      phoneNumber: this.data.phone
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -129,9 +135,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-
-
-  get_order: function () {
+  get_order_set:function(){
     console.log('report_id:' + this.data.report_id);
     wx.cloud.callFunction({
       name: 'getRecallorder',
@@ -145,7 +149,7 @@ Page({
         console.log('getOrder callFunction test result: ', res);
 
         wx.showToast({
-          title: '成功',
+          title: '领取成功',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -161,5 +165,24 @@ Page({
 
       }
     })
+  },
+
+  get_order: function () {
+    var that = this;
+    wx.showModal({
+      title: '领取报修单',
+      content: '确定领取此二次维修单？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          that.get_order_set();
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+
   }
 })

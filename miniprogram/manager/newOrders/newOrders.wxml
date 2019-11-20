@@ -33,7 +33,7 @@
   </van-tab>
   <van-tab title="需要二次维修" name="b">
   <view  wx:for="{{recallRepairOrders}}" wx:key="{{index}}">
-<navigator url="../recallOrderDetails/recallOrderDetails?report_id={{item.report_id}}" class="title1">
+<navigator url="../recallDetail/recallDetail?report_id={{item.report_id}}" class="title1">
 <view class="left">
 <i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
 <text>{{item.facilityOrg}}</text>

@@ -21,7 +21,9 @@ Page({
     autosize: true,
     arrival_time:'',
     myopenid: '',
-    nickName: ''
+    nickName: '',
+    contactor: '',
+    phone: ''
   },
 
   /**
@@ -49,7 +51,9 @@ Page({
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
-          facilityType: res.data[0].facilityType
+          facilityType: res.data[0].facilityType,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone
 
 
         })
@@ -78,6 +82,13 @@ Page({
       }
     })
 
+  },
+  makeCall: function () {
+    wx.makePhoneCall({
+
+      phoneNumber: this.data.phone
+
+    })
   },
 
   /**
@@ -173,7 +184,7 @@ Page({
       }
     })
   },
-  get_order:function(){
+  get_order_set:function(){
     console.log('report_id:' + this.data.report_id);
     wx.cloud.callFunction({
       name: 'getOrder',
@@ -182,13 +193,12 @@ Page({
         arrival_time: this.data.arrival_time,
         openid: this.data.myopenid,
         nickName: this.data.nickName
-
       },
       complete: res => {
         console.log('getOrder callFunction test result: ', res);
-       
+
         wx.showToast({
-          title: '成功',
+          title: '领取成功',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -201,8 +211,34 @@ Page({
             }, 2000) //延迟时间
           }
         })
-        
+
       }
     })
+  },
+  get_order:function(){
+    var that = this;
+    wx.showModal({
+      title: '领取报修单',
+      content: '确定领取此报修单吗？',
+      success(res) {
+        if (res.confirm) {
+          if (that.data.arrival_time==''){
+            wx.showToast({
+              title: '请选择到达现场时间',
+              icon: 'none',
+              duration: 3000
+            })
+          }else{
+            console.log('用户点击确定');
+            that.get_order_set();
+          }
+         
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+
   }
 })
