@@ -1,8 +1,11 @@
 
 <view class="title">
-<view><text>保修单进行中</text></view>
-<view class="title_time"><text>{{ createtime }}</text></view>
+<view><text>技术员 {{assignName}} 正赶往现场</text></view>
+<view><text>客户上报时间：{{ createtime }}</text></view>
+<view><text>预计到现场时间：{{ plan_time }} 小时</text></view>
+
 </view>
+
 <view class="header">
 <view class="header_left">
 <i class="fa fa-clock-o fa-2x" style="color:#03A9F4;"></i><text>{{ facilityOrg }}</text></view>
@@ -10,11 +13,13 @@
 </view>
 <view>
  <van-cell-group>
-    <van-field value="{{ facilityid }}" label="设备id" disabled/>
+    <van-field value="{{ facilityid }}" label="设备id" icon="search" bind:click-icon="repaireHistory" disabled/>
     <van-field value="{{ facilityType }}" label="设备类型" disabled/>
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
     <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field value="{{ contactor }}" label="设备联系人" disabled/>
+    <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>
   </van-cell-group>
 </view>
 
@@ -26,6 +31,6 @@
 </view>
 <view> 
     <view class="problem-desc">问题描述</view>
-    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/>
 </view>
 

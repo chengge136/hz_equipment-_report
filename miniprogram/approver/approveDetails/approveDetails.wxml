@@ -27,7 +27,7 @@
 
 <view> 
     <view class="problem-desc">问题描述</view>
-    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/>
 </view>
 
 <view class="buttons">

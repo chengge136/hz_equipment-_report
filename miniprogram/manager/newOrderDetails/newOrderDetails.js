@@ -21,6 +21,7 @@ Page({
     facilityOrg: '',
     contactor: '',
     phone: '',
+    comment:'',
     staffs:[]
   },
 
@@ -79,6 +80,63 @@ Page({
 
       phoneNumber: this.data.phone
 
+    })
+  },
+  setComplete:function(){
+    var that=this;
+    wx.showModal({
+      title: '完成报修单',
+      content: '确定设置此报修单为完成状态吗？',
+      success(res) {
+        if (res.confirm) {
+          if (that.data.comment == '') {
+            wx.showToast({
+              title: '请填写此单设置完成的原因',
+              icon: 'none',
+              duration: 3000
+            })
+          } else {
+            console.log('用户点击确定');
+            that.manager_set();
+          }
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
+  },
+  manager_set:function(){
+    wx.cloud.callFunction({
+      name: 'recordYes',
+      data: {
+        report_id: parseInt(this.data.report_id),
+        comment: this.data.comment
+      },
+      complete: res => {
+        console.log('recordYes callFunction test result: ', res);
+        wx.showToast({
+          title: '报修单完成',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('Yes');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.redirectTo({
+                url: '../../pages/managerIndex/managerIndex'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+      }
+    })
+  },
+  commentIn: function (event){
+    var that = this;
+    that.setData({
+      comment: event.detail
     })
   },
   /**

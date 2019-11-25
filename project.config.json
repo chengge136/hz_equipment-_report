@@ -90,8 +90,8 @@
 				},
 				{
 					"id": 7,
-					"name": "cusService/facilityQuery/facilityQuery",
-					"pathName": "cusService/facilityQuery/facilityQuery",
+					"name": "manager/createOrder/createOrder",
+					"pathName": "manager/createOrder/createOrder",
 					"query": "",
 					"scene": null
 				}

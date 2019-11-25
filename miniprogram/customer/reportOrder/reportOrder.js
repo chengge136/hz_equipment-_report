@@ -20,7 +20,11 @@ Page({
     problemDetail: '',
     createtime: '',
     report_id:'',
-    status:''
+    status:'',
+    assignPhone:'',
+    assignName:'',
+    plan_time:''
+
 
 
   },
@@ -29,12 +33,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.facilityid)
+    console.log(options.report_id)
     var that = this;
     const _ = db.command;
+
+    //1，获取订单信息
     db.collection('repair_orders').where({
-      facilityid: _.eq(options.facilityid),
-      status: _.neq(1)
+      report_id: _.eq(parseInt(options.report_id)),
     })
       .get().then(res => {
         // res.data 包含该记录的数据
@@ -43,7 +48,7 @@ Page({
         switch (res.data[0].status.toString()) {
           case "0":
             that.setData({
-              status: '等待审核'
+              status: '等待审核,请联系信息中心'
             });
             break;
           case "3":
@@ -52,12 +57,31 @@ Page({
             });
             break;
           case "2":
+            //2，获取接单员信息
+            db.collection('hz_role_user').where(
+              _.or([
+                {
+                  //自己领取的订单
+                  nickName: _.eq(res.data[0].assignName)
+                },
+                { //前台分配的订单
+                  name: _.eq(res.data[0].assignName)
+                }
+              ])).get().then(res1 => {
+
+                console.log('销售员的信息:'+res1.data[0].name);
+                that.setData({ assignPhone: res1.data[0].phone});
+
+              })
+
             that.setData({
-              status: "已派发给技术员[" + res.data[0].assignName+"]"
+              status: "已派发给技术员[" + res.data[0].assignName + "]，预计要" + res.data[0].plan_time+"小时到达",
+              assignName: res.data[0].assignName,
+              plan_time: res.data[0].plan_time
             });
             break;
         } 
-        //console.log('日期是：' + app.formatDate(new Date(res.data[0].createtime)));
+        
 
         that.setData({
           facilityid: res.data[0].facilityid,

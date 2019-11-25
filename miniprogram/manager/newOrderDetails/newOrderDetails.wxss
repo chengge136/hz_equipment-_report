@@ -45,10 +45,7 @@
 .problem text{
   font-size: 11pt;
 }
-
 .name text{
   color: #B2B2B2;
   font-size: 11pt;
-  
-  
 }

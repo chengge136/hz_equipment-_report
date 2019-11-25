@@ -54,6 +54,11 @@ Page({
       url: '../../cusService/historyOrders/historyOrders'
     })
   },
+  phone_order:function(){
+    wx.navigateTo({
+      url: '../../manager/createOrder/createOrder'
+    })
+  },
   orders_follow:function(){
     wx.navigateTo({
       url: '../../manager/assignedOrder/assignedOrder'

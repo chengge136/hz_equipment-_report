@@ -1,12 +1,10 @@
 .title{
-  height: 100rpx;
-  margin: 20rpx; /* 边距 */
-  font-size: 14pt;
-  
+  height: 160rpx;
+  margin: 20rpx; /* 边距 */  
 }
-.title_time text{
+.title text{
   color: #B2B2B2;
-  font-size: 11pt;
+  font-size: 10pt;
 }
 .header{
   display:flex;

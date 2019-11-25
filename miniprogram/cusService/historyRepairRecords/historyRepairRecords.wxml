@@ -13,7 +13,8 @@
     <van-field value="{{ address }}" label="详细地址" disabled/>
     <van-field value="{{ contactor }}" label="报修人" disabled/>
     <van-field value="{{ phone }}" label="联系电话" disabled/>
-    <van-field value="{{ problemDetail }}" label="设备问题" disabled/>
-     <van-field value="{{ comment }}" label="维修记录" disabled/>
+    <van-field value="{{ problemDetail }}" label="设备问题" required disabled/>
+     <van-field value="{{ comment }}" label="维修方案" required disabled/>
+     <van-field value="{{ assignName }}" label="技术员" required disabled/>
   </van-cell-group>
 </view>

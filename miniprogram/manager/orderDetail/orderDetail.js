@@ -19,6 +19,10 @@ Page({
     createtime: '',
     report_id: '',
     autosize: true,
+    contactor: '',
+    phone: '',
+    assignName:'',
+    plan_time:''
   },
 
   /**
@@ -42,6 +46,10 @@ Page({
           brandName: res.data[0].brandName,
           facilityOrg: res.data[0].facilityOrg,
           address: res.data[0].address,
+          contactor: res.data[0].contactor,
+          phone: res.data[0].phone,
+          assignName: res.data[0].assignName,
+          plan_time: res.data[0].plan_time,
           imagePath: res.data[0].imagePath,
           problemDetail: res.data[0].problemDetail,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
@@ -53,7 +61,18 @@ Page({
       })
 
   },
+  makeCall: function () {
+    wx.makePhoneCall({
 
+      phoneNumber: this.data.phone
+
+    })
+  },
+  repaireHistory:function(){
+    wx.navigateTo({
+      url: '../repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

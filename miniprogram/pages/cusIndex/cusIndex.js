@@ -68,8 +68,10 @@ Page({
     app.scanCode('../../customer/scanReport/scanReport?facilityid=');
   },
 
-  new_report_order: function () {
-    app.scanCode('../../customer/reportOrder/reportOrder?facilityid=');
+  order_track: function () {
+    wx.navigateTo({
+      url: '../../customer/orderlist/orderlist',
+    })
   },
 
   

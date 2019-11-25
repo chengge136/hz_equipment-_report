@@ -42,6 +42,9 @@
     <van-col span="5" offset="3">
       <i class="fa fa-hourglass-end fa-2x" style="color:#9C89B9;" bindtap="orders_follow"></i>
     </van-col>
+     <van-col span="5">
+      <i class="fa fa-volume-control-phone fa-2x" style="color:#FCD692;" bindtap="phone_order"></i>
+    </van-col>
   </van-row>
 </view>
 
@@ -49,6 +52,9 @@
   <van-row gutter="10">
     <van-col span="5" offset="3">
       <text>订单跟踪</text>
+    </van-col>
+     <van-col span="5">
+      <text>电话报修</text>
     </van-col>
   </van-row>
 </view>

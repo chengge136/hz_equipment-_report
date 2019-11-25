@@ -14,9 +14,21 @@
     <van-field value="{{ facilityType }}" label="设备类型“" disabled/>
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
-    <van-field value="{{ address }}" label="详细地址" disabled/>
     <van-field value="{{ contactor }}" label="设备联系人" disabled/>
     <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>
+    <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field
+    value="{{ comment }}"
+    center
+    required
+    label="设置完成"
+    placeholder="请输入完成原因"
+    border="{{ false }}"
+    use-button-slot
+    bind:input="commentIn"
+  >
+    <van-button slot="button" size="small" type="primary" bind:click="setComplete">报单完成</van-button>
+  </van-field>
   </van-cell-group>
 </view>
 
@@ -28,7 +40,7 @@
 </view>
 <view> 
     <view class="problem-desc">问题描述</view>
-    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}"/> 
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/> 
 </view>
 
 <view class="problem"><text>现在手上无报修单的销售有:</text></view>
@@ -44,3 +56,4 @@
   </van-grid-item>
 </van-grid>
 </view>
+

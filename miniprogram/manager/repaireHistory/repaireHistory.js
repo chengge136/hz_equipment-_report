@@ -1,14 +1,14 @@
-
 const db = wx.cloud.database();
 var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newRepairOrders: [],
-    recallRepairOrders: []
+    newHistoryOrders: [],
+    newRecallHistoryOrders: []
   },
 
   /**
@@ -18,55 +18,47 @@ Page({
     var that = this;
     const _ = db.command;
 
-    db.collection('repair_orders').where(
-      {
-        //已经通过审核或者无需审核的保修单
-        status: _.eq(3)
-      }
-    ).get({
-      success: function (res) {
-        // res.data 是包含以上定义的两条记录的数组
-        console.log(res.data)
-        for (var index in res.data) {
-          res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
-        }
-        that.setData({
-          newRepairOrders: res.data
-        })
-      }
-    })
-
-    db.collection('recall_repair_order').where({
-      status: _.eq(3)
+    db.collection('repair_orders').where({
+      status: _.eq(1)
     })
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
+
           for (var index in res.data) {
-            res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
+            res.data[index].createtime = app.getDate(new Date(res.data[index].createtime));
           }
+
           that.setData({
-            recallRepairOrders: res.data
+            newHistoryOrders: res.data
           })
         }
       })
 
+    db.collection('recall_repair_order').where({
+      status: _.eq(1)
+    }).get({
+      success: function (res) {
+        // res.data 是包含以上定义的两条记录的数组
+        console.log(res.data)
+
+        for (var index in res.data) {
+          res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
+        }
+
+        that.setData({
+          newRecallHistoryOrders: res.data
+        })
+      }
+    })
+
   },
-   onPullDownRefresh: function () {
-    console.log('onPullDownRefresh');
-    wx.showNavigationBarLoading();
-    this.onLoad();
-    setTimeout(() => {
-      wx.hideNavigationBarLoading();
-      wx.stopPullDownRefresh();
-    }, 2000);
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -109,5 +101,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  oderdetails: function () {
+    wx.navigateTo({
+      url: '../historyRepairRecords/historyRepairRecords',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
   }
 })

@@ -1,0 +1,58 @@
+<van-tabs active="a">
+<van-tab title="客户上报" name="a">
+<view  wx:for="{{newHistoryOrders}}" wx:key="{{index}}">
+<navigator url="../../cusService/historyRepairRecords/historyRepairRecords?report_id={{item.report_id}}" class="title">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.facilityOrg}}</text>
+</view>
+<view class="right">
+<text>{{item.facilityType}}</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+<view class="detail_titile">
+  <van-row gutter="20">
+  <van-col span="8"><text>报修时间</text></van-col>
+  <van-col span="16"><text>报修问题</text></van-col>
+</van-row>
+</view>
+<view class="detail_content">
+  <van-row gutter="20">
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="16"><text>{{item.problemDetail}}</text></van-col>
+</van-row>
+</view>
+</view>
+</van-tab>
+
+<van-tab title="二次维修记录" name="b">
+<view  wx:for="{{newRecallHistoryOrders}}" wx:key="{{index}}">
+<navigator url="../../cusService/recalhistoryRecords/recalhistoryRecords?report_id={{item.report_id}}" class="title">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.facilityOrg}}</text>
+</view>
+<view class="right">
+<text>{{item.facilityType}}</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+<view class="detail_titile">
+  <van-row gutter="20">
+  <van-col span="8"><text>报修时间</text></van-col>
+  <van-col span="16"><text>维修记录</text></van-col>
+</van-row>
+</view>
+<view class="detail_content">
+  <van-row gutter="20">
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="16"><text>{{item.comment}}</text></van-col>
+</van-row>
+</view>
+</view>
+
+</van-tab>
+</van-tabs>

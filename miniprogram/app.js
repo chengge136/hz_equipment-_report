@@ -25,6 +25,14 @@ App({
     var second = now.getSeconds();
     return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
   },
+  getDate: function (now) {
+
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    return year + "-" + month + "-" + date;
+  },
+
   // 时间戳转为日期时间
   scanCode: function (url) {
     wx.scanCode({

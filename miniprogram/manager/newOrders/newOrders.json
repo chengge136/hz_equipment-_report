@@ -6,9 +6,10 @@
     "van-tab": "../../vant/tab/index",
     "van-tabs": "../../vant/tabs/index"
   },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "报修单分配",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "backgroundColor": "#eeeeee"
 }

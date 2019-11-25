@@ -26,18 +26,7 @@
   color: #B2B2B2;
   font-size: 11pt;
 }
-.image{
-  display:flex;
-  margin: 30rpx; /* 边距 */
-}
-.image text{
-  font-size: 11pt;
-}
-.image image{
-  height: 140rpx;
-  width: 30%;
-  margin-left: 37rpx;
-}
+
 .problem{
   display:flex;
   margin-left: 30rpx; /* 边距 */
@@ -45,11 +34,7 @@
 .problem text{
   font-size: 11pt;
 }
-.setTime{
-  margin-bottom: 50rpx;
-}
-.button{
-  width:100%; 
- position:fixed; 
-  bottom:0; 
+.name text{
+  color: #B2B2B2;
+  font-size: 11pt;
 }

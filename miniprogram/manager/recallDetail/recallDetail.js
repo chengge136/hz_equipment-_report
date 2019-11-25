@@ -21,7 +21,8 @@ Page({
     createtime: '',
     report_id: '',
     autosize: true,
-    rejection: ''
+    comment: '',
+    staffs: []
   },
 
   /**
@@ -56,12 +57,83 @@ Page({
         })
       })
 
+    //查询销售
+    db.collection('hz_role_user').where({
+      roleid: _.eq(1),
+    })
+      .get({
+        success: function (res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            staffs: res.data
+          })
+        }
+      })
+
   },
   makeCall: function () {
     wx.makePhoneCall({
 
       phoneNumber: this.data.phone
 
+    })
+  },
+  setComplete: function () {
+    var that = this;
+    wx.showModal({
+      title: '完成报修单',
+      content: '确定设置此报修单为完成状态吗？',
+      success(res) {
+        if (res.confirm) {
+          if (that.data.comment == '') {
+            wx.showToast({
+              title: '请填写此单设置完成的原因',
+              icon: 'none',
+              duration: 3000
+            })
+          } else {
+            console.log('用户点击确定');
+            that.manager_set();
+          }
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
+  commentIn: function (event) {
+    var that = this;
+    that.setData({
+      comment: event.detail
+    })
+  },
+  manager_set: function () {
+    wx.cloud.callFunction({
+      name: 'completeRecall',
+      data: {
+        report_id: parseInt(this.data.report_id),
+        comment: this.data.comment
+      },
+      complete: res => {
+        console.log('completeRecall callFunction test result: ', res);
+        wx.showToast({
+          title: '报修单完成',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('Yes');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.redirectTo({
+                url: '../../pages/managerIndex/managerIndex'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+      }
     })
   },
   /**
@@ -112,55 +184,75 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //图片点击事件
-  imgYu: function (event) {
-    console.log(event)
-    var imgArr = [];
-    var src = event.currentTarget.dataset.src;//获取data-src
-    imgArr[0] = src;
-    //var imgList = event.currentTarget.dataset.list;//获取data-list
-    //图片预览
-    wx.previewImage({
-      current: src, // 当前显示图片的http链接
-      urls: imgArr
-    })
-  },
-
-  reject: function (event) {
+  assign: function (e) {
     var that = this;
-    that.setData({
-      rejection: event.detail
-    })
-  },
-  return_order: function () {
-    console.log('report_id:' + this.data.report_id);
-    wx.cloud.callFunction({
-      name: 'returnrecallOrder',
-      data: {
-        report_id: this.data.report_id,
-        rejection: this.data.rejection
+    const _ = db.command;
+    var name = e.currentTarget.dataset.name;
 
-      },
-      complete: res => {
-        console.log('returnOrder callFunction test result: ', res);
+    if (name == '') {
+      wx.showToast({
+        title: '请在首页人员管理中，更新此售后姓名',
+        icon: 'none',
+        duration: 4000
+      })
+    } else {
+      wx.showModal({
+        title: '任务分配',
+        content: '确定把此报修单分配给[ ' + e.currentTarget.dataset.name + ' ]吗？',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            //1，根据昵称获取被分配销售微信openid
+            db.collection('hz_role_user').where({
+              roleid: _.eq(1),
+              name: _.eq(name)
+            })
+              .get({
+                success: function (res) {
+                  // res.data 是包含以上定义的两条记录的数组               
 
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000,
-          success: function () {
-            console.log('haha');
-            setTimeout(function () {
-              //要延时执行的代码
-              wx.redirectTo({
-                url: '../../pages/index/index'
+                  //2，把订单分配给此人
+                  wx.cloud.callFunction({
+                    name: 'getRecallorder',
+                    data: {
+                      report_id: that.data.report_id,
+                      openid: res.data[0].openid,
+                      nickName: name
+                    },
+                    complete: res => {
+                      console.log('getRecallorder callFunction test result: ', res);
+
+                      wx.showToast({
+                        title: '成功',
+                        icon: 'success',
+                        duration: 2000,
+                        success: function () {
+                          console.log('haha');
+                          setTimeout(function () {
+                            //要延时执行的代码
+                            wx.redirectTo({
+                              url: '../../pages/managerIndex/managerIndex'
+                            })
+                          }, 1000) //延迟时间
+                        }
+                      })
+
+                    }
+                  })
+                  //
+
+                }
               })
-            }, 2000) //延迟时间
-          }
-        })
 
-      }
-    })
+
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+
+
   }
 
 })

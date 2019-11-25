@@ -4,12 +4,13 @@
     "van-col": "../../vant/col/index",
     "van-button": "../../vant/button/index",
     "van-field": "../../vant/field/index",
-    "van-grid": "../../vant/grid/index",
-    "van-grid-item": "../../vant/grid-item/index"
+    "van-radio": "../../vant/radio/index",
+    "van-radio-group": "../../vant/radio-group/index",
+    "van-toast": "../../vant/toast/index"
   },
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "二次维修详情",
+  "navigationBarTitleText": "客户电话报修",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }

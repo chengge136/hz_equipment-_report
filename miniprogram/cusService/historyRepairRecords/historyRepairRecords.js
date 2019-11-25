@@ -21,6 +21,7 @@ Page({
     contactor: '',
     phone:'',
     comment: '',
+    assignName:''
   },
 
   /**
@@ -51,7 +52,8 @@ Page({
           facilityType: res.data[0].facilityType,
           contactor: res.data[0].contactor,
           phone: res.data[0].phone,
-          comment: res.data[0].comment
+          comment: res.data[0].comment,
+          assignName: res.data[0].assignName
 
 
         })
