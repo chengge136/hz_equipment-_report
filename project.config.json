@@ -68,17 +68,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "前台管理端",
+					"id": 4,
+					"name": "前台",
 					"pathName": "pages/managerIndex/managerIndex",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "订单分配",
-					"pathName": "manager/newOrderDetails/newOrderDetails",
-					"query": "report_id= 1571628864413",
 					"scene": null
 				},
 				{
@@ -89,9 +82,9 @@
 					"scene": null
 				},
 				{
-					"id": 7,
-					"name": "manager/createOrder/createOrder",
-					"pathName": "manager/createOrder/createOrder",
+					"id": 6,
+					"name": "cusService/myOrders/myOrders",
+					"pathName": "cusService/myOrders/myOrders",
 					"query": "",
 					"scene": null
 				}

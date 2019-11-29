@@ -11,8 +11,14 @@
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
     <van-field value="{{ address }}" label="详细地址" disabled/>
+    <van-field value="{{ contactor }}" label="设备联系人" disabled/>
+    <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>
     <van-field value="{{ createtime }}" label="报修时间" disabled/>
   </van-cell-group>
+</view>
+<view> 
+    <view class="problem-desc">客户反馈-问题描述</view>
+    <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" disabled="true"/> 
 </view>
 <view class="label">
   <text>是否完成维修</text>
@@ -35,7 +41,7 @@
 </view>
 
 <view> 
-    <view class="problem-desc">问题描述</view>
+    <view class="problem-desc">解决方案</view>
   <textarea class="textarea-bg" maxlength="200" placeholder="简单描述设备的问题及其解决方案" bindinput="solutionIn" />
  
 </view>

@@ -10,10 +10,18 @@
 </view>
 <view>
  <van-cell-group>
-    <van-field value="{{ facilityid }}" label="设备id" disabled/>
-    <van-field value="{{ facilityType }}" label="设备类型“" disabled/>
+    <van-field value="{{ facilityid }}" label="设备id" icon="underway-o" bind:click-icon="repaireHistory" disabled/>
+    <van-field value="{{ facilityType }}" label="设备类型" disabled/>
     <van-field value="{{ facilityName }}" label="设备名称" disabled/>
     <van-field value="{{ brandName }}" label="设备品牌" disabled/>
+    <van-field value="{{ sign_time }}" center required label="到场时间"
+    placeholder="请扫码签到"
+    border="{{ false }}"
+    use-button-slot
+	disabled
+  >
+    <van-button slot="button" size="small" type="info" bind:click="sign">扫码签到</van-button>
+  </van-field>
     <van-field value="{{ address }}" label="详细地址" disabled/>
     <van-field value="{{ contactor }}" label="设备联系人" disabled/>
     <van-field value="{{ phone }}" label="联系电话" icon="phone-o" bind:click-icon="makeCall" disabled/>

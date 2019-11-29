@@ -82,6 +82,11 @@ Page({
 
     })
   },
+  repaireHistory: function () {
+    wx.navigateTo({
+      url: '../repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+    })
+  },
   setComplete:function(){
     var that=this;
     wx.showModal({

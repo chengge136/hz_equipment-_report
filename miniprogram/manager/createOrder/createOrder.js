@@ -8,12 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    facilityid: '',
     facilityName: '',
     brandName: '',
     facilityType: '',
     facilityOrg: '',
     address: '',
+    problemDetail:'',
+    myopenid:'',
     inputValue: '', //点击结果项之后替换到文本框的值
     adapterSource: [], //本地匹配源
     bindSource: [], //绑定到页面的数据，根据用户输入动态变化
@@ -57,12 +58,12 @@ Page({
       })
     } else {
       wx.showModal({
-        title: '录入',
+        title: '提交',
         content: '确定已经填入的信息无误？',
         success(res) {
           if (res.confirm) {
             console.log('用户点击确定');
-            that.addFacility();
+            that.createNewOrder();
 
           } else if (res.cancel) {
             console.log('用户点击取消')
@@ -72,23 +73,26 @@ Page({
     }
 
   },
-  addFacility: function () {
+  createNewOrder: function () {
+
     wx.cloud.callFunction({
-      name: 'facilityIn',
+      name: 'manageReport',
       data: {
-        facilityid: this.data.facilityid,
         facilityName: this.data.facilityName,
         brandName: this.data.brandName,
+        facilityType: this.data.facilityType,
         facilityOrg: this.data.facilityOrg,
         address: this.data.address,
-        facilityType: this.data.index,
         contactor: this.data.contactor,
-        phone: this.data.phone
+        phone: this.data.phone,
+        problemDetail: this.data.problemDetail,
+        openid: this.data.myopenid,
+        nickName: this.data.nickName
       },
       complete: res => {
-        console.log('facilityIn callFunction test result: ', res);
+        console.log('manageReport callFunction test result: ', res);
         wx.showToast({
-          title: '录入成功',
+          title: '提交成功',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -96,9 +100,9 @@ Page({
             setTimeout(function () {
               //要延时执行的代码
               wx.redirectTo({
-                url: '../../pages/index/index'
+                url: '../../pages/managerIndex/managerIndex'
               })
-            }, 2000) //延迟时间
+            }, 500) //延迟时间
           }
         })
 
@@ -114,10 +118,6 @@ Page({
     var tem_arrs = [];
     const _ = db.command;
 
-    this.setData({
-      facilityid: options.facilityid
-    })
-
     wx.cloud.callFunction({
       name: "getOrg"
     }).then(res => {
@@ -132,36 +132,16 @@ Page({
       console.error(err)
     })
 
-    var count = db.collection('facility').where({
-      facilityid: _.eq(options.facilityid)
-    }).count({
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
       success: function (res) {
-        console.log(res.total);
-        if (res.total > 0) {
-          wx.showModal({
-            title: '提示',
-            content: '此设备已完成过信息录入，请在首页使用设备查询',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定');
-                setTimeout(function () {
-                  //要延时执行的代码
-                  wx.redirectTo({
-                    url: '../../pages/index/index'
-                  })
-                }, 1000) //延迟时间
-
-              }
-            }
-          })
-        }
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
       }
     })
-
-
-
-
   },
 
 
@@ -288,13 +268,38 @@ Page({
   descIn: function (e) {
     console.log(e.detail.value)
     this.setData({
-      comment: e.detail.value
+      problemDetail: e.detail.value
     })
   },
   bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
+    var that=this;
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    that.setData({
       index: e.detail.value
     })
+
+    switch (e.detail.value.toString()) {
+      case "0":
+        that.setData({
+          facilityType: '打印机'
+        });
+        break;
+      case "1":
+        that.setData({
+          facilityType: '复印机'
+        });
+        break;
+      case "2":
+        that.setData({
+          facilityType: '电脑'
+        });
+        break;
+      case "3":
+        that.setData({
+          facilityType: '其他'
+        });
+        break;
+    } 
+
   }
 })

@@ -9,7 +9,7 @@ const _ = db.command
 exports.main = async (event, context) => {
   return await db.collection('repair_orders').add({
     data: {
-      facilityid: event.facilityid,
+      facilityid:'',
       facilityName: event.facilityName,
       brandName: event.brandName,
       facilityType: event.facilityType,
@@ -17,19 +17,18 @@ exports.main = async (event, context) => {
       address: event.address,
       contactor: event.contactor,
       phone: event.phone,
-      imagePath: event.imagePath,
       problemDetail: event.problemDetail,
       createtime: new Date().getTime(),
       report_id: new Date().getTime(),
       reportorId: event.openid,
-      reportType:0,
-      status: event.status,
+      reportType: 1,
+      status: 3,
       rejection: '',
       plan_time: '',
       sign_time: '',
       assignId: '',
       assignName: '',
-      comment:''
+      comment: ''
     }
   })
 }

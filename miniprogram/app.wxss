@@ -28,3 +28,43 @@
 .problem-desc text{
   font-size: 10pt;
 }
+.title_a{
+  background-color: #00AC9C;
+  height: 100rpx;
+  display:flex;
+  justify-content:space-between;
+  margin: 10rpx; /* 边距 */
+}
+.title_a text{
+  color: #FFFFFF;
+  padding: 20rpx;
+  position:relative;
+  bottom:10rpx 
+}
+
+.title_b{
+  background-color: #F29F3F;
+  height: 100rpx;
+  display:flex;
+  justify-content:space-between;
+  margin: 10rpx; /* 边距 */
+}
+.title_b text{
+  color: #FFFFFF;
+  padding: 20rpx;
+  position:relative;
+  bottom:10rpx 
+}
+.title_c{
+  background-color: #E87E51;
+  height: 100rpx;
+  display:flex;
+  justify-content:space-between;
+  margin: 10rpx; /* 边距 */
+}
+.title_c text{
+  color: #FFFFFF;
+  padding: 20rpx;
+  position:relative;
+  bottom:10rpx 
+}

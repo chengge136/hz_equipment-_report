@@ -21,7 +21,8 @@ Page({
     phone:'',
     createtime: '',
     report_id: '',
-    myopenid:''
+    myopenid:'',
+    problemDetail:''
   
   },
 
@@ -69,7 +70,8 @@ Page({
             report_id: res.data[0].report_id,
             facilityType: res.data[0].facilityType,
             contactor: res.data[0].contactor,
-            phone: res.data[0].phone
+            phone: res.data[0].phone,
+            problemDetail: res.data[0].problemDetail
 
           })
         }
@@ -88,7 +90,13 @@ Page({
       }
     })
   },
+  makeCall: function () {
+    wx.makePhoneCall({
 
+      phoneNumber: this.data.phone
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

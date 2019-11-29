@@ -28,6 +28,7 @@
   </picker>
 </view>
 <view> 
+
     <view class="problem-desc">问题描述</view>
     <textarea class="textarea-bg"  maxlength="200" value="{{ problemDetail }}" bindinput="descIn"/> 
 </view>

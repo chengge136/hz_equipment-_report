@@ -9,7 +9,11 @@ Page({
   data: {
     newRepairOrders: [],
     recallRepairOrders: [],
-    myopenid: ''
+    phoneRepairOrders:[],
+    myopenid: '',
+    newRepaireLength: 0,
+    recallRepaireLength: 0,
+    phoneRepairLength:0
   },
 
   /**
@@ -26,7 +30,8 @@ Page({
 
         console.log('myopenid:', res.result.openid);
         db.collection('repair_orders').where({
-          status: _.eq(2)
+          status: _.eq(2),
+          reportType: _.eq(0)
         })
           .get({
             success: function (res) {
@@ -36,7 +41,28 @@ Page({
                 res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
               }
               that.setData({
-                newRepairOrders: res.data
+                newRepairOrders: res.data,
+                newRepaireLength: res.data.length
+              })
+            }
+          })
+
+        //客户电话报修，前台无扫码提交
+        db.collection('repair_orders').where({
+          status: _.eq(2),
+          reportType: _.eq(1)
+        })
+          .get({
+            success: function (res) {
+              // res.data 是包含以上定义的两条记录的数组
+              console.log('phoneRepairLength' + res.data.length)
+              for (var index in res.data) {
+                res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
+              }
+              that.setData({
+                phoneRepairOrders: res.data,
+                phoneRepairLength: res.data.length
+
               })
             }
           })
@@ -52,7 +78,8 @@ Page({
                 res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
               }
               that.setData({
-                recallRepairOrders: res.data
+                recallRepairOrders: res.data,
+                recallRepaireLength: res.data.length
               })
             }
           })

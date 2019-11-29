@@ -90,6 +90,20 @@ Page({
 
     })
   },
+  repaireHistory: function () {
+    if (this.data.facilityid==''){
+      wx.showToast({
+        title: '设备id不存在，无法查看设备历史',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../../manager/repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+      })
+    }
+    
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -64,6 +64,11 @@ Page({
 
     })
   },
+  repaireHistory: function () {
+    wx.navigateTo({
+      url: '../../manager/repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -21,7 +21,8 @@ Page({
     contactor: '',
     phone: '',
     autosize: true,
-    rejection: ''
+    rejection: '',
+    sign_time:''
       },
 
   /**
@@ -51,7 +52,8 @@ Page({
           report_id: res.data[0].report_id,
           facilityType: res.data[0].facilityType,
           contactor: res.data[0].contactor,
-          phone: res.data[0].phone
+          phone: res.data[0].phone,
+          sign_time: res.data[0].sign_time
 
 
         })
@@ -63,6 +65,157 @@ Page({
 
       phoneNumber: this.data.phone
 
+    })
+  },
+  sign: function () {
+    var that = this;
+    //针对未扫码上报
+    if (that.data.facilityid ==''){
+      wx.showModal({
+        title: '设备确认',
+        content: '确定客户电话报修的是这台设备？',
+        success(res) {
+          if (res.confirm) {
+            //1，扫码得到的id到此报单
+            //2，将id与签到时间更新到此报单
+            wx.scanCode({
+              onlyFromCamera: true,
+              scanType: ['qrCode'],
+              success(res) {
+                //打印ISBN码
+                var result = res.result;
+                var idIndex = result.indexOf("$id") + 4; // 从结果中获取机器id
+                var idString = result.substr(idIndex, 12);
+                //设备id 和 签到时间
+                console.log('facilityid:' + idString);
+                var d1 = new Date();
+                var signtime = d1.getFullYear() + '-' + d1.getMonth() + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
+
+                that.setData({
+                  sign_time: signtime,
+                  facilityid: idString
+                });
+                //将id与签到时间更新到此报单
+                wx.cloud.callFunction({
+                  name: 'phonesignIn',
+                  data: {
+                    report_id: that.data.report_id,
+                    time: signtime,
+                    facilityid: idString
+                  },
+                  complete: res => {
+                    console.log('phonesignIn callFunction test result: ', res);
+                    wx.showToast({
+                      title: '成功',
+                      icon: 'success',
+                      duration: 2000,
+                      success: function () {
+                        console.log('签到成功');
+                      }
+                    })
+                  }
+                })
+
+
+              },
+              fail(res) {
+                console.log(res)
+              }
+            })
+           
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      //针对上报
+    }else{
+      if (!that.data.sign_time == '') {
+        wx.showToast({
+          title: '此单已完成签到，无需重复签到!',
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        wx.showModal({
+          title: '扫码签到',
+          content: '确定已经到达客户现场了？',
+          success(res) {
+            if (res.confirm) {
+              wx.scanCode({
+                onlyFromCamera: true,
+                scanType: ['qrCode'],
+                success(res) {
+                  //打印ISBN码
+                  var result = res.result;
+                  var idIndex = result.indexOf("$id") + 4; // 从结果中获取机器id
+                  var idString = result.substr(idIndex, 12);
+                  console.log('facilityid:' + idString);
+                  //扫码获取的id与此单对应的设备id一致
+                  if (idString == that.data.facilityid) {
+                    var d1 = new Date();
+                    var signtime = d1.getFullYear() + '-' + d1.getMonth() + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
+                    that.setSignTime(signtime);
+                    that.setData({
+                      sign_time: signtime
+                    })
+                  } else {
+                    wx.showToast({
+                      title: '签到失败!扫码设备对应不上此单设备!',
+                      icon: 'none',
+                      duration: 3000
+                    })
+                  }
+                },
+                fail(res) {
+                  console.log(res)
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    }
+  },
+  setSignTime: function (signtime) {
+    wx.cloud.callFunction({
+      name: 'signIn',
+      data: {
+        report_id: this.data.report_id,
+        time: signtime
+      },
+      complete: res => {
+        console.log('signIn callFunction test result: ', res);
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('签到成功');
+          }
+        })
+      }
+    })
+  },
+  repaireHistory: function () {
+    if (this.data.facilityid==''){
+      wx.showToast({
+        title: '设备id不存在，请先扫码签到',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../../manager/repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+      })
+    }
+   
+  },
+  facilityid:function(){
+    this.setData({
+      facilityid:123123
     })
   },
   /**

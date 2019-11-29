@@ -33,7 +33,7 @@ App({
     return year + "-" + month + "-" + date;
   },
 
-  // 时间戳转为日期时间
+  // 扫码跳转页面
   scanCode: function (url) {
     wx.scanCode({
       onlyFromCamera: true,
@@ -51,8 +51,7 @@ App({
       fail(res) {
         console.log(res)
       }
-    })
-    
+    })   
   }
 
 

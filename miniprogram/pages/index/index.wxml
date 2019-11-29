@@ -14,7 +14,7 @@
       <i class="fa fa-money fa-2x" style="color:#EE4D52;" bindtap="my_orders"></i>
     </van-col>
     <van-col span="5">
-      <i class="fa fa-history fa-2x" style="color:#259B24;"bindtap="history_orders"></i>
+      <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
     </van-col>
   </van-row>
 </view>
@@ -31,7 +31,7 @@
       <text>进行中订单</text>
     </van-col>
     <van-col span="5">
-      <text>历史订单</text>
+      <text>完成维修</text>
     </van-col>
   </van-row>
 </view>
@@ -41,30 +41,24 @@
 <view class="icon2">
   <van-row gutter="10">
     <van-col span="5" offset="3">
-      <i class="fa fa-key fa-2x" style="color:#9C89B9;" bindtap="sign_in"></i>
-    </van-col>
-    <van-col span="5">
       <i class="fa fa-keyboard-o fa-2x" style="color:#3F51B5;" bindtap="facility_query"></i>
     </van-col>
     <van-col span="5">
-      <i class="fa fa-book fa-2x" style="color:#3F51B5;" bindtap="repair_records"></i>
+      <i class="fa fa-history fa-2x" style="color:#259B24;"bindtap="history_orders"></i>
     </van-col>
     <van-col span="5">
-       <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="infoAdmin_set"></i>
+       <i class="fa fa-address-card-o fa-2x" style="color:#E6109B;" bindtap="infoAdmin_set"></i>
     </van-col>
   </van-row>
 </view>
 
 <view class="text1">
   <van-row gutter="10">
-    <van-col span="5" offset="3">
-      <text>到场签到</text>
-    </van-col>
-    <van-col span="5">
+     <van-col span="5" offset="3">
       <text>设备查询</text>
     </van-col>
     <van-col span="5">
-      <text>维修记录</text>
+      <text>历史订单</text>
     </van-col>
     <van-col span="5">
       <text>信息中心\n管理员</text>

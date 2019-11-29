@@ -15,6 +15,7 @@ Page({
     facilityOrg: '',
     address: '',
     problemDetail: '',
+    assignName: '',
     createtime: '',
     report_id: '',
     contactor: '',
@@ -47,6 +48,7 @@ Page({
           address: res.data[0].address,
           contactor: res.data[0].contactor,
           phone: res.data[0].phone,
+          assignName: res.data[0].assignName,
           problemDetail: res.data[0].comment,
           createtime: app.formatDate(new Date(res.data[0].createtime)),
           report_id: res.data[0].report_id,
@@ -85,6 +87,11 @@ Page({
 
       phoneNumber: this.data.phone
 
+    })
+  },
+  repaireHistory: function () {
+    wx.navigateTo({
+      url: '../../manager/repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
     })
   },
   /**

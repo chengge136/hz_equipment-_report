@@ -11,6 +11,7 @@ Page({
     facilityid: '',
     facilityName: '',
     brandName: '',
+    assignName: '',
     facilityType: '',
     facilityOrg: '',
     address: '',
@@ -46,6 +47,7 @@ Page({
           brandName: res.data[0].brandName,
           facilityOrg: res.data[0].facilityOrg,
           address: res.data[0].address,
+          assignName: res.data[0].assignName,
           problemDetail: res.data[0].comment,
           contactor: res.data[0].contactor,
           phone: res.data[0].phone,
@@ -79,6 +81,12 @@ Page({
 
     })
   },
+  repaireHistory: function () {
+    wx.navigateTo({
+      url: '../../manager/repaireHistory/repaireHistory?facilityid=' + this.data.facilityid
+    })
+  },
+
   setComplete: function () {
     var that = this;
     wx.showModal({
