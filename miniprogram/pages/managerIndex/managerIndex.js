@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    message: ''
+    message: '',
+    fileUrl:''
   },
 
   /**
@@ -62,6 +63,11 @@ Page({
   orders_follow:function(){
     wx.navigateTo({
       url: '../../manager/assignedOrder/assignedOrder'
+    })
+  },
+  excel_out:function(){
+    wx.navigateTo({
+      url: '../../manager/excelOut/excelOut'
     })
   },
   /**

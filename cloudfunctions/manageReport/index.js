@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
       contactor: event.contactor,
       phone: event.phone,
       problemDetail: event.problemDetail,
-      createtime: new Date().getTime(),
+      createtime: new Date().toLocaleDateString(),
       report_id: new Date().getTime(),
       reportorId: event.openid,
       reportType: 1,
@@ -28,7 +28,8 @@ exports.main = async (event, context) => {
       sign_time: '',
       assignId: '',
       assignName: '',
-      comment: ''
+      comment: '',
+      completeTime: ''
     }
   })
 }

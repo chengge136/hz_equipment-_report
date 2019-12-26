@@ -7,6 +7,10 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return await db.collection('organizations').get();
+  return await db.collection('repair_orders').where({
+    status: _.eq(1),
+    report_id: _.gte(event.begin),
+    report_id: _.lte(event.end)
+  }).get();
 }
 

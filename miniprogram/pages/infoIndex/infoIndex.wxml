@@ -4,34 +4,52 @@
 />
 <view class="icon1">
   <van-row gutter="10">
-    <van-col span="6" offset="4">
+    <van-col span="5" offset="3">
       <i class="fa fa-print fa-2x" style="color:#03A9F4;" bindtap="facility_manage"></i>
     </van-col>
-    <van-col span="6">
+    <van-col span="5">
       <i class="fa fa-check-square-o fa-2x" style="color:#FF9800;" bindtap="order_review"></i>
     </van-col>
-    <van-col span="6">
+    <van-col span="5">
       <i class="fa fa-address-card-o fa-2x" style="color:#259B24;" bindtap="approver_set"></i>
+    </van-col>
+    <van-col span="5">
+      <i class="fa fa-info-circle fa-2x" style="color:#EE4D52;"bindtap="info_report"></i>
     </van-col>
   </van-row>
 </view>
 
 <view class="text1">
   <van-row gutter="10">
-    <van-col span="6" offset="4">
+    <van-col span="5" offset="3">
       <text>设备管理</text>
     </van-col>
-    <van-col span="6">
+    <van-col span="5">
       <text>报修审核</text>
     </van-col>
-    <van-col span="6">
+    <van-col span="5">
       <text>审核人设置</text>
+    </van-col>
+    <van-col span="5">
+      <text>中心端上报</text>
     </van-col>
   </van-row>
 </view>
-
-
-
+<hr class="hr1" />
+<view class="icon1">
+  <van-row gutter="10">
+    <van-col span="5" offset="3">
+       <i class="fa fa-hourglass-end fa-2x" style="color:#9C89B9;" bindtap="orders_track"></i>
+    </van-col>
+  </van-row>
+</view>
+<view class="text1">
+  <van-row gutter="10">
+    <van-col span="5" offset="3">
+      <text>订单跟踪</text>
+    </van-col>
+  </van-row>
+</view>
 <view class="intrduce">
   <van-row gutter="10">
     <view class="logo">

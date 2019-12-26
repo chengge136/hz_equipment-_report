@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
       phone: event.phone,
       imagePath: event.imagePath,
       problemDetail: event.problemDetail,
-      createtime: new Date().getTime(),
+      createtime: new Date().toLocaleDateString(),
       report_id: new Date().getTime(),
       reportorId: event.openid,
       reportType:0,
@@ -29,7 +29,8 @@ exports.main = async (event, context) => {
       sign_time: '',
       assignId: '',
       assignName: '',
-      comment:''
+      comment:'',
+      completeTime:''
     }
   })
 }

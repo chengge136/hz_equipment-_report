@@ -8,7 +8,15 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"nodeModules": true
 	},
 	"appid": "wx286f42de54481200",
 	"projectname": "hz_equipment%20_report",
@@ -16,6 +24,7 @@
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"compileType": "miniprogram",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -83,8 +92,8 @@
 				},
 				{
 					"id": 6,
-					"name": "cusService/myOrders/myOrders",
-					"pathName": "cusService/myOrders/myOrders",
+					"name": "manager/excelOut/excelOut",
+					"pathName": "manager/excelOut/excelOut",
 					"query": "",
 					"scene": null
 				}

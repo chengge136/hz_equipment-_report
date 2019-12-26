@@ -1,0 +1,32 @@
+.button{
+  bottom:0; 
+  width:100%; 
+}
+
+.textarea-desc {
+  padding: 10rpx;
+  margin: 20rpx;
+  font-size: 36rpx;
+  color:rgb(255, 51, 0);
+   border: 1px solid rgb(165, 165, 165);
+  height: 120px;
+  width: 90%;
+}
+.textarea-link{
+    padding: 10rpx;
+  margin: 20rpx;
+  font-size: 30rpx;
+  color:rgb(165, 165, 165);
+   border: 1px solid rgb(165, 165, 165);
+  height: 50px;
+  width: 90%;
+}
+.problem-desc{
+  margin: 30rpx;
+}
+.picker{
+  margin: 30rpx;
+}
+.picker text{
+  color:rgb(255, 51, 0);
+}

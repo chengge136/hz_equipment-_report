@@ -89,7 +89,7 @@ Page({
                 //设备id 和 签到时间
                 console.log('facilityid:' + idString);
                 var d1 = new Date();
-                var signtime = d1.getFullYear() + '-' + d1.getMonth() + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
+                var signtime = d1.getFullYear() + '-' + d1.getMonth()+1 + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
 
                 that.setData({
                   sign_time: signtime,
@@ -154,7 +154,7 @@ Page({
                   //扫码获取的id与此单对应的设备id一致
                   if (idString == that.data.facilityid) {
                     var d1 = new Date();
-                    var signtime = d1.getFullYear() + '-' + d1.getMonth() + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
+                    var signtime = d1.getFullYear() + '-' + d1.getMonth()+1 + '-' + d1.getDate() + ' ' + d1.getHours() + ':' + d1.getMinutes();
                     that.setSignTime(signtime);
                     that.setData({
                       sign_time: signtime

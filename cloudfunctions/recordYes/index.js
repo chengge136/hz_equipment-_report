@@ -13,7 +13,8 @@ exports.main = async (event, context) => {
     // data 传入需要局部更新的数据
     data: {
       status: 1,
-      comment: event.comment
+      comment: event.comment,
+      completeTime: new Date().toLocaleDateString()
     }
   })
     .then(console.log)

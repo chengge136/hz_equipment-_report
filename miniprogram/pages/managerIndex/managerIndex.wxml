@@ -45,6 +45,9 @@
      <van-col span="5">
       <i class="fa fa-volume-control-phone fa-2x" style="color:#FCD692;" bindtap="phone_order"></i>
     </van-col>
+    <van-col span="5">
+      <i class="fa fa-file-excel-o fa-2x" style="color:#259B24;" bindtap="excel_out"></i>
+    </van-col>
   </van-row>
 </view>
 
@@ -55,6 +58,9 @@
     </van-col>
      <van-col span="5">
       <text>电话报修</text>
+    </van-col>
+     <van-col span="5">
+      <text>统计导出</text>
     </van-col>
   </van-row>
 </view>

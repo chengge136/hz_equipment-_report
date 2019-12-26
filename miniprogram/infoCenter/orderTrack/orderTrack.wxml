@@ -1,0 +1,89 @@
+<van-tabs active="a">
+<van-tab title="扫码上报 ({{newRepaireLength}})" name="a" >
+<view  wx:for="{{newRepairOrders}}" wx:key="{{index}}">
+<navigator url="../../manager/orderDetail/orderDetail?report_id={{item.report_id}}" class="title_a">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.facilityOrg}}</text>
+</view>
+<view class="right">
+<text>技术员：{{item.assignName}}</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+<view class="detail_titile">
+  <van-row gutter="20">
+  <van-col span="8"><text>申请编号</text></van-col>
+  <van-col span="8"><text>申请时间</text></van-col>
+  <van-col span="8"><text>报修设备</text></van-col>
+</van-row>
+</view>
+<view class="detail_content">
+  <van-row gutter="20">
+  <van-col span="8"><text>{{item.report_id}}</text></van-col>
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="8"><text style="color:#FF5722">{{item.facilityType}}</text></van-col>
+</van-row>
+</view>
+</view>
+  </van-tab>
+<van-tab title="二次维修 ({{recallRepaireLength}})" name="b">
+  <view  wx:for="{{recallRepairOrders}}" wx:key="{{index}}">
+<navigator url="../../manager/recallDetail/recallDetail?report_id={{item.report_id}}" class="title_b">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.facilityOrg}}</text>
+</view>
+<view class="right">
+<text>技术员：{{item.assignName}}</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+<view class="detail_titile">
+  <van-row gutter="20">
+  <van-col span="8"><text>申请编号</text></van-col>
+  <van-col span="8"><text>申请时间</text></van-col>
+  <van-col span="8"><text>报修设备</text></van-col>
+</van-row>
+</view>
+<view class="detail_content">
+  <van-row gutter="20">
+  <van-col span="8"><text>{{item.report_id}}</text></van-col>
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="8"><text style="color:#FF5722">{{item.facilityType}}</text></van-col>
+</van-row>
+</view>
+</view>
+  </van-tab>
+  <van-tab title="未扫码上报 ({{phoneRepairLength}})" name="c">
+<view  wx:for="{{phoneRepairOrders}}" wx:key="{{index}}">
+<navigator url="../../manager/orderDetail/orderDetail?report_id={{item.report_id}}" class="title_c">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.facilityOrg}}</text>
+</view>
+<view class="right">
+<text>技术员：{{item.assignName}}</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+<view class="detail_titile">
+  <van-row gutter="20">
+  <van-col span="8"><text>申请编号</text></van-col>
+  <van-col span="8"><text>申请时间</text></van-col>
+  <van-col span="8"><text>报修设备</text></van-col>
+</van-row>
+</view>
+<view class="detail_content">
+  <van-row gutter="20">
+  <van-col span="8"><text>{{item.report_id}}</text></van-col>
+  <van-col span="8"><text>{{item.createtime}}</text></van-col>
+  <van-col span="8"><text style="color:#FF5722">{{item.facilityType}}</text></van-col>
+</van-row>
+</view>
+</view>
+</van-tab>
+</van-tabs>

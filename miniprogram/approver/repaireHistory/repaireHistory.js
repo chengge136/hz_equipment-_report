@@ -32,7 +32,7 @@ Page({
               // res.data 是包含以上定义的两条记录的数组
               console.log(res.data)
               for (var index in res.data) {
-                res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
+                res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
               }
               that.setData({
                 newHistoryOrders: res.data

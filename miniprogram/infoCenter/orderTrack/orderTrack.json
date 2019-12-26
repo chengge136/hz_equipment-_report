@@ -2,15 +2,13 @@
   "usingComponents": {
     "van-row": "../../vant/row/index",
     "van-col": "../../vant/col/index",
-    "van-button": "../../vant/button/index",
     "van-field": "../../vant/field/index",
-    "van-radio": "../../vant/radio/index",
-    "van-radio-group": "../../vant/radio-group/index",
-    "van-toast": "../../vant/toast/index"
+    "van-tab": "../../vant/tab/index",
+    "van-tabs": "../../vant/tabs/index"
   },
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "客户报修",
+  "navigationBarTitleText": "进行中订单",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }

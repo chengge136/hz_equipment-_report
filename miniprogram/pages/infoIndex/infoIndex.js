@@ -145,8 +145,19 @@ Page({
         })
       }
     })
+  },
+  info_report:function(){
+    wx.navigateTo({
+      url: '../../manager/createOrder/createOrder'
+    })
   }
   ,
+  orders_track: function () {
+    wx.navigateTo({
+      url: '../../infoCenter/orderTrack/orderTrack'
+    })
+  },
+
   order_review: function () {
     wx.cloud.callFunction({
       //调用的函数名字

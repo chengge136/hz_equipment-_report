@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-field": "../../vant/field/index",
+    "van-button": "../../vant/button/index",
+    "van-loading": "../../vant/loading/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "获取excel报表",
+  "backgroundColor": "#eeeeee"
+}

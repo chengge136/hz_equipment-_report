@@ -19,13 +19,14 @@ exports.main = async (event, context) => {
       comment: event.comment,
       contactor: event.contactor,
       phone: event.phone,
-      createtime: new Date().getTime(),
+      createtime: new Date().toLocaleDateString(),
       report_id: new Date().getTime(),
       status:3,
       reportorId: event.openid,
       assignId:'',
       assignName:'',
-      rejection:''
+      rejection:'',
+      completeTime: ''
 
     }
   })
