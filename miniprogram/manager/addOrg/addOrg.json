@@ -2,16 +2,15 @@
   "usingComponents": {
     "van-row": "../../vant/row/index",
     "van-col": "../../vant/col/index",
+    "van-button": "../../vant/button/index",
     "van-field": "../../vant/field/index",
-    "van-tab": "../../vant/tab/index",
-    "van-tabs": "../../vant/tabs/index",
-    "van-search": "../../vant/search/index",
-    "van-button": "../../vant/button/index"
-        
+    "van-radio": "../../vant/radio/index",
+    "van-radio-group": "../../vant/radio-group/index",
+    "van-toast": "../../vant/toast/index"
   },
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "历史订单",
+  "navigationBarTitleText": "授权单位添加",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }

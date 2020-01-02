@@ -7,14 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    newHistoryOrders: [],
-    newRecallHistoryOrders: [],
-    phoneRepairOrders:[],
-    newRepaireLength:0,
-    recallRepaireLength:0,
-    phoneRepairLength:0,
+    accessOrg: [],
+    unableOrg: [],
+    accessLength: 0,
+    unableLength: 0,
     element: '',
-    export_date:''
+    desc: '1，对于已授权可扫码报修的单位，若存在款项未结清，可点击单位名来关闭授权\n2，若下面列表未显示，可搜索单位名来查询并设置\n2，对于个别新增的授权单位，请点击 [新增授权] 按钮来添加\n4，对于大批量新增需要授权的单位，请联系软件部来批量添加',
   },
 
   /**
@@ -24,60 +22,37 @@ Page({
     var that = this;
     const _ = db.command;
 
-    db.collection('repair_orders').where({
-      status: _.eq(1),
-      reportType: _.eq(0)
+    db.collection('organizations').where({
+      active: _.eq(1)
     }).orderBy('createtime', 'desc')
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
 
-          for (var index in res.data) {
-            res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-          }
-
           that.setData({
-            newHistoryOrders: res.data,
-            newRepaireLength: res.data.length
+            accessOrg: res.data,
+            accessLength: res.data.length
           })
         }
       })
 
-    //客户电话报修，前台无扫码提交
-    db.collection('repair_orders').where({
-      status: _.eq(1),
-      reportType: _.eq(1)
+ 
+    db.collection('organizations').where({
+      active: _.eq(0)
     }).orderBy('createtime', 'desc')
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
-          console.log('phoneRepairLength' + res.data.length)
+          console.log('unableLength' + res.data.length)
+          /*
           for (var index in res.data) {
-            res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-          }
+            res.data[index].createtime = app.formatDate(new Date(res.data[index].createtime));
+          }*/
           that.setData({
-            phoneRepairOrders: res.data,
-            phoneRepairLength: res.data.length
+            unableOrg: res.data,
+            unableLength: res.data.length
 
-          })
-        }
-      })
-
-    db.collection('recall_repair_order').where({
-      status: _.eq(1)
-    }).orderBy('createtime', 'desc').get({
-        success: function (res) {
-          // res.data 是包含以上定义的两条记录的数组
-          console.log(res.data)
-
-          for (var index in res.data) {
-            res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-          }
-
-          that.setData({
-            newRecallHistoryOrders: res.data,
-            recallRepaireLength: res.data.length
           })
         }
       })
@@ -130,6 +105,11 @@ Page({
   onShareAppMessage: function () {
 
   },
+  new_access:function(){
+    wx.navigateTo({
+      url: '../../manager/addOrg/addOrg'
+    })
+  },
   onChange(e) {
     this.setData({
       element: e.detail
@@ -137,16 +117,16 @@ Page({
   },
 
   onClick() {
-    var that=this;
+    var that = this;
     const _ = db.command;
 
-    if (that.data.element==''){
+    if (that.data.element == '') {
       wx.showToast({
         title: '请先输入搜索的关键字',
         icon: 'none',
         duration: 3000
       })
-    }else{
+    } else {
       console.log('搜索:' + that.data.element);
       db.collection('repair_orders').where(
         _.or([
@@ -241,7 +221,7 @@ Page({
         }
       })
     }
-    
+
   },
   bindDateChange(event) {
     console.log(event.detail.value);

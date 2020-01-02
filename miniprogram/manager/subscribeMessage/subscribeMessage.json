@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "订阅提醒",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

@@ -1,0 +1,12 @@
+<view class="header">
+<view class="header_left">
+<i class="fa fa-clock-o fa-2x" style="color:#03A9F4;"></i><text>{{ name }}</text></view>
+<view class="header_right"><text>No.{{createtime}}</text></view>
+</view>
+<view></view>
+
+
+    <view class="org_switch">
+    <view><text>是否可以扫码上报：</text></view>
+    <view><van-switch checked="{{ active }}" bind:change="onChange" /></view>
+    </view>

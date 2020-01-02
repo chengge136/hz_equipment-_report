@@ -55,6 +55,11 @@ Page({
       url: '../../cusService/historyOrders/historyOrders'
     })
   },
+  organization_m:function(){
+    wx.navigateTo({
+      url: '../../manager/orgManage/orgManage'
+    })
+  },
   phone_order:function(){
     wx.navigateTo({
       url: '../../manager/createOrder/createOrder'

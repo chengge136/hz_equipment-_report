@@ -1,0 +1,52 @@
+<van-tabs active="a">
+<van-tab title="已授权 ({{accessLength}})" name="a" >
+<view class="search">
+<van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词/客户名单位名"
+  use-action-slot
+  clearable="{{false}}"
+  bind:change="onChange"
+>
+  <view slot="action" bind:tap="onClick">搜索</view>
+</van-search>
+<view> 
+    <view class="problem-desc">
+    <view><text>授权说明</text></view>
+    <view class="new_org" bindtap="new_access"><text>新增授权</text></view>
+    </view>
+    
+    <textarea class="textarea-desc"  maxlength="200" value="{{ desc }}" disabled="true"/> 
+</view>
+</view>
+
+<view  wx:for="{{accessOrg}}" wx:key="{{index}}">
+<navigator url="../orgSet/orgSet?createtime={{item.createtime}}" class="title_a">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.name}}</text>
+</view>
+<view class="right">
+<text>已授权</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+
+</view>
+</van-tab>
+
+<van-tab title="未授权 ({{unableLength}})" name="b">
+<view  wx:for="{{unableOrg}}" wx:key="{{index}}">
+<navigator url="../orgSet/orgSet?createtime={{item.createtime}}" class="title_b">
+<view class="left">
+<i class="fa fa-flag fa-2x" style="color:#FFFFFF;"></i>
+<text>{{item.name}}</text>
+</view>
+<view class="right">
+<text>未授权</text>
+<i class="fa fa-angle-right fa-2x" style="color:#FFFFFF;"></i>
+</view>
+</navigator>
+</view>
+</van-tab>
+</van-tabs>

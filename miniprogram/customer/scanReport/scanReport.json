@@ -6,7 +6,7 @@
     "van-field": "../../vant/field/index",
     "van-radio": "../../vant/radio/index",
     "van-radio-group": "../../vant/radio-group/index",
-    "van-toast": "../../vant/toast/index"
+    "van-notify": "../../vant/notify/index"
   },
   "navigationBarBackgroundColor": "#03A9F4",
   "navigationBarTextStyle": "white",

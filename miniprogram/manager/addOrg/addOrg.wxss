@@ -1,0 +1,9 @@
+.button{
+  position:fixed; 
+  bottom:0; 
+  width:100%; 
+}
+
+.header{
+  margin-top: 30rpx;
+}

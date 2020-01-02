@@ -1,0 +1,16 @@
+<view class="header">
+<van-cell-group>
+  <van-field value="{{ name }}" bind:input="orgName" required clearable label="单位名称" placeholder="请输入授权单位或企业名称" />
+</van-cell-group>
+</view>
+<scroll-view scroll-y="true" class="scrollview" hidden="{{hideScroll}}" style="{{arrayHeight>340?'height:340rpx':''}}">
+  <view wx:for="{{bindSource}}" style="padding: 25rpx;color: #B2B2B2;">
+    <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+  </view>
+</scroll-view>
+
+
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">添加</van-button>
+</view>
+<van-toast id="van-toast" />

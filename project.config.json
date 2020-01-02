@@ -92,8 +92,15 @@
 				},
 				{
 					"id": 6,
-					"name": "manager/excelOut/excelOut",
-					"pathName": "manager/excelOut/excelOut",
+					"name": "historyOrders",
+					"pathName": "cusService/historyOrders/historyOrders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "manager/orgManage/orgManage",
+					"pathName": "manager/orgManage/orgManage",
 					"query": "",
 					"scene": null
 				}

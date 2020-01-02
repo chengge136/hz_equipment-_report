@@ -1,0 +1,50 @@
+
+.detail_titile text{
+  color: #B2B2B2;
+  font-size: 11pt;
+  position:relative;
+  left: 10rpx; /* 边距 */
+  
+}
+.title_a{
+  background-color: #C7B3E5;
+  height: 100rpx;
+  display:flex;
+  justify-content:space-between;
+  margin: 15rpx; /* 边距 */
+}
+.title_b{
+  background-color: #6E6585;
+  height: 100rpx;
+  display:flex;
+  justify-content:space-between;
+  margin: 15rpx; /* 边距 */
+}
+.detail_content text{
+  color: #000000;
+  font-size: 11pt;
+  position:relative;
+  left: 10rpx; /* 边距 */
+
+}
+.picker{
+  margin-left: 30rpx;
+}
+.problem-desc{
+  margin: 30rpx;
+  display:flex;
+  justify-content:space-between;
+}
+.textarea-desc {
+  padding: 10rpx;
+  margin: 20rpx;
+  font-size: 28rpx;
+  color:#EB3F2F;
+  border: 1px solid rgb(165, 165, 165);
+  height: 120px;
+  width: 90%;
+}
+.new_org{
+  background-color: #DAF9CA;
+  font-weight:bold;
+}

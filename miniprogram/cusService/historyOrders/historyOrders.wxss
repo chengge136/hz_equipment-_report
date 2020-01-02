@@ -14,3 +14,6 @@
   left: 10rpx; /* 边距 */
 
 }
+.picker{
+  margin-left: 30rpx;
+}

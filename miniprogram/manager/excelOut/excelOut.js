@@ -10,7 +10,8 @@ Page({
     export_date: '',
     begin:0,
     end:0,
-    desc:'1，选择你要导出的月份\n2，点击生成excel报表按钮（绿色）\n3，点击复制下载文档链接按钮（蓝色）\n4，把复制到的链接，长按粘贴发送到电脑微信端或者电脑qq端\n5，电脑端打开链接查看导出的excel报表'
+    desc:'1，选择你要导出的月份\n2，点击生成excel报表按钮（绿色）\n3，点击复制下载文档链接按钮（蓝色）\n4，把复制到的链接，长按粘贴发送到电脑微信端或者电脑qq端\n5，电脑端打开链接查看导出的excel报表',
+    desc_1: '1，选择你要导出的年份\n2，点击生成excel报表按钮（绿色）\n3，点击复制下载文档链接按钮（蓝色）\n4，把复制到的链接，长按粘贴发送到电脑微信端或者电脑qq端\n5，电脑端打开链接查看导出的excel报表'
   },
 
   /**
@@ -23,7 +24,7 @@ Page({
     var that = this;
     if (that.data.export_date==''){
       wx.showToast({
-        title: '请先选择要导出的月份',
+        title: '请先选择要导出的时间区间',
         icon: 'none',
         duration: 3000
       })
@@ -37,7 +38,7 @@ Page({
       }else{
         wx.showModal({
           title: '导出excel',
-          content: '确定导出' + that.data.export_date + '月的报修单报表吗？',
+          content: '确定导出[ ' + that.data.export_date + ' ]的报修单报表吗？',
           success(res) {
             if (res.confirm) {
               wx.showLoading({
@@ -74,6 +75,24 @@ Page({
   bindDateChange(event) {
     var start = event.detail.value+'-01';
     var end = event.detail.value + '-30';
+    var data_start = new Date(start);
+    var data_end = new Date(end);
+    //获得时间戳
+    var time_start = data_start.getTime();
+    var time_end = data_end.getTime();
+    //var localtime = new Date().toLocaleDateString();
+
+    console.log(time_start, 'VVV', time_end);
+    this.setData({
+      export_date: event.detail.value,
+      begin: time_start,
+      end: time_end
+    });
+
+  },
+  bindYearChange(event) {
+    var start = event.detail.value + '-01-01';
+    var end = event.detail.value + '-12-30';
     var data_start = new Date(start);
     var data_end = new Date(end);
     //获得时间戳

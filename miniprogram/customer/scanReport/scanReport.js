@@ -1,7 +1,7 @@
 // pages/facilityInfo/facilityInfo.js
 //云数据库初始化
 const db = wx.cloud.database();
-
+import Notify from '../../vant/notify/notify';
 Page({
 
   /**
@@ -20,24 +20,52 @@ Page({
     problemDetail:'',
     createtime:'',
     myopenid: '',
-    status:''
+    status:'',
+    show: false
   },
   submit_info: function () {
     var that = this;
-    wx.showModal({
-      title: '提交',
-      content: '确定此设备的报修信息无误？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-          that.submitreport();
-
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
+    const _ = db.command;
+    db.collection('organizations').where({
+      name: {
+        $regex: '.*' + that.data.facilityOrg,
       }
-    })
- 
+      
+    }).get({
+        success: function (res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log('active:',res.data[0].active)
+          if (res.data[0].active==1){
+            wx.showModal({
+              title: '提交',
+              content: '确定此设备的报修信息无误？',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定');
+                  that.submitreport();
+
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          }else{
+            Notify({ type: 'warning', message: '款项未结清，无法上报' });
+            /*
+            wx.showToast({
+              title: '款项未结清，无法上报',
+              icon: 'none',
+              duration: 4000
+            })
+            */
+          }
+
+        }
+      })
+
+    /*
+    
+    */
   },
   submitreport:function(){
     var that = this;
@@ -361,4 +389,13 @@ Page({
       problemDetail: e.detail.value
     })
   },
+  onClickShow: function() {
+    this.setData({ show: true });
+  },
+
+  onClickHide: function() {
+    this.setData({ show: false });
+  },
+
+  noop: function() { }
 })

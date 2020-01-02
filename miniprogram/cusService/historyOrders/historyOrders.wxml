@@ -1,5 +1,31 @@
 <van-tabs active="a">
 <van-tab title="扫码上报 ({{newRepaireLength}})" name="a" >
+<view class="search">
+<van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词/客户名或者单位名"
+  use-action-slot
+  clearable="{{false}}"
+  bind:change="onChange"
+>
+  <view slot="action" bind:tap="onClick">搜索</view>
+</van-search>
+</view>
+  <picker mode="date" value="{{export_date}}" fields="month" start="{{currentDate}}" bindchange="bindDateChange">
+    <view class="picker">
+    选择要查看的月份 <i class="fa fa-calendar fa" style="color:#888888;"></i>
+    </view>
+  </picker>
+    <van-field
+    value="{{ export_date }}"
+    center
+    required
+    label="月份"
+    placeholder="请选择月份"
+    border="{{ false }}"
+    use-button-slot
+    disabled
+  >  </van-field>
 <view  wx:for="{{newHistoryOrders}}" wx:key="{{index}}">
 <navigator url="../historyRepairRecords/historyRepairRecords?report_id={{item.report_id}}" class="title_a">
 <view class="left">

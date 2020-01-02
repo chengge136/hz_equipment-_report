@@ -43,6 +43,9 @@
     <textarea class="textarea-bg"  maxlength="200" placeholder="简单描述设备的问题" bindinput="getDataBindTap" /> 
 </view>
 
+
+
 <view class="button">
 <van-button size="large" type="info" bind:click="submit_info">提交</van-button>
 </view>
+<van-notify id="van-notify" />

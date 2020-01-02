@@ -25,6 +25,10 @@
 .problem-desc{
   margin-left: 30rpx;
 }
+.search{
+  margin-bottom: 50rpx;
+}
+
 .problem-desc text{
   font-size: 10pt;
 }

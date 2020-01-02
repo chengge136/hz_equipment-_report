@@ -12,6 +12,15 @@
   height: 120px;
   width: 90%;
 }
+.textarea-desc_1{
+   padding: 10rpx;
+  margin: 20rpx;
+  font-size: 36rpx;
+  color:rgb(7, 193, 96);
+   border: 1px solid rgb(165, 165, 165);
+  height: 120px;
+  width: 90%;
+}
 .textarea-link{
     padding: 10rpx;
   margin: 20rpx;

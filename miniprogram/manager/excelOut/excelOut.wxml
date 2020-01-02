@@ -1,5 +1,8 @@
+<van-tabs active="a">
+<van-tab title="按月度导出" name="a" >
+
 <view> 
-    <view class="problem-desc">导出报表步骤说明:</view>
+    <view class="problem-desc">导出月度报表步骤说明:</view>
     <textarea class="textarea-desc"  maxlength="200" value="{{ desc }}" disabled="true"/> 
 </view>
 
@@ -29,3 +32,38 @@
 <view class="button">
 <van-button size="large" type="info" bind:click="copyFileUrl">复制下载链接</van-button>
 </view>
+  </van-tab>
+<van-tab title="按年度导出" name="b">
+<view> 
+    <view class="problem-desc">导出年度报表步骤说明:</view>
+    <textarea class="textarea-desc_1"  maxlength="200" value="{{ desc_1 }}" disabled="true"/> 
+</view>
+
+
+  <picker mode="date" value="{{export_date}}" fields="year" start="{{currentDate}}" bindchange="bindYearChange">
+    <view class="picker">
+    <view> 请点击选择你要导出excel报表的年份 <i class="fa fa-calendar fa" style="color:#888888;"></i></view>
+    </view>
+  </picker>
+    <van-field
+    value="{{ export_date }}"
+    center
+    required
+    label="年份"
+    placeholder="请选择年份"
+    border="{{ false }}"
+    use-button-slot
+    disabled
+  >
+    <van-button slot="button" size="small" type="primary" bind:click="getExcel">生成excel报表</van-button>
+  </van-field>
+<view> 
+    <view class="problem-desc">获取到的excel下载链接</view>
+    <textarea class="textarea-link"  maxlength="200" value="{{fileUrl}}" disabled="true"/> 
+</view>
+
+<view class="button">
+<van-button size="large" type="info" bind:click="copyFileUrl">复制下载链接</van-button>
+</view>
+</van-tab>
+</van-tabs>

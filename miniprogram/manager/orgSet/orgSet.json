@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index",
+    "van-switch": "../../vant/switch/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "授权管理",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

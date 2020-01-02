@@ -48,6 +48,9 @@
     <van-col span="5">
       <i class="fa fa-file-excel-o fa-2x" style="color:#259B24;" bindtap="excel_out"></i>
     </van-col>
+    <van-col span="5">
+      <i class="fa fa-handshake-o fa-2x" style="color:#F2753F;"bindtap="organization_m"></i>
+    </van-col>
   </van-row>
 </view>
 
@@ -61,6 +64,9 @@
     </van-col>
      <van-col span="5">
       <text>统计导出</text>
+    </van-col>
+    <van-col span="5">
+      <text>客户授权</text>
     </van-col>
   </van-row>
 </view>
