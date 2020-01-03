@@ -131,13 +131,12 @@ Page({
       db.collection('organizations').where({
             name: {
               $regex: '.*' + that.data.element,
-            }
+            },
+        active: _.eq(1)
           }).orderBy('createtime', 'desc').get({
           success: function (res) {
             // res.data 是包含以上定义的两条记录的数组
             console.log(res.data)
-
-
 
             that.setData({
               accessOrg: res.data,
@@ -147,65 +146,20 @@ Page({
         })
 
       //客户电话报修，前台无扫码提交
-      db.collection('repair_orders').where(_.or([
-        {
-          status: _.eq(1),
-          reportType: _.eq(1),
-          contactor: {
-            $regex: '.*' + that.data.element,
-          }
+      db.collection('organizations').where({
+        name: {
+          $regex: '.*' + that.data.element,
         },
-        {
-          status: _.eq(1),
-          reportType: _.eq(1),
-          facilityOrg: {
-            $regex: '.*' + that.data.element,
-          }
-        }
-      ])).orderBy('createtime', 'desc')
-        .get({
+        active: _.eq(0)
+      }).orderBy('createtime', 'desc').get({
           success: function (res) {
-            // res.data 是包含以上定义的两条记录的数组
-            console.log('phoneRepairLength' + res.data.length)
-            for (var index in res.data) {
-              res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-            }
+            
             that.setData({
-              phoneRepairOrders: res.data,
-              phoneRepairLength: res.data.length
-
+              unableOrg: res.data,
+              unableLength: res.data.length
             })
           }
         })
-
-      db.collection('recall_repair_order').where(_.or([
-        {
-          status: _.eq(1),
-          contactor: {
-            $regex: '.*' + that.data.element,
-          }
-        },
-        {
-          status: _.eq(1),
-          facilityOrg: {
-            $regex: '.*' + that.data.element,
-          }
-        }
-      ])).orderBy('createtime', 'desc').get({
-        success: function (res) {
-          // res.data 是包含以上定义的两条记录的数组
-          console.log(res.data)
-
-          for (var index in res.data) {
-            res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-          }
-
-          that.setData({
-            newRecallHistoryOrders: res.data,
-            recallRepaireLength: res.data.length
-          })
-        }
-      })
     }
 
   },
