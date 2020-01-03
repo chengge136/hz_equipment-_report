@@ -128,34 +128,20 @@ Page({
       })
     } else {
       console.log('搜索:' + that.data.element);
-      db.collection('repair_orders').where(
-        _.or([
-          {
-            status: _.eq(1),
-            reportType: _.eq(0),
-            contactor: {
+      db.collection('organizations').where({
+            name: {
               $regex: '.*' + that.data.element,
             }
-          },
-          {
-            status: _.eq(1),
-            reportType: _.eq(0),
-            facilityOrg: {
-              $regex: '.*' + that.data.element,
-            }
-          }
-        ])).orderBy('createtime', 'desc').get({
+          }).orderBy('createtime', 'desc').get({
           success: function (res) {
             // res.data 是包含以上定义的两条记录的数组
             console.log(res.data)
 
-            for (var index in res.data) {
-              res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-            }
+
 
             that.setData({
-              newHistoryOrders: res.data,
-              newRepaireLength: res.data.length
+              accessOrg: res.data,
+              accessLength: res.data.length
             })
           }
         })
