@@ -20,7 +20,7 @@
 	},
 	"appid": "wx286f42de54481200",
 	"projectname": "hz_equipment%20_report",
-	"libVersion": "2.7.7",
+	"libVersion": "2.8.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"compileType": "miniprogram",
@@ -99,8 +99,8 @@
 				},
 				{
 					"id": 7,
-					"name": "manager/orgManage/orgManage",
-					"pathName": "manager/orgManage/orgManage",
+					"name": "manager/subscribeMessage/subscribeMessage",
+					"pathName": "manager/subscribeMessage/subscribeMessage",
 					"query": "",
 					"scene": null
 				}

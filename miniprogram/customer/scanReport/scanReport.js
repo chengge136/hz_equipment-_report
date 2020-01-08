@@ -182,38 +182,60 @@ Page({
         // res.data 包含该记录的数据
         console.log('facility',res.data[0]);
         //设置设备类型
-        switch (res.data[0].facilityType.toString()) {
-          case "0":
-            that.setData({
-              facilityType: '打印机'
-            }) ;
-            break;
-          case "1":
-            that.setData({
-              facilityType: '复印机'
-            });
-            break;
-          case "2":
-            that.setData({
-              facilityType: '电脑'
-            });
-            break;
-          case "3":
-            that.setData({
-              facilityType: '其他'
-            });
-            break;
-        } 
-        that.setData({
-          facilityid: res.data[0].facilityid,
-          facilityName: res.data[0].facilityName,
-          brandName: res.data[0].brandName,
-          facilityOrg: res.data[0].facilityOrg,
-          address: res.data[0].address,
-          contactor: res.data[0].contactor,
-          phone: res.data[0].phone
+        if (res.data.length==0){
+          wx.showModal({
+            title: '提示',
+            content: '此设备占未添加基本信息，不可报修，请联系宏志售后',
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                wx.redirectTo({
+                  url: '../../pages/cusIndex/cusIndex'
+                })
 
-        })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+                wx.redirectTo({
+                  url: '../../pages/cusIndex/cusIndex'
+                })
+              }
+            }
+          })
+         
+        }else{
+          switch (res.data[0].facilityType.toString()) {
+            case "0":
+              that.setData({
+                facilityType: '打印机'
+              });
+              break;
+            case "1":
+              that.setData({
+                facilityType: '复印机'
+              });
+              break;
+            case "2":
+              that.setData({
+                facilityType: '电脑'
+              });
+              break;
+            case "3":
+              that.setData({
+                facilityType: '其他'
+              });
+              break;
+          }
+          that.setData({
+            facilityid: res.data[0].facilityid,
+            facilityName: res.data[0].facilityName,
+            brandName: res.data[0].brandName,
+            facilityOrg: res.data[0].facilityOrg,
+            address: res.data[0].address,
+            contactor: res.data[0].contactor,
+            phone: res.data[0].phone
+
+          })
+        }
 
         db.collection('facility_manage').where({
           organization: _.eq(res.data[0].facilityOrg)

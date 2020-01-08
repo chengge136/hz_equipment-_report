@@ -40,7 +40,9 @@ App({
       scanType: ['qrCode'],
       success(res) {
         //打印ISBN码
-        var result = res.result;
+        //var result = res.result; 测试版的二维码，后缀带参数
+        var result = res.path;
+
         var idIndex = result.indexOf("$id") + 4; // 从结果中获取机器id
         var idString = result.substr(idIndex, 12);
         console.log(idString);
