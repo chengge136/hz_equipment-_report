@@ -92,8 +92,8 @@
 				},
 				{
 					"id": 6,
-					"name": "historyOrders",
-					"pathName": "cusService/historyOrders/historyOrders",
+					"name": "pages/logIn/logIn",
+					"pathName": "pages/logIn/logIn",
 					"query": "",
 					"scene": null
 				},
