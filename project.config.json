@@ -99,8 +99,15 @@
 				},
 				{
 					"id": 7,
-					"name": "manager/subscribeMessage/subscribeMessage",
-					"pathName": "manager/subscribeMessage/subscribeMessage",
+					"name": "cusService/myinfo/myinfo",
+					"pathName": "cusService/myinfo/myinfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "cusService/facilityInfo/facilityInfo",
+					"pathName": "cusService/facilityInfo/facilityInfo",
 					"query": "",
 					"scene": null
 				}

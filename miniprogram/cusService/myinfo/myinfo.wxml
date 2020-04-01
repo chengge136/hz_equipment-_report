@@ -1,0 +1,31 @@
+<!--pages/personal/personal.wxml-->
+<view class="personalWrap">
+    <view class="personalMe" >
+        <image src="{{userHead}}" style="width:80px;height:80px;border:1px solid #ddd;float:left;margin:20rpx 20rpx;border-radius: 50%;"></image>
+        <view class="personalInfo">
+            <text>{{nickName}}</text>
+        </view>
+    </view>
+    <!-- 列表 -->
+    <van-cell-group>
+   <van-field value="{{ name }}" bind:input="name" required clearable label="姓名" placeholder="请输入名字" />
+  <van-field value="{{ dept }}" bind:input="dept" required clearable label="所在部门" placeholder="请输入所在部门" />
+    <van-field value="{{ phone }}" bind:input="phone" required clearable label="联系电话" placeholder="请输入联系电话" />
+</van-cell-group>
+</view>
+<view class="radio">
+
+<text>是否自动登录售后页面：</text>
+    <view class="page__bd">
+        <view class="section section_gap">
+            <radio-group class="radio-group" bindchange="radioChange">
+                <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+            </radio-group>
+        </view>
+    </view>
+    </view>
+<view class="button">
+<van-button size="large" type="info" bind:click="submit_info">更新</van-button>
+</view>

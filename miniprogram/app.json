@@ -23,10 +23,12 @@
     "cusService/myrecallDetails/myrecallDetails",
     "cusService/recalhistoryRecords/recalhistoryRecords",
     "cusService/infoadminSet/infoadminSet",
+    "cusService/myinfo/myinfo",
     "customer/scanReport/scanReport",
     "customer/reportOrder/reportOrder",
     "customer/cusHistory/cusHistory",
     "customer/orderlist/orderlist",
+    "customer/myinfo/myinfo",
     "infoCenter/facilityManage/facilityManage",
     "infoCenter/orderReview/orderReview",
     "infoCenter/ReviewDetails/ReviewDetails",
@@ -67,5 +69,4 @@
   },
   "cloud": true,
   "sitemapLocation": "sitemap.json"
-  
 }

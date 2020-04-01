@@ -120,6 +120,12 @@ Page({
       //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
     })
   },
+  my_info: function () {
+    wx.navigateTo({
+      url: '../../cusService/myinfo/myinfo',
+      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
+    })
+  },
   history_orders: function () {
     wx.navigateTo({
       url: '../../cusService/historyOrders/historyOrders',

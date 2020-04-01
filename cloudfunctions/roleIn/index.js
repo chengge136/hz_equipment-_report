@@ -15,6 +15,7 @@ exports.main = async (event, context) => {
       roleid: event.roleid,
       name:'',
       dept:'',
+      isAuto: '1',
       phone:'',
       deletetime:''
      

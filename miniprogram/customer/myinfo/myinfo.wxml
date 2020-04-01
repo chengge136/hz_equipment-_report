@@ -1,0 +1,9 @@
+<view class="header">
+<van-image
+  round
+  width="6rem"
+  height="6rem"
+  fit="cover"
+  src="https://img.yzcdn.cn/vant/cat.jpeg"
+/>
+</view>

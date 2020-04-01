@@ -8,6 +8,7 @@ Page({
    */
   data: {
     disabled: false,
+    registered:0,
     no: '',
     pwd: '',
     noinput: false,
@@ -67,42 +68,45 @@ Page({
     }
   },
   submit: function (e) {
-    wx.showLoading({
-      title: '登录中...',
-    })
     this.setData({ disabled: true });
 
     if (this.data.no == 'admin' && this.data.pwd == 'admin') {
+      //是否已注册
+      if (this.data.registered==0){
+        wx.cloud.callFunction({
+          name: 'roleIn',
+          data: {
+            openid: this.data.myopenid,
+            nickName: this.data.nickName,
+            avatarUrl: this.data.avatarUrl,
+            roleid: 1
+          },
+          complete: res => {
+            console.log('售后端 roleIn test result: ', res);
 
-      wx.cloud.callFunction({
-        name: 'roleIn',
-        data: {
-          openid: this.data.myopenid,
-          nickName: this.data.nickName,
-          avatarUrl: this.data.avatarUrl,
-          roleid: 1
+            wx.showToast({
+              title: '登录成功',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                console.log('haha');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.redirectTo({
+                    url: '../index/index'
+                  })
+                }, 2000) //延迟时间
+              }
+            })
+          }
+        })
+      }else{
+        console.log('已注册，直接登录')
+        wx.redirectTo({
+          url: '../index/index'
+        })
+      }
 
-        },
-        complete: res => {
-          console.log('售后端 roleIn test result: ', res);
-
-          wx.showToast({
-            title: '登录成功',
-            icon: 'success',
-            duration: 2000,
-            success: function () {
-              console.log('haha');
-              setTimeout(function () {
-                //要延时执行的代码
-                wx.redirectTo({
-                  url: '../index/index'
-                })
-              }, 2000) //延迟时间
-            }
-          })
-
-        }
-      })
     } else {
       wx.showToast({
         title: '账号密码错误',
@@ -113,36 +117,12 @@ Page({
     }
   },
   nopwsubmit: function () {
+    if (this.data.registered == 1) {
+      wx.redirectTo({
+        url: '../cusIndex/cusIndex'
+      })
+    }
 
-    wx.cloud.callFunction({
-      name: 'roleIn',
-      data: {
-        openid: this.data.myopenid,
-        nickName: this.data.nickName,
-        avatarUrl: '',
-        roleid: 2
-
-
-      },
-      complete: res => {
-        console.log('客户端 roleIn test result: ', res);
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000,
-          success: function () {
-            console.log('haha');
-            setTimeout(function () {
-              //要延时执行的代码
-              wx.redirectTo({
-                url: '../cusIndex/cusIndex'
-              })
-            }, 2000) //延迟时间
-          }
-        })
-
-      }
-    })
   },
   reviewLogin: function () {
     const _ = db.command;
@@ -316,12 +296,10 @@ Page({
       nickName: options.nickName,
       avatarUrl: options.avatarUrl
     });
-
     wx.cloud.callFunction({
       //调用的函数名字
       name: 'getOpenid',
       success: function (res) {
-
         that.setData({
           //将openid赋值给本地变量myopenid
           myopenid: res.result.openid
@@ -333,35 +311,40 @@ Page({
           openid: res.result.openid
         }).get().then(res => {
           if (!res.data.length == 0) {
-            console.log(res.data[0]);
+            that.setData({
+              //设置此用户已经注册
+              registered: 1
+            })
 
-            switch (res.data[0].roleid) {
+            if (!(res.data[0].isAuto == "0")){
+              console.log(res.data[0]);
+              switch (res.data[0].roleid) {
                 //售后
-              case 1:
-                wx.redirectTo({
-                  url: '../index/index',
-                });
-                break;
+                case 1:
+                  wx.redirectTo({
+                    url: '../index/index',
+                  });
+                  break;
                 //客户
-              case 2:
-                wx.redirectTo({
-                  url: '../cusIndex/cusIndex',
-                });
-                break;
+                case 2:
+                  wx.redirectTo({
+                    url: '../cusIndex/cusIndex',
+                  });
+                  break;
                 //信息中心管理员
-              case 3:
-                wx.redirectTo({
-                  url: '../infoIndex/infoIndex',
-                });
-                break;
+                case 3:
+                  wx.redirectTo({
+                    url: '../infoIndex/infoIndex',
+                  });
+                  break;
                 //审批
-              case 4:
-                wx.redirectTo({
-                  url: '../reviewIndex/reviewIndex',
-                });
-                break;
+                case 4:
+                  wx.redirectTo({
+                    url: '../reviewIndex/reviewIndex',
+                  });
+                  break;
+              }
             }
-
           }
         })
       }

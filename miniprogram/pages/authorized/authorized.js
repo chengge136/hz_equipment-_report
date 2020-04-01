@@ -1,15 +1,43 @@
 //获取应用实例
 const app = getApp()
-
+const db = wx.cloud.database();
 Page({
   data: {
+    nickName: 'customer',
+    myopenid: '',
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false
   },
-
   onLoad: function () {
     var that = this;
+
+    //获得openid
+    wx.cloud.callFunction({
+      //调用的函数名字
+      name: 'getOpenid',
+      success: function (res) {
+        that.setData({
+          //将openid赋值给本地变量myopenid
+          myopenid: res.result.openid
+        })
+        console.log('myopenid:', res.result.openid);
+        const _ = db.command;
+        db.collection('hz_role_user').where({
+          openid: res.result.openid
+        }).get().then(res => {
+          if (!res.data.length == 0) {
+            if (res.data[0].roleid==2){
+              wx.redirectTo({
+                url: '../cusIndex/cusIndex',
+              });
+            }
+          }
+        })
+      }
+    })
+
+    
     // 查看是否授权
     wx.getSetting({
       success: function (res) {
@@ -18,34 +46,51 @@ Page({
           wx.getUserInfo({
             success: function (res) {
               console.log(res.userInfo.nickName);
-              console.log(res.userInfo.avatarUrl);//获取微信用户头像存放的Url 
-
+              console.log(res.userInfo.avatarUrl); //获取微信用户头像存放的Url
               setTimeout(function () {
-                //要延时执行的代码
                 wx.redirectTo({
                   url: '../logIn/logIn?nickName=' + res.userInfo.nickName + '&avatarUrl=' + res.userInfo.avatarUrl,
                 })
-              }, 1000); //延迟时间
-       
+              }, 1000);
             }
           });
         } else {
-          // 用户没有授权
-          // 改变 isHide 的值，显示授权页面
           that.setData({
             isHide: true
           });
         }
       }
     });
+
   },
   nopwsubmit: function () {
-    setTimeout(function () {
-      //要延时执行的代码
-      wx.redirectTo({
-        url: '../logIn/logIn'
-      })
-    }, 1000) //延迟时间
+    wx.cloud.callFunction({
+      name: 'roleIn',
+      data: {
+        openid: this.data.myopenid,
+        nickName: this.data.nickName,
+        avatarUrl: '',
+        roleid: 2
+      },
+      complete: res => {
+        console.log('客户端 roleIn test result: ', res);
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            console.log('login success');
+            setTimeout(function () {
+              //要延时执行的代码
+              wx.redirectTo({
+                url: '../cusIndex/cusIndex'
+              })
+            }, 2000) //延迟时间
+          }
+        })
+
+      }
+    })
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -81,4 +126,5 @@ Page({
       });
     }
   }
+
 })

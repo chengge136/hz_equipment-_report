@@ -55,7 +55,7 @@
      <!--按钮-->  
     <view class="loginBtnView">
     <view><button class="loginBtn" size="{{primarySize}}" disabled='{{disabled}}' bindtap="submit">售后登录</button></view>
-    <view><button class="cusBtn" size="{{primarySize}}" bindtap="nopwsubmit">报修登录</button></view>
+   <view><button class="cusBtn" size="{{primarySize}}" bindtap="nopwsubmit">用户入口(演示)</button></view>
     </view>  
   </view>
   </view>  

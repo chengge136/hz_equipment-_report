@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-image": "../../vant/image/index"
+  },
+  "navigationBarBackgroundColor": "#03A9F4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "个人中心",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

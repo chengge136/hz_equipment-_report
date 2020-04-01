@@ -1,11 +1,11 @@
-// pages/cusIndex/cusIndex.js
-var app = getApp();
+// customer/myinfo/myinfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+
   },
 
   /**
@@ -62,34 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  scan_report: function () {
-    app.scanCode('../../customer/scanReport/scanReport?facilityid=');
-  },
-
-  order_track: function () {
-    wx.navigateTo({
-      url: '../../customer/orderlist/orderlist',
-    })
-  },
-  my_info: function () {
-    wx.navigateTo({
-      url: '../../customer/myinfo/myinfo',
-    })
-  },
-
-  
-
-  my_orders: function () {
-    wx.navigateTo({
-      url: '../../customer/cusHistory/cusHistory',
-      //url: '../facilityInfo/facilityInfo?facilityid=' + res.result,
-    })
   }
-
- 
-
-
-
 })

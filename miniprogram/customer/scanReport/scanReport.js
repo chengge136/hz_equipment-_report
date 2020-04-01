@@ -23,52 +23,38 @@ Page({
     status:'',
     show: false
   },
-  submit_info: function () {
-    var that = this;
-    const _ = db.command;
-    db.collection('organizations').where({
-      name: {
-        $regex: '.*' + that.data.facilityOrg,
-      }
-      
-    }).get({
-        success: function (res) {
-          // res.data 是包含以上定义的两条记录的数组
-          console.log('active:',res.data[0].active)
-          if (res.data[0].active==1){
-            wx.showModal({
-              title: '提交',
-              content: '确定此设备的报修信息无误？',
-              success(res) {
-                if (res.confirm) {
-                  console.log('用户点击确定');
-                  that.submitreport();
 
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          }else{
-            Notify({ type: 'warning', message: '款项未结清，无法上报' });
-            /*
-            wx.showToast({
-              title: '款项未结清，无法上报',
-              icon: 'none',
-              duration: 4000
-            })
-            */
-          }
-
-        }
-      })
-
-    /*
-    
-    */
-  },
   submitreport:function(){
     var that = this;
+    const _ = db.command;
+    db.collection('repair_orders').where({
+      facilityid: _.eq(that.data.facilityid),
+      status: _.neq(1)
+    }).count({
+      success: function (res) {
+        console.log('已经提交的数量是', res.total);
+        if (res.total > 0) {
+          wx.showModal({
+            title: '提示',
+            content: '此设备已经报修，请在首页点击[报修跟踪]查询进度',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.redirectTo({
+                    url: '../../pages/cusIndex/cusIndex'
+                  })
+                }, 500) //延迟时间
+
+              }
+            }
+          })
+        }
+      }
+    })
+
     if (!this.data.imagePath == '') {
       wx.cloud.uploadFile({
         cloudPath: this.data.facilityid + '.jpg',
@@ -94,7 +80,7 @@ Page({
         }
       })
     } else {
-      that.report();
+      that.report('');
     }
   },
 
@@ -117,22 +103,24 @@ Page({
         openid: this.data.myopenid,
         status: this.data.status
       },
-      complete: res => {
-        console.log('callFunction test result: ', res);
+      success: res => {
+        console.log('调用云函数成功: ', res);
         wx.showToast({
           title: '上报成功',
           icon: 'success',
           duration: 1000,
           success: function () {
-            console.log('haha');
             setTimeout(function () {
-              //要延时执行的代码
               wx.redirectTo({
                 url: '../../pages/cusIndex/cusIndex'
               })
             }, 500) //延迟时间
           }
         })
+      },
+      fail: err => {
+        // handle error
+        console.log(err)
       }
     })
   },
@@ -172,7 +160,6 @@ Page({
         }
       }
     })
-
 
 
     db.collection('facility').where({
@@ -236,35 +223,6 @@ Page({
 
           })
         }
-
-        db.collection('facility_manage').where({
-          organization: _.eq(res.data[0].facilityOrg)
-        })
-          .get().then(res1 => {
-            console.log('facility_manage',res1.data[0]);
-            if (res1.data.length==0){
-              console.log("此设备未设置是否上报");
-              //不需要审核，状态改为3
-              that.setData({
-                status: 3
-              })
-            }else{
-              var previous_arrays = res1.data[0].auto_array.split(",");
-              //如果此设备是需要审核的
-              if (previous_arrays.indexOf(res.data[0].facilityType.toString()) != -1) {
-                console.log('包含需要审核的设备');
-                that.setData({
-                  status: 0
-                })
-              } else {
-                //不需要审核，状态改为3
-                that.setData({
-                  status: 3
-                })
-              }
-            }
-        
-          })
 
       })
 
