@@ -46,6 +46,6 @@
 
 
 <view class="button">
-<van-button size="large" type="info" bind:click="submitreport">提交</van-button>
+<van-button size="large" type="info" bind:click="submitreport"  disabled='{{disabled}}' >提交</van-button>
 </view>
 <van-notify id="van-notify" />

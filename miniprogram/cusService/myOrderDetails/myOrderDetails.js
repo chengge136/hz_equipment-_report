@@ -146,8 +146,10 @@ Page({
                 onlyFromCamera: true,
                 scanType: ['qrCode'],
                 success(res) {
+
                   //打印ISBN码
-                  var result = res.result;
+                  //var result = res.result; 测试版的二维码，后缀带参数
+                  var result = res.path;
                   var idIndex = result.indexOf("$id") + 4; // 从结果中获取机器id
                   var idString = result.substr(idIndex, 12);
                   console.log('facilityid:' + idString);
@@ -189,9 +191,9 @@ Page({
       complete: res => {
         console.log('signIn callFunction test result: ', res);
         wx.showToast({
-          title: '成功',
+          title: '签到成功',
           icon: 'success',
-          duration: 2000,
+          duration: 1000,
           success: function () {
             console.log('签到成功');
           }

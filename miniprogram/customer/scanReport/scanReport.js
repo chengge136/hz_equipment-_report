@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled: false,
     facilityid: '',
     facilityName: '',
     brandName: '',
@@ -20,7 +21,7 @@ Page({
     problemDetail:'',
     createtime:'',
     myopenid: '',
-    status:'',
+    status:3,
     show: false
   },
 
@@ -62,6 +63,7 @@ Page({
         success: res => {
           // get resource ID
           console.log(res.fileID);
+          that.setData({ disabled: true });
           that.report(res.fileID);
         },
         fail: err => {
@@ -80,6 +82,8 @@ Page({
         }
       })
     } else {
+      //没有照片上传
+      that.setData({ disabled: true });
       that.report('');
     }
   },
@@ -110,11 +114,9 @@ Page({
           icon: 'success',
           duration: 1000,
           success: function () {
-            setTimeout(function () {
-              wx.redirectTo({
-                url: '../../pages/cusIndex/cusIndex'
-              })
-            }, 500) //延迟时间
+            wx.redirectTo({
+              url: '../../pages/cusIndex/cusIndex'
+            })
           }
         })
       },
