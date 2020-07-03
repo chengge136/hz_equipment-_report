@@ -1,3 +1,14 @@
+<van-notice-bar
+  left-icon="volume-o"
+  text="若长时间在待派发，进入报修单可联系客服，告知已提交新订单，工作人员会尽快上门服务"
+/>
+
+<view class="J-shopping-cart-empty" hidden="{{!istcempty}}">
+			<i class="fa fa-wrench fa-5x"></i>
+			<text style='color:black'>暂无报修单</text>
+</view>
+
+<view hidden="{{istcempty}}">
 <view  wx:for="{{newRepairOrders}}" wx:key="{{index}}">
 <navigator url="../reportOrder/reportOrder?report_id={{item.report_id}}" class="title">
 <view class="left">
@@ -25,6 +36,6 @@
 </van-row>
 </view>
 </view>
-
+</view>
 
 

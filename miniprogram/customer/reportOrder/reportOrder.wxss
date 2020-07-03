@@ -69,3 +69,7 @@ textarea {
 q-image-remover text{
   font-size: 11pt;
 }
+
+.button-sp-area{
+  margin: 10rpx 0rpx 50rpx 30rpx;
+}

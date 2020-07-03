@@ -8,6 +8,7 @@ Page({
    */
   data: {
     newRepairOrders: [],
+    istcempty: null
   },
 
   /**
@@ -35,25 +36,35 @@ Page({
           success: function (res) {
             // res.data 是包含以上定义的两条记录的数组
             console.log(res.data)
-            for (var index in res.data) {
-              res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
-
-              switch (res.data[index].status.toString()) {
-                case "0":
-                  res.data[index].status = '待审核';
-                  break;
-                case "2":
-                  res.data[index].status = '已派发';
-                  break;
-                case "3":
-                  res.data[index].status = '待派发';
-                  break;
+            if(res.data.length==0){
+              that.setData({
+                istcempty: true
+              })
+            }else{
+              for (var index in res.data) {
+                res.data[index].createtime = app.formatDate(new Date(res.data[index].report_id));
+  
+                switch (res.data[index].status.toString()) {
+                  case "0":
+                    res.data[index].status = '待审核';
+                    break;
+                  case "2":
+                    res.data[index].status = '已派发';
+                    break;
+                  case "3":
+                    res.data[index].status = '待派发';
+                    break;
+                }
+  
               }
+              that.setData({
+                newRepairOrders: res.data,
+                istcempty: false
+              })
 
             }
-            that.setData({
-              newRepairOrders: res.data
-            })
+            
+            
           }
         })
 

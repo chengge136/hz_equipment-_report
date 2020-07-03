@@ -3,7 +3,10 @@
   margin-left:30rpx;
   
 }
-
+.button-sp-area{
+  margin: 0 auto;
+  width: 60%;
+}
 .button{
   bottom:0; 
   width:100%; 
@@ -63,4 +66,7 @@ textarea {
 
 q-image-remover text{
   font-size: 11pt;
+}
+.button-sp-area{
+  margin: 10rpx 0rpx 80rpx 30rpx;
 }

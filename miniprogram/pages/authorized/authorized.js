@@ -9,14 +9,14 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false
   },
-  onLoad: function () {
+  onLoad: function() {
     var that = this;
 
     //获得openid
     wx.cloud.callFunction({
       //调用的函数名字
       name: 'getOpenid',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           //将openid赋值给本地变量myopenid
           myopenid: res.result.openid
@@ -27,7 +27,7 @@ Page({
           openid: res.result.openid
         }).get().then(res => {
           if (!res.data.length == 0) {
-            if (res.data[0].roleid==2){
+            if (res.data[0].roleid == 2) {
               wx.redirectTo({
                 url: '../cusIndex/cusIndex',
               });
@@ -37,17 +37,17 @@ Page({
       }
     })
 
-    
+
     // 查看是否授权
     wx.getSetting({
-      success: function (res) {
+      success: function(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
-            success: function (res) {
+            success: function(res) {
               console.log(res.userInfo.nickName);
               console.log(res.userInfo.avatarUrl); //获取微信用户头像存放的Url
-              setTimeout(function () {
+              setTimeout(function() {
                 wx.redirectTo({
                   url: '../logIn/logIn?nickName=' + res.userInfo.nickName + '&avatarUrl=' + res.userInfo.avatarUrl,
                 })
@@ -63,7 +63,7 @@ Page({
     });
 
   },
-  nopwsubmit: function () {
+  nopwsubmit: function() {
     wx.cloud.callFunction({
       name: 'roleIn',
       data: {
@@ -78,9 +78,9 @@ Page({
           title: '成功',
           icon: 'success',
           duration: 2000,
-          success: function () {
+          success: function() {
             console.log('login success');
-            setTimeout(function () {
+            setTimeout(function() {
               //要延时执行的代码
               wx.redirectTo({
                 url: '../cusIndex/cusIndex'
@@ -92,7 +92,7 @@ Page({
       }
     })
   },
-  bindGetUserInfo: function (e) {
+  bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
@@ -102,8 +102,8 @@ Page({
       that.setData({
         isHide: false
       });
-     
-      setTimeout(function () {
+
+      setTimeout(function() {
         //要延时执行的代码
         wx.redirectTo({
           url: '../logIn/logIn?nickName=' + e.detail.userInfo.nickName + '&avatarUrl=' + e.detail.userInfo.avatarUrl,
@@ -117,7 +117,7 @@ Page({
         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
         showCancel: false,
         confirmText: '返回授权',
-        success: function (res) {
+        success: function(res) {
           // 用户没有授权成功，不需要改变 isHide 的值
           if (res.confirm) {
             console.log('用户点击了“返回授权”');

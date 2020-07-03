@@ -4,10 +4,15 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -16,11 +21,12 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"nodeModules": true
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"appid": "wx286f42de54481200",
 	"projectname": "hz_equipment%20_report",
-	"libVersion": "2.8.3",
+	"libVersion": "2.10.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"compileType": "miniprogram",
@@ -105,10 +111,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "cusService/facilityInfo/facilityInfo",
-					"pathName": "cusService/facilityInfo/facilityInfo",
-					"query": "",
+					"id": 8,
+					"name": "customer/scanReport/scanReport",
+					"pathName": "customer/scanReport/scanReport",
+					"query": "facilityid=202001080001",
 					"scene": null
 				}
 			]

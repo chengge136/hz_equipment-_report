@@ -1,6 +1,6 @@
 <van-notice-bar
   left-icon="volume-o"
-  text="扫码报修的时候，请查看设备现有的信息是否有误，若有误请手动更新后提交。"
+  text="报修时，可联系客服，告知即将提交报修单，工作人员会尽快上门服务"
 />
 <view class="icon1">
   <van-row gutter="10">

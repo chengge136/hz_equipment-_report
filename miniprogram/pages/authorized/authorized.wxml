@@ -1,21 +1,17 @@
 <view wx:if="{{isHide}}">
-    <view wx:if="{{canIUse}}" >
-        <view class='header'>
-            <image src='/images/hongzhi.png'></image>
-        </view>
-
-        <view class='content'>
-            <view>宏志售后辅助小程序</view>
-            <view>申请获取以下权限</view>
-            <text>获得你的公开信息(昵称，头像等)</text>
-        </view>
-        <button class="bottom" type='primary' bindtap="nopwsubmit">客户登录</button>
-        
-        <button class='bottom' type='default' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-            售后登录
-        </button>
-        
-
+  <view wx:if="{{canIUse}}">
+    <view class='header'>
+      <image src='/images/hongzhi.png'></image>
     </view>
-    <view wx:else>请升级微信版本</view>
+
+    <view class='content'>
+      <view>宏志售后辅助小程序</view>
+      <view>申请获取以下权限</view>
+      <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+    <button class="bottom" type='primary' bindtap="nopwsubmit">客户登录</button>
+    <button class='bottom' type='default' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">售后登录</button>
+  </view>
+  
+  <view wx:else>请升级微信版本</view>
 </view>

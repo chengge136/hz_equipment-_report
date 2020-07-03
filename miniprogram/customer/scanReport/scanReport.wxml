@@ -1,3 +1,8 @@
+<van-notice-bar
+  left-icon="volume-o"
+  text="提交报修前，请联系客服，告知即将提交报修单，工作人员会尽快上门服务"
+/>
+
 <view class="icon1">
   <i class="fa fa-keyboard-o fa-2x" style="color:#03A9F4;"></i>
   <text>{{facilityName}}</text>
@@ -42,10 +47,15 @@
     <view class="problem-desc"><text>问题描述</text></view>
     <textarea class="textarea-bg"  maxlength="200" placeholder="简单描述设备的问题" bindinput="getDataBindTap" /> 
 </view>
+<view>
+<view class="problem-desc"><text>联系我们的客服，告知即将提交报修单，收到尽快处理</text></view>
+<view class="button-sp-area">
+      <button type="primary" size="mini" open-type="contact"><i class="fa fa-handshake-o fa" style="color:#FFFFFF;"> 联系客服</i></button>
+</view>
+</view>
 
 
 
 <view class="button">
 <van-button size="large" type="info" bind:click="submitreport"  disabled='{{disabled}}' >提交</van-button>
 </view>
-<van-notify id="van-notify" />

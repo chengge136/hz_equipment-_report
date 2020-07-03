@@ -1,6 +1,6 @@
     
 .title{
-  background-color: rgb(206, 93, 18);
+  background-color:#1DB0B8;
   height: 100rpx;
   display:flex;
   justify-content:space-between;

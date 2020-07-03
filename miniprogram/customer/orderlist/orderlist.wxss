@@ -46,4 +46,14 @@
   left: 10rpx; /* 边距 */
 
 }
-
+.J-shopping-cart-empty{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;
+  color:#E6E6E6;
+  font-size: 35rpx;
+  height: 300rpx;
+  margin-top:100rpx; 
+  
+}

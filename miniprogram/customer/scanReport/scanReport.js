@@ -1,7 +1,6 @@
 // pages/facilityInfo/facilityInfo.js
 //云数据库初始化
 const db = wx.cloud.database();
-import Notify from '../../vant/notify/notify';
 Page({
 
   /**
@@ -63,8 +62,22 @@ Page({
         success: res => {
           // get resource ID
           console.log(res.fileID);
-          that.setData({ disabled: true });
-          that.report(res.fileID);
+         
+          
+          wx.showModal({
+            title: '提示',
+            content: '提交前，联系客服了吗？',
+            success(res) {
+              if (res.confirm) { 
+                that.setData({ disabled: true });    
+                that.report(res.fileID);
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+               
+              }
+            }
+          })
+          
         },
         fail: err => {
           // handle error
@@ -83,8 +96,20 @@ Page({
       })
     } else {
       //没有照片上传
-      that.setData({ disabled: true });
-      that.report('');
+      wx.showModal({
+        title: '提示',
+        content: '提交前，联系客服了吗？',
+        success(res) {
+          if (res.confirm) { 
+            that.setData({ disabled: true });
+            that.report('');
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+           
+          }
+        }
+      })
+      
     }
   },
 
@@ -241,7 +266,6 @@ Page({
 
 
   },
-
 
 
   /**

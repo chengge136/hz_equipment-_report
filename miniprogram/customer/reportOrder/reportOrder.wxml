@@ -28,7 +28,12 @@
 <image bindtap="imgYu" mode="aspectFit" data-src="{{imagePath}}" src="{{imagePath}}"></image>
 </view>
 </view>
-
+<view>
+<view class="problem-desc"><text style="font-size:32rpx;color:#FF5983;">若长时间在待派发状态，联系客服尽快处理</text></view>
+<view class="button-sp-area">
+      <button type="primary" size="mini" open-type="contact"><i class="fa fa-handshake-o fa" style="color:#FFFFFF;"> 联系客服</i></button>
+</view>
+</view>
 
 <view> 
     <view class="problem-desc">问题描述</view>
